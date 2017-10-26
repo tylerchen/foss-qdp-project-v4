@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SystemDictionary">
+	<select id="findDictionaryType1" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT
+			TYPE1 AS code  ,
+			NAME1 AS value
+		FROM SYS_DICTIONARY
+		<where>
+           <if test="vo!=null and vo.id != null and vo.id != ''                 "> AND ID = #{vo.id,jdbcType=VARCHAR} </if>                            
+           <if test="vo!=null and vo.type1 != null and vo.type1 != ''           "> AND TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.type2 != null and vo.type2 != ''           "> AND TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.name1 != null and vo.name1 != ''           "> AND NAME1 LIKE CONCAT('%',#{vo.name1,jdbcType=VARCHAR},'%') </if>   
+           <if test="vo!=null and vo.name2 != null and vo.name2 != ''           "> AND NAME2 = #{vo.name2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.code != null and vo.code != ''             "> AND CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>     
+           <if test="vo!=null and vo.value != null and vo.value != ''           "> AND VALUE = #{vo.value,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.sort != null and vo.sort != ''             "> AND SORT = #{vo.sort,jdbcType=INTEGER} </if>                        
+           <if test="vo!=null and vo.desciption != null and vo.desciption != '' "> AND DESCIPTION = #{vo.desciption,jdbcType=VARCHAR} </if>            
+           <if test="vo!=null and vo.status != null and vo.status != ''         "> AND STATUS = #{vo.status,jdbcType=VARCHAR} </if>                    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != '' "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>           
+           <if test="vo!=null and vo.createTime != null and vo.createTime != '' "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
+		</where>
+	</select>
+	<select id="findDictionaryType2" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT
+			TYPE2 AS code  ,
+			NAME2 AS value
+		FROM SYS_DICTIONARY
+		<where>
+           <if test="vo!=null and vo.id != null and vo.id != ''                 "> AND ID = #{vo.id,jdbcType=VARCHAR} </if>                            
+           <if test="vo!=null and vo.type1 != null and vo.type1 != ''           "> AND TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.type2 != null and vo.type2 != ''           "> AND TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.name1 != null and vo.name1 != ''           "> AND NAME1 LIKE CONCAT('%',#{vo.name1,jdbcType=VARCHAR},'%') </if>   
+           <if test="vo!=null and vo.name2 != null and vo.name2 != ''           "> AND NAME2 = #{vo.name2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.code != null and vo.code != ''             "> AND CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>     
+           <if test="vo!=null and vo.value != null and vo.value != ''           "> AND VALUE = #{vo.value,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.sort != null and vo.sort != ''             "> AND SORT = #{vo.sort,jdbcType=INTEGER} </if>                        
+           <if test="vo!=null and vo.desciption != null and vo.desciption != '' "> AND DESCIPTION = #{vo.desciption,jdbcType=VARCHAR} </if>            
+           <if test="vo!=null and vo.status != null and vo.status != ''         "> AND STATUS = #{vo.status,jdbcType=VARCHAR} </if>                    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != '' "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>           
+           <if test="vo!=null and vo.createTime != null and vo.createTime != '' "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
+		</where>
+	</select>
+	<select id="findDictionaryCode" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT
+			SORT  AS sort  ,
+			CODE  AS code  ,
+			VALUE AS value
+		FROM SYS_DICTIONARY
+		<where>
+           <if test="vo!=null and vo.id != null and vo.id != ''                 "> AND ID = #{vo.id,jdbcType=VARCHAR} </if>                            
+           <if test="vo!=null and vo.type1 != null and vo.type1 != ''           "> AND TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.type2 != null and vo.type2 != ''           "> AND TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.name1 != null and vo.name1 != ''           "> AND NAME1 LIKE CONCAT('%',#{vo.name1,jdbcType=VARCHAR},'%') </if>   
+           <if test="vo!=null and vo.name2 != null and vo.name2 != ''           "> AND NAME2 = #{vo.name2,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.code != null and vo.code != ''             "> AND CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>     
+           <if test="vo!=null and vo.value != null and vo.value != ''           "> AND VALUE = #{vo.value,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.sort != null and vo.sort != ''             "> AND SORT = #{vo.sort,jdbcType=INTEGER} </if>                        
+           <if test="vo!=null and vo.desciption != null and vo.desciption != '' "> AND DESCIPTION = #{vo.desciption,jdbcType=VARCHAR} </if>            
+           <if test="vo!=null and vo.status != null and vo.status != ''         "> AND STATUS = #{vo.status,jdbcType=VARCHAR} </if>                    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != '' "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>           
+           <if test="vo!=null and vo.createTime != null and vo.createTime != '' "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
+		</where>
+		ORDER BY sort
+	</select>
+</mapper>

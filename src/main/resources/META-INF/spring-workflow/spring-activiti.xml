@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+		">
+
+	<!-- <alias name="dataSource" alias="activitiDataSource"/>
+	<alias name="transactionManager" alias="activitiTransactionManager"/>-->
+	<bean id="activitiDataSource"  class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<description>https://github.com/alibaba/druid/wiki</description>
+		<property name="driverClassName" value="${workflow.jdbc.driverClassName}">
+			<description>基本属性driverClass、url、user、password</description>
+		</property>
+		<property name="url" value="${workflow.jdbc.url}">
+			<description>基本属性driverClass、url、user、password</description>
+		</property>
+		<property name="username" value="${workflow.jdbc.username}">
+			<description>基本属性driverClass、url、user、password</description>
+		</property>
+		<property name="password" ref="dencryptPasswordOpenReport" >
+			<description>基本属性driverClass、url、user、password</description>
+		</property>
+
+		<property name="filters" value="stat" >
+			<description>配置监控统计拦截的filters</description>
+		</property>
+		
+		<property name="initialSize" value="${workflow.initialSize}" >
+			<description>配置初始化大小、最小、最大</description>
+		</property>
+		<property name="minIdle" value="1" >
+			<description>配置初始化大小、最小、最大</description>
+		</property>
+		<property name="maxActive" value="${workflow.maxActive}" >
+			<description>配置初始化大小、最小、最大</description>
+		</property>
+		
+		<property name="maxWait" value="60000" >
+			<description>配置获取连接等待超时的时间</description>
+		</property>
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" >
+			<description>配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</description>
+		</property>
+		<property name="minEvictableIdleTimeMillis" value="300000" >
+			<description>配置一个连接在池中最小生存的时间，单位是毫秒</description>
+		</property>
+
+		<property name="validationQuery" value="${workflow.validationQuery}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		
+		<property name="poolPreparedStatements" value="true" >
+			<description>打开PSCache，并且指定每个连接上PSCache的大小，如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。</description>
+		</property>
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" >
+			<description>打开PSCache，并且指定每个连接上PSCache的大小，如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。</description>
+		</property>
+		
+		<property name="timeBetweenLogStatsMillis" value="300000" >
+			<description>定时输出统计信息到日志中: ms</description>
+		</property>
+			
+		<property name="connectionProperties" value=""  >
+			<description>
+			<![CDATA[
+			数据库密码加密
+			public static void main(String[] args) throws Exception {
+				com.alibaba.druid.filter.config.ConfigTools.main(new String[] { "yourPassword" });
+			}
+			== out put ===
+			privateKey:MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEA6+4avFnQKP+O7bu5YnxWoOZjv3no4aFV558HTPDoXs6EGD0HP7RzzhGPOKmpLQ1BbA5viSht+aDdaxXp6SvtMQIDAQABAkAeQt4fBo4SlCTrDUcMANLDtIlax/I87oqsONOg5M2JS0jNSbZuAXDv7/YEGEtMKuIESBZh7pvVG8FV531/fyOZAiEA+POkE+QwVbUfGyeugR6IGvnt4yeOwkC3bUoATScsN98CIQDynBXC8YngDNwZ62QPX+ONpqCel6g8NO9VKC+ETaS87wIhAKRouxZL38PqfqV/WlZ5ZGd0YS9gA360IK8zbOmHEkO/AiEAsES3iuvzQNYXFL3x9Tm2GzT1fkSx9wx+12BbJcVD7AECIQCD3Tv9S+AgRhQoNcuaSDNluVrL/B/wOmJRLqaOVJLQGg==
+			publicKey:MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOvuGrxZ0Cj/ju27uWJ8VqDmY7956OGhVeefB0zw6F7OhBg9Bz+0c84RjzipqS0NQWwOb4kobfmg3WsV6ekr7TECAwEAAQ==
+			password:PNak4Yui0+2Ft6JSoKBsgNPl+A033rdLhFw+L0np1o+HDRrCo9VkCuiiXviEMYwUgpHZUFxb2FpE0YmSguuRww==
+			== change filters ==
+			<property name="filters" value="config,stat" />
+			== add this config ==
+			<property name="connectionProperties" value="config.decrypt=true;config.decrypt.key=${jdbc.encrypt.publicKey}" />
+			]]>
+			</description>
+		</property>
+	</bean>
+	<bean id="activitiTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="activitiDataSource" />
+	</bean>
+
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<description>单例json对象</description>
+	</bean>
+
+	<!-- I don't want to use fastxml 
+	<bean id="uuidGenerator"
+		class="org.activiti.engine.impl.persistence.StrongUuidGenerator" >
+		<description>引擎内部提供的UUID生成器，依赖fastxml的java-uuid-generator模块</description>
+	</bean> -->
+	<lang:groovy id="uuidGenerator">
+		<lang:inline-script>
+		<![CDATA[
+			package org.iff.infra.util.activiti.uuid;
+			public class ActivitiUuidGenerator implements org.activiti.engine.impl.cfg.IdGenerator{
+				@groovy.transform.CompileStatic
+				public String getNextId(){
+					return org.iff.infra.util.StringHelper.uuid();
+				}
+			}
+		]]>
+		</lang:inline-script>
+	</lang:groovy>
+
+	<!-- Activiti begin -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="activitiDataSource" />
+		<property name="transactionManager" ref="activitiTransactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="jobExecutorActivate" value="true" />
+		<!-- 自动部署 -->
+		<!-- <property name="deploymentResources">
+		    <list>
+		        <value>classpath*:/diagrams/**/*.bpmn</value>
+		    </list>
+		</property> -->
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<!-- 7大接口 -->
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="formService" factory-bean="processEngine"
+		factory-method="getFormService" />
+	<bean id="identityService" factory-bean="processEngine"
+		factory-method="getIdentityService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+</beans>

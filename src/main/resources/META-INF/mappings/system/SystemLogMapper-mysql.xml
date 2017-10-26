@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SystemLog">
+	<delete id="deleteLogAccessDaysBeforeLogs" parameterType="hashmap">
+		DELETE FROM LOG_ACCESS
+		<where>
+				AND UPDATE_TIME &lt; FROM_DAYS(TO_DAYS(UPDATE_TIME)-#{day,jdbcType=INTEGER})
+		</where>
+	</delete>
+	<delete id="deleteLogOperationDaysBeforeLogs" parameterType="hashmap">
+		DELETE FROM LOG_OPERATION
+		<where>
+				AND UPDATE_TIME &lt; FROM_DAYS(TO_DAYS(UPDATE_TIME)-#{day,jdbcType=INTEGER})
+		</where>
+	</delete>
+</mapper>
