@@ -235,10 +235,11 @@
 		           AuthAutherMenu.SORT          AS  authAutherMenuSort
 		
 				FROM AUTH_ACCOUNT AuthAccount
-				INNER JOIN AUTH_AUTHER_ROLE AuthAutherRole             ON  AuthAccount.ID            = AuthAutherRole.AUTHER_ID  AND  AuthAutherRole.TYPE = 'AuthAccount'
-				INNER JOIN AUTH_AUTHER_MENU AuthAutherMenu             ON  AuthAutherRole.ROLE_ID    = AuthAutherMenu.AUTHER_ID  AND  AuthAutherMenu.TYPE = 'AuthRole'
-				INNER JOIN AUTH_MENU        AuthMenu                   ON  AuthAutherMenu.MENU_ID    = AuthMenu.ROOT_ID                                                   
-				LEFT  JOIN AUTH_RESOURCE    resourceIdAuthResource     ON  AuthMenu.RESOURCE_ID      = resourceIdAuthResource.ID                                             
+				INNER JOIN AUTH_AUTHER_ROLE   AuthAutherRole             ON  AuthAccount.ID            = AuthAutherRole.AUTHER_ID  AND  AuthAutherRole.TYPE = 'AuthAccount'
+				INNER JOIN AUTH_AUTHER_MENU   AuthAutherMenu             ON  AuthAutherRole.ROLE_ID    = AuthAutherMenu.AUTHER_ID  AND  AuthAutherMenu.TYPE = 'AuthRole'
+				INNER JOIN AUTH_MENU          AuthMenu                   ON  AuthAutherMenu.MENU_ID    = AuthMenu.ROOT_ID
+				INNER JOIN AUTH_ROLE_RESOURCE AuthRoleResource           ON  AuthAutherRole.ROLE_ID    = AuthRoleResource.ROLE_ID                                           
+				INNER JOIN AUTH_RESOURCE      resourceIdAuthResource     ON  AuthMenu.RESOURCE_ID      = resourceIdAuthResource.ID AND  AuthRoleResource.RESOURCE_ID = resourceIdAuthResource.ID 
 		
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
@@ -290,7 +291,8 @@
 				INNER JOIN AUTH_AUTHER_ROLE       AuthAutherRole              ON  AuthOrganizationUser.ORGANIZATION_ID = AuthAutherRole.AUTHER_ID  AND  AuthAutherRole.TYPE = 'AuthOrganization'
 				INNER JOIN AUTH_AUTHER_MENU       AuthAutherMenu              ON  AuthAutherRole.ROLE_ID               = AuthAutherMenu.AUTHER_ID  AND  AuthAutherMenu.TYPE = 'AuthRole'
 				INNER JOIN AUTH_MENU              AuthMenu                    ON  AuthAutherMenu.MENU_ID               = AuthMenu.ROOT_ID
-				LEFT  JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID                                             
+				INNER JOIN AUTH_ROLE_RESOURCE     AuthRoleResource            ON  AuthAutherRole.ROLE_ID               = AuthRoleResource.ROLE_ID                                           
+				INNER JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID AND  AuthRoleResource.RESOURCE_ID = resourceIdAuthResource.ID 
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
@@ -352,8 +354,10 @@
 				INNER JOIN AUTH_ORGANIZATION_USER AuthOrganizationUser        ON  AuthAccount.USER_ID                  = AuthOrganizationUser.USER_ID                                           
 				INNER JOIN AUTH_ORGANIZATION      AuthOrganization            ON  AuthOrganizationUser.ORGANIZATION_ID = AuthOrganization.ID  AND  AuthOrganization.IS_USE_ROOT_MENU &lt;&gt; 'Y'
 				INNER JOIN AUTH_AUTHER_MENU       AuthAutherMenu              ON  AuthOrganization.ID                  = AuthAutherMenu.AUTHER_ID  AND  AuthAutherMenu.TYPE = 'AuthOrganization'
-				INNER JOIN AUTH_MENU              AuthMenu                    ON  AuthAutherMenu.MENU_ID               = AuthMenu.ROOT_ID                                                   
-				LEFT  JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID                                             
+				INNER JOIN AUTH_MENU              AuthMenu                    ON  AuthAutherMenu.MENU_ID               = AuthMenu.ROOT_ID
+				INNER JOIN AUTH_AUTHER_ROLE 	  AuthAutherRole              ON  AuthOrganization.ID                  = AuthAutherRole.AUTHER_ID   AND  AuthAutherRole.TYPE = 'AuthOrganization'                                                   
+				INNER JOIN AUTH_ROLE_RESOURCE     AuthRoleResource            ON  AuthAutherRole.ROLE_ID               = AuthRoleResource.ROLE_ID                                           
+				INNER JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID AND  AuthRoleResource.RESOURCE_ID = resourceIdAuthResource.ID                                              
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
@@ -416,8 +420,10 @@
 				INNER JOIN AUTH_ORGANIZATION      AuthOrganization            ON  AuthOrganizationUser.ORGANIZATION_ID = AuthOrganization.ID        AND  AuthOrganization.IS_USE_ROOT_MENU = 'Y'
 				INNER JOIN AUTH_ORGANIZATION      rootIdAuthOrganization      ON  AuthOrganization.ROOT_ID             = rootIdAuthOrganization.ID  AND  rootIdAuthOrganization.IS_USE_ROOT_MENU = 'Y'
 				INNER JOIN AUTH_AUTHER_MENU       AuthAutherMenu              ON  rootIdAuthOrganization.ID            = AuthAutherMenu.AUTHER_ID   AND  AuthAutherMenu.TYPE = 'AuthOrganization'
-				INNER JOIN AUTH_MENU              AuthMenu                    ON  AuthAutherMenu.MENU_ID               = AuthMenu.ROOT_ID                                                   
-				LEFT  JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID                                             
+				INNER JOIN AUTH_MENU              AuthMenu                    ON  AuthAutherMenu.MENU_ID               = AuthMenu.ROOT_ID
+				INNER JOIN AUTH_AUTHER_ROLE 	  AuthAutherRole              ON  AuthOrganization.ID                  = AuthAutherRole.AUTHER_ID   AND  AuthAutherRole.TYPE = 'AuthOrganization'
+				INNER JOIN AUTH_ROLE_RESOURCE     AuthRoleResource            ON  AuthAutherRole.ROLE_ID               = AuthRoleResource.ROLE_ID                                           
+				INNER JOIN AUTH_RESOURCE          resourceIdAuthResource      ON  AuthMenu.RESOURCE_ID                 = resourceIdAuthResource.ID  AND  AuthRoleResource.RESOURCE_ID = resourceIdAuthResource.ID                                              
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
@@ -457,5 +463,45 @@
 		) AS TMP
 		ORDER BY authAutherMenuSort, menuIndex
 	</select>
+
+	<select id="pageFindAuthMenuByAdminMap" resultType="hashmap">
+		SELECT 
+           AuthMenu.ID                  AS  id                         ,
+           AuthMenu.NAME                AS  name                       ,
+           AuthMenu.RESOURCE_ID         AS  resourceId                 ,
+           AuthMenu.TYPE1               AS  type1                      ,
+           AuthMenu.TYPE2               AS  type2                      ,
+           AuthMenu.PARENT_ID           AS  parentId                   ,
+           AuthMenu.ROOT_ID             AS  rootId                     ,
+           AuthMenu.MENU_INDEX          AS  menuIndex                  ,
+           AuthMenu.MAX_LEVEL           AS  maxLevel                   ,
+           AuthMenu.ICO                 AS  ico                        ,
+           AuthMenu.DESCRIPTION         AS  description                ,
+           AuthMenu.UPDATE_TIME         AS  updateTime                 ,
+           AuthMenu.CREATE_TIME         AS  createTime                 ,
+           resourceIdAuthResource.NAME  AS  resourceIdName             ,
+           resourceIdAuthResource.CODE  AS  resourceIdCode             
+
+		FROM  AUTH_MENU               AuthMenu
+		INNER JOIN AUTH_RESOURCE      resourceIdAuthResource     ON  AuthMenu.RESOURCE_ID      = resourceIdAuthResource.ID 
+
+		<where>
+           <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
+           <if test="vo!=null and vo.name != null and vo.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.resourceId != null and vo.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.type1 != null and vo.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
+           <if test="vo!=null and vo.type2 != null and vo.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
+           <if test="vo!=null and vo.parentId != null and vo.parentId != ''       "> AND AuthMenu.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>        
+           <if test="vo!=null and vo.rootId != null and vo.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
+           <if test="vo!=null and vo.menuIndex != null and vo.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
+           <if test="vo!=null and vo.maxLevel != null and vo.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
+           <if test="vo!=null and vo.ico != null and vo.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+		</where>
+		ORDER BY menuIndex
+	</select>
+
 </mapper>
 

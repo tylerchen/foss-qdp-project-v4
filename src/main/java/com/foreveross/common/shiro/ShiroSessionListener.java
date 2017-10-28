@@ -22,7 +22,7 @@ import org.iff.infra.util.CacheHelper;
 public class ShiroSessionListener implements SessionListener {
 
 	public void onStart(Session session) {//会话创建触发 已进入shiro的过滤连就触发这个方法  
-		System.out.println("会话创建：" + session.getId());
+		//System.out.println("会话创建：" + session.getId());
 	}
 
 	public void onStop(Session session) {//退出 
@@ -32,7 +32,7 @@ public class ShiroSessionListener implements SessionListener {
 				CacheHelper.del(str);
 			}
 		}
-		System.out.println("退出会话：" + session.getId());
+		//System.out.println("退出会话：" + session.getId());
 	}
 
 	public void onExpiration(Session session) {//会话过期时触发
@@ -42,7 +42,7 @@ public class ShiroSessionListener implements SessionListener {
 				CacheHelper.del(str);
 			}
 		}
-		System.out.println("会话过期：" + session.getId());
+		//System.out.println("会话过期：" + session.getId());
 	}
 
 }

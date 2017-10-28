@@ -61,7 +61,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 					public Boolean call() {
 						Page<?> page = Dao.queryPage("SystemAuth.pageFindAuthRoleByAuthAccountMap",
 								MapHelper.toMap(//
-										"page", Page.offsetPage(0, 1, null), //
+										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("id", id), //
 										"AuthRole", MapHelper.toMap("name", "ADMIN")//
 						));
@@ -84,7 +84,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 					public Boolean call() {
 						Page<?> page = Dao.queryPage("SystemAuth.pageFindAuthRoleByAuthAccountMap",
 								MapHelper.toMap(//
-										"page", Page.offsetPage(0, 1, null), //
+										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("loginEmail", loginId), //
 										"AuthRole", MapHelper.toMap("name", "ADMIN")//
 						));
@@ -111,7 +111,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 						}
 						Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthResourceByAuthAccountMap",
 								MapHelper.toMap(//
-										"page", Page.offsetPage(0, 1, null), //
+										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("id", id)//
 						));
 						return value;
@@ -136,7 +136,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 						}
 						Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthResourceByAuthAccountMap",
 								MapHelper.toMap(//
-										"page", Page.offsetPage(0, 1, null), //
+										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("loginEmail", loginId)//
 						));
 						return value;
@@ -244,12 +244,24 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 				"AuthorizationApplication-pageFindAuthMenuByAccountIdMap-" + id + "-" + getSessionId(), timeToIdle,
 				timeToLive, new CacheCallback<Page<?>>() {
 					public Page<?> call() {
+						if (isAdminByAccountId(id)) {
+							Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthMenuByAdminMap",
+									MapHelper.toMap(//
+											"page", Page.offsetPage(0, 10000, null), //
+											"vo", null//
+							));
+							return value;
+						}
 						Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthMenuByAuthAccountMap",
 								MapHelper.toMap(//
 										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("id", id)//
 						));
 						return value;
+					}
+
+					public void storeKey(String key) {
+						storeKeyInSession(key);
 					}
 				});
 	}
@@ -262,6 +274,14 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 				"AuthorizationApplication-pageFindAuthMenuByLoginIdMap-" + loginId + "-" + getSessionId(), timeToIdle,
 				timeToLive, new CacheCallback<Page<?>>() {
 					public Page<?> call() {
+						if (isAdminByLoginId(loginId)) {
+							Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthMenuByAdminMap",
+									MapHelper.toMap(//
+											"page", Page.offsetPage(0, 10000, null), //
+											"vo", null//
+							));
+							return value;
+						}
 						Page<?> value = Dao.queryPage("SystemAuth.pageFindAuthMenuByAuthAccountMap",
 								MapHelper.toMap(//
 										"page", Page.offsetPage(0, 10000, null), //

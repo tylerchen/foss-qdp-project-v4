@@ -12,10 +12,12 @@ import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
+import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -48,7 +50,6 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
-		// TODO Auto-generated method stub
 		super.configurePathMatch(configurer);
 	}
 
@@ -58,11 +59,19 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resource/**").addResourceLocations("/resource/");
 	}
 
+	/**
+	 * 要注入这个OrderedCharacterEncodingFilter才行呀，CharacterEncodingFilter没有Order属性就无法设置Bean的先后顺序
+	 * @return
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Oct 27, 2017
+	 */
 	@Bean
+	@ConditionalOnMissingBean(CharacterEncodingFilter.class)
 	public CharacterEncodingFilter characterEncodingFilter() {
-		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
 		filter.setEncoding("UTF-8");
-		filter.setForceEncoding(true);
+		filter.setForceRequestEncoding(true);
+		filter.setForceResponseEncoding(true);
 		return filter;
 	}
 

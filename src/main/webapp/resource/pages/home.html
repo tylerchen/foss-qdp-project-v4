@@ -5,6 +5,7 @@
             <el-col class="qdp-header-center" :span="14"></el-col>
             <el-col class="qdp-header-end" :span="6">
             	<el-row type="flex" justify="end" align="middle" style="padding-right: 10px">
+           			<el-button type="text">{{(account()||{}).loginId}}</el-button>
            			<el-button type="text">个人设置</el-button>
            			<el-button type="text" @click="loginOut">登出</el-button>
             	</el-row>
@@ -81,6 +82,7 @@ define(['vue', 'vuel!codemirror/CodeMirror.html'], function(Vue, CodeMirror) {
             this.loadMenu();
         }, //
         methods: {
+        	account: getters.account,//
             accountId: getters.accountId, //
             qdpUrl: function(config, value){
             	var url = qdpUrl(config, value);

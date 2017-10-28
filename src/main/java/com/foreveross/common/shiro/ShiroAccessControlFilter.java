@@ -96,7 +96,6 @@ public class ShiroAccessControlFilter extends AdviceFilter {
 			}
 		}
 		if (skipUrls.contains(url) || url.startsWith("/resource/") || url.endsWith(".html")) {
-			System.out.println("URL----->" + url);
 			return true;
 		}
 		{
