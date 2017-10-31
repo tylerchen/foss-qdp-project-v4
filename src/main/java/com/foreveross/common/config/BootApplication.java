@@ -38,7 +38,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class,
 		DataSourceTransactionManagerAutoConfiguration.class, FreeMarkerAutoConfiguration.class,
 		TransactionAutoConfiguration.class })
-@ImportResource({ "classpath:META-INF/spring/root.xml" })
+//@ImportResource({ "classpath:META-INF/spring/root.xml" }) =>这个放到application.properties中配置了
 @ComponentScan(basePackages = { "com.foreveross.qdp", "com.foreveross.common",
 		"com.foreveross.extension" }, excludeFilters = {
 				@Filter(type = FilterType.REGEX, pattern = { "com.foreveross.extension.activiti.*" }) })

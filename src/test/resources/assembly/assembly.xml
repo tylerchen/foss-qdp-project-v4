@@ -17,12 +17,27 @@
 	<includeBaseDirectory>true</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<directory>${project.basedir}/src/main/resources/assembly/bin</directory>
+			<directory>${project.basedir}/src/test/resources/assembly/bin</directory>
 			<outputDirectory>bin</outputDirectory>
 			<fileMode>0755</fileMode>
 		</fileSet>
 		<fileSet>
-			<directory>${project.basedir}/src/main/resources/assembly/conf</directory>
+			<directory>${project.basedir}/src/main/resources/config</directory>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0644</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/main/resources/META-INF</directory>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0644</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/main/resources</directory>
+			<includes>
+				<include>ehcache.xml</include>
+				<include>log4j.xml</include>
+				<include>logback.xml</include>
+			</includes>
 			<outputDirectory>conf</outputDirectory>
 			<fileMode>0644</fileMode>
 		</fileSet>

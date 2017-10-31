@@ -66,9 +66,16 @@ done
 SERVER_HOME=`dirname "$SCRIPT"`/..
 SERVER_NAME=qdp
 SERVER_MAIN=org.springframework.boot.loader.WarLauncher
+JAVA_OPTS="-Dspring.config.location=$SERVER_HOME/conf/application.properties"
 
-# make DATAREST_HOME absolute
+# make HOME absolute
 SERVER_HOME=`cd "$SERVER_HOME"; pwd`
+
+# for springboot change xml file place
+sed -i '' 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/application.properties
+sed -i '' 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/spring/root.xml
+sed -i '' 's@file:${server.path.home}/conf/spring-tcutil/tc-util.xml@classpath:META-INF/spring-tcutil/tc-util.xml@g' conf/spring/root.xml
+sed -i '' 's@classpath\*:META-INF@file:${server.path.home}/conf@g' conf/spring-cxf/webservice-cxf.xml
 
 
 # If an include wasn't specified in the environment, then search for one...
@@ -127,16 +134,14 @@ launch_service()
     # The server-foreground option will tell server not to close stdout/stderr, but it's up to us not to daemonize.
     if [ "x$daemonized" = "x" ]; then
         server_parms="$server_parms -Dserver.foreground=yes"
-        echo "$JAVA $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home=$SERVER_HOME -cp $SERVER_CLASSPATH $props $SERVER_MAIN"
-        exec "$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp $SERVER_CLASSPATH $props \
-                $SERVER_MAIN
+        echo "$JAVA $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home=$SERVER_HOME -cp $SERVER_CLASSPATH $SERVER_MAIN $props"
+        exec "$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp $SERVER_CLASSPATH $SERVER_MAIN $props
         # exec without running it in the background, makes it replace this shell, we'll never get here...
         # no need to return something
     else
         # Startup server, background it, and write the pid.
-        echo "$JAVA $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home=$SERVER_HOME -cp $SERVER_CLASSPATH $props $SERVER_MAIN"
-        exec "$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp $SERVER_CLASSPATH $props \
-                    $SERVER_MAIN <&- &
+        echo "$JAVA $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home=$SERVER_HOME -cp $SERVER_CLASSPATH $SERVER_MAIN $props"
+        exec "$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp $SERVER_CLASSPATH $SERVER_MAIN $props <&- &
         return $?
     fi
 }
@@ -147,10 +152,12 @@ ARGV=""
 while [ $# -gt 0 ]
 do
     case $1 in
-      --*=*) properties="$properties -Dserver.${1#--}"
+      ## --*=*) properties="$properties -Dserver.${1#--}"
+      --*=*) properties="$properties -D${1#--}"
            shift 1
            ;;
-      --*) properties="$properties -Dserver.${1#--}=$2"
+      ## --*) properties="$properties -Dserver.${1#--}=$2"
+      --*) properties="$properties -D${1#--}=$2"
            shift 2
            ;;
       *) ARGV="$ARGV $1" ; shift
@@ -164,8 +171,8 @@ eval set -- "$args"
 while true; do
     case $1 in
         -v)
-            ##"$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp "$SERVER_CLASSPATH" $props org.elasticsearch.Version
-			echo "1.0.0"
+            ##"$JAVA" $JAVA_OPTS $JVM_JAVA_OPTS $server_parms -Dserver.path.home="$SERVER_HOME" -cp "$SERVER_CLASSPATH" $props qdp
+			echo "qdp 4.0.0"
             exit 0
         ;;
         -p)

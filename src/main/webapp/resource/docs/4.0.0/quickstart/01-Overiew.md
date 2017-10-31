@@ -263,7 +263,13 @@ QDP Overview
 
 ![](imgs/31-gen-code-content.png)
 
+####1.3.9 添加package扫描
 
+添加Spring扫描的package，如果忘记添加Spring会不加载package下的类。
+
+		META-INF/spring/root.xml
+		META-INF/spring-app/spring-data-access.xml
+		META-INF/spring-web/spring-servlet.xml
 
 
 

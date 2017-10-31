@@ -8,6 +8,6 @@
 			http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
             http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
-	<import resource="classpath:META-INF/spring-tcutil/spring-quartz.xml" />
-	<import resource="classpath:META-INF/spring-tcutil/spring-task.xml" />
+	<import resource="spring-quartz.xml" />
+	<import resource="spring-task.xml" />
 </beans>

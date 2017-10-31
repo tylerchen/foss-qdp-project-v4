@@ -12,8 +12,6 @@
 	<description>
 	<![CDATA[]]>
 	</description>
-	<import
-		resource="classpath:META-INF/spring-rpc-consumer/rpc-common.xml" />
-	<import
-		resource="classpath:META-INF/spring-rpc-consumer/rpc-consumer-*.xml" />
+	<import resource="rpc-common.xml" />
+	<import resource="rpc-consumer-*.xml" />
 </beans>
