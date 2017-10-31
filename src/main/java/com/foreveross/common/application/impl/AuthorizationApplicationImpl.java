@@ -63,7 +63,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 								MapHelper.toMap(//
 										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("id", id), //
-										"AuthRole", MapHelper.toMap("name", "ADMIN")//
+										"AuthRole", MapHelper.toMap("code", "ADMIN")//
 						));
 						boolean value = page.getRows().size() > 0;
 						return value;
@@ -86,7 +86,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 								MapHelper.toMap(//
 										"page", Page.offsetPage(0, 10000, null), //
 										"vo", MapHelper.toMap("loginEmail", loginId), //
-										"AuthRole", MapHelper.toMap("name", "ADMIN")//
+										"AuthRole", MapHelper.toMap("code", "ADMIN")//
 						));
 						boolean value = page.getRows().size() > 0;
 						return value;

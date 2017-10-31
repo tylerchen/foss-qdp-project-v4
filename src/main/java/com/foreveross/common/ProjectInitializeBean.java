@@ -80,6 +80,7 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 		{//设置默认的缓存
 			EhcacheHelper.init((CacheManager) SpringContextHelper.getBean("cacheManager"));
 			CacheHelper.init(new CacheHelper.EhCacheCacheable());
+			//CacheHelper.init(new CacheHelper.DisabledCacheable());
 		}
 		try {//这个是调试代码
 			MonitorApplication monitorApplication = SpringContextHelper.getBean(MonitorApplication.class);

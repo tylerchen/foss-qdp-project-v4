@@ -22,18 +22,18 @@
 		
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                                 "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                 "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                 "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                               "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                                         "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                                         "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                             "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                                         "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                               "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                                 "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                                 "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
 		           <if test="AuthResource!=null and AuthResource.id != null and AuthResource.id != ''                   "> AND AuthResource.ID = #{AuthResource.id,jdbcType=VARCHAR} </if>                                 
-		           <if test="AuthResource!=null and AuthResource.name != null and AuthResource.name != ''               "> AND AuthResource.NAME LIKE CONCAT('%',#{AuthResource.name,jdbcType=VARCHAR},'%') </if>          
-		           <if test="AuthResource!=null and AuthResource.code != null and AuthResource.code != ''               "> AND AuthResource.CODE LIKE CONCAT('%',#{AuthResource.code,jdbcType=VARCHAR},'%') </if>          
-		           <if test="AuthResource!=null and AuthResource.status != null and AuthResource.status != ''           "> AND AuthResource.STATUS LIKE CONCAT('%',#{AuthResource.status,jdbcType=VARCHAR},'%') </if>      
+		           <if test="AuthResource!=null and AuthResource.name != null and AuthResource.name != ''               "> AND AuthResource.NAME = #{AuthResource.name,jdbcType=VARCHAR} </if>          
+		           <if test="AuthResource!=null and AuthResource.code != null and AuthResource.code != ''               "> AND AuthResource.CODE = #{AuthResource.code,jdbcType=VARCHAR} </if>          
+		           <if test="AuthResource!=null and AuthResource.status != null and AuthResource.status != ''           "> AND AuthResource.STATUS = #{AuthResource.status,jdbcType=VARCHAR} </if>      
 		           <if test="AuthResource!=null and AuthResource.type1 != null and AuthResource.type1 != ''             "> AND AuthResource.TYPE1 = #{AuthResource.type1,jdbcType=VARCHAR} </if>                           
 		           <if test="AuthResource!=null and AuthResource.type2 != null and AuthResource.type2 != ''             "> AND AuthResource.TYPE2 = #{AuthResource.type2,jdbcType=VARCHAR} </if>                           
 		           <if test="AuthResource!=null and AuthResource.description != null and AuthResource.description != '' "> AND AuthResource.DESCRIPTION = #{AuthResource.description,jdbcType=VARCHAR} </if>               
@@ -62,18 +62,18 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                                 "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                 "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                 "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                               "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                                         "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                                         "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                             "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                                         "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                               "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                                 "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                                 "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
 		           <if test="AuthResource!=null and AuthResource.id != null and AuthResource.id != ''                   "> AND AuthResource.ID = #{AuthResource.id,jdbcType=VARCHAR} </if>                                 
-		           <if test="AuthResource!=null and AuthResource.name != null and AuthResource.name != ''               "> AND AuthResource.NAME LIKE CONCAT('%',#{AuthResource.name,jdbcType=VARCHAR},'%') </if>          
-		           <if test="AuthResource!=null and AuthResource.code != null and AuthResource.code != ''               "> AND AuthResource.CODE LIKE CONCAT('%',#{AuthResource.code,jdbcType=VARCHAR},'%') </if>          
-		           <if test="AuthResource!=null and AuthResource.status != null and AuthResource.status != ''           "> AND AuthResource.STATUS LIKE CONCAT('%',#{AuthResource.status,jdbcType=VARCHAR},'%') </if>      
+		           <if test="AuthResource!=null and AuthResource.name != null and AuthResource.name != ''               "> AND AuthResource.NAME = #{AuthResource.name,jdbcType=VARCHAR} </if>          
+		           <if test="AuthResource!=null and AuthResource.code != null and AuthResource.code != ''               "> AND AuthResource.CODE = #{AuthResource.code,jdbcType=VARCHAR} </if>          
+		           <if test="AuthResource!=null and AuthResource.status != null and AuthResource.status != ''           "> AND AuthResource.STATUS = #{AuthResource.status,jdbcType=VARCHAR} </if>      
 		           <if test="AuthResource!=null and AuthResource.type1 != null and AuthResource.type1 != ''             "> AND AuthResource.TYPE1 = #{AuthResource.type1,jdbcType=VARCHAR} </if>                           
 		           <if test="AuthResource!=null and AuthResource.type2 != null and AuthResource.type2 != ''             "> AND AuthResource.TYPE2 = #{AuthResource.type2,jdbcType=VARCHAR} </if>                           
 		           <if test="AuthResource!=null and AuthResource.description != null and AuthResource.description != '' "> AND AuthResource.DESCRIPTION = #{AuthResource.description,jdbcType=VARCHAR} </if>               
@@ -104,20 +104,20 @@
 		
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
 		           <if test="AuthRole!=null and AuthRole.id != null and AuthRole.id != ''                   "> AND AuthRole.ID = #{AuthRole.id,jdbcType=VARCHAR} </if>                           
-		           <if test="AuthRole!=null and AuthRole.name != null and AuthRole.name != ''               "> AND AuthRole.NAME LIKE CONCAT('%',#{AuthRole.name,jdbcType=VARCHAR},'%') </if>    
-		           <if test="AuthRole!=null and AuthRole.code != null and AuthRole.code != ''               "> AND AuthRole.CODE LIKE CONCAT('%',#{AuthRole.code,jdbcType=VARCHAR},'%') </if>    
+		           <if test="AuthRole!=null and AuthRole.name != null and AuthRole.name != ''               "> AND AuthRole.NAME = #{AuthRole.name,jdbcType=VARCHAR} </if>    
+		           <if test="AuthRole!=null and AuthRole.code != null and AuthRole.code != ''               "> AND AuthRole.CODE = #{AuthRole.code,jdbcType=VARCHAR} </if>    
 		           <if test="AuthRole!=null and AuthRole.type1 != null and AuthRole.type1 != ''             "> AND AuthRole.TYPE1 = #{AuthRole.type1,jdbcType=VARCHAR} </if>                     
 		           <if test="AuthRole!=null and AuthRole.type2 != null and AuthRole.type2 != ''             "> AND AuthRole.TYPE2 = #{AuthRole.type2,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthRole!=null and AuthRole.status != null and AuthRole.status != ''           "> AND AuthRole.STATUS LIKE CONCAT('%',#{AuthRole.status,jdbcType=VARCHAR},'%') </if>
+		           <if test="AuthRole!=null and AuthRole.status != null and AuthRole.status != ''           "> AND AuthRole.STATUS = #{AuthRole.status,jdbcType=VARCHAR} </if>
 		           <if test="AuthRole!=null and AuthRole.description != null and AuthRole.description != '' "> AND AuthRole.DESCRIPTION = #{AuthRole.description,jdbcType=VARCHAR} </if>         
 		           <if test="AuthRole!=null and AuthRole.updateTime != null and AuthRole.updateTime != ''   "> AND AuthRole.UPDATE_TIME = #{AuthRole.updateTime,jdbcType=VARCHAR} </if>          
 		           <if test="AuthRole!=null and AuthRole.createTime != null and AuthRole.createTime != ''   "> AND AuthRole.CREATE_TIME = #{AuthRole.createTime,jdbcType=VARCHAR} </if>          
@@ -144,20 +144,20 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
 		           <if test="AuthRole!=null and AuthRole.id != null and AuthRole.id != ''                   "> AND AuthRole.ID = #{AuthRole.id,jdbcType=VARCHAR} </if>                           
-		           <if test="AuthRole!=null and AuthRole.name != null and AuthRole.name != ''               "> AND AuthRole.NAME LIKE CONCAT('%',#{AuthRole.name,jdbcType=VARCHAR},'%') </if>    
-		           <if test="AuthRole!=null and AuthRole.code != null and AuthRole.code != ''               "> AND AuthRole.CODE LIKE CONCAT('%',#{AuthRole.code,jdbcType=VARCHAR},'%') </if>    
+		           <if test="AuthRole!=null and AuthRole.name != null and AuthRole.name != ''               "> AND AuthRole.NAME = #{AuthRole.name,jdbcType=VARCHAR} </if>    
+		           <if test="AuthRole!=null and AuthRole.code != null and AuthRole.code != ''               "> AND AuthRole.CODE = #{AuthRole.code,jdbcType=VARCHAR} </if>    
 		           <if test="AuthRole!=null and AuthRole.type1 != null and AuthRole.type1 != ''             "> AND AuthRole.TYPE1 = #{AuthRole.type1,jdbcType=VARCHAR} </if>                     
 		           <if test="AuthRole!=null and AuthRole.type2 != null and AuthRole.type2 != ''             "> AND AuthRole.TYPE2 = #{AuthRole.type2,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthRole!=null and AuthRole.status != null and AuthRole.status != ''           "> AND AuthRole.STATUS LIKE CONCAT('%',#{AuthRole.status,jdbcType=VARCHAR},'%') </if>
+		           <if test="AuthRole!=null and AuthRole.status != null and AuthRole.status != ''           "> AND AuthRole.STATUS = #{AuthRole.status,jdbcType=VARCHAR} </if>
 		           <if test="AuthRole!=null and AuthRole.description != null and AuthRole.description != '' "> AND AuthRole.DESCRIPTION = #{AuthRole.description,jdbcType=VARCHAR} </if>         
 		           <if test="AuthRole!=null and AuthRole.updateTime != null and AuthRole.updateTime != ''   "> AND AuthRole.UPDATE_TIME = #{AuthRole.updateTime,jdbcType=VARCHAR} </if>          
 		           <if test="AuthRole!=null and AuthRole.createTime != null and AuthRole.createTime != ''   "> AND AuthRole.CREATE_TIME = #{AuthRole.createTime,jdbcType=VARCHAR} </if>          
@@ -189,25 +189,25 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                                                 "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                                 "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                                                 "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                                               "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                                                         "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                                                         "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                                             "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                                                         "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                                               "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                                                 "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                                                 "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
-		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{vo.id,jdbcType=VARCHAR} </if>                 
-		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{vo.isUseRootMenu,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>    
+		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{AuthOrganization.id,jdbcType=VARCHAR} </if>                 
+		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME = #{AuthOrganization.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{AuthOrganization.parentId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{AuthOrganization.rootId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE = #{AuthOrganization.code,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{AuthOrganization.isUseRootMenu,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{AuthOrganization.type1,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{AuthOrganization.type2,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{AuthOrganization.description,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{AuthOrganization.updateTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{AuthOrganization.createTime,jdbcType=VARCHAR} </if>    
 				</where>
 		) AS TMP
 	</select>
@@ -243,27 +243,27 @@
 		
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
-		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
-		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
-		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
-		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{AuthMenu.id,jdbcType=VARCHAR} </if>                     
+		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME = #{AuthMenu.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{AuthMenu.resourceId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{AuthMenu.type1,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{AuthMenu.type2,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{AuthMenu.parentId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{AuthMenu.rootId,jdbcType=VARCHAR} </if>            
+		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{AuthMenu.menuIndex,jdbcType=INTEGER} </if>      
+		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{AuthMenu.maxLevel,jdbcType=INTEGER} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO = #{AuthMenu.ico,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{AuthMenu.description,jdbcType=VARCHAR} </if>   
+		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{AuthMenu.updateTime,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{AuthMenu.createTime,jdbcType=VARCHAR} </if> 
 				</where>
 				
 				UNION
@@ -296,38 +296,38 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
-		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
-		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
-		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
-		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{vo.id,jdbcType=VARCHAR} </if>                 
-		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{vo.isUseRootMenu,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{AuthMenu.id,jdbcType=VARCHAR} </if>                     
+		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME = #{AuthMenu.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{AuthMenu.resourceId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{AuthMenu.type1,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{AuthMenu.type2,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{AuthMenu.parentId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{AuthMenu.rootId,jdbcType=VARCHAR} </if>            
+		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{AuthMenu.menuIndex,jdbcType=INTEGER} </if>      
+		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{AuthMenu.maxLevel,jdbcType=INTEGER} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO = #{AuthMenu.ico,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{AuthMenu.description,jdbcType=VARCHAR} </if>   
+		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{AuthMenu.updateTime,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{AuthMenu.createTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{AuthOrganization.id,jdbcType=VARCHAR} </if>                 
+		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME = #{AuthOrganization.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{AuthOrganization.parentId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{AuthOrganization.rootId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE = #{AuthOrganization.code,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{AuthOrganization.isUseRootMenu,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{AuthOrganization.type1,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{AuthOrganization.type2,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{AuthOrganization.description,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{AuthOrganization.updateTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{AuthOrganization.createTime,jdbcType=VARCHAR} </if> 
 				</where>
 				
 				UNION
@@ -361,38 +361,38 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
-		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
-		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
-		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
-		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{vo.id,jdbcType=VARCHAR} </if>                 
-		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{vo.isUseRootMenu,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{AuthMenu.id,jdbcType=VARCHAR} </if>                     
+		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME = #{AuthMenu.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{AuthMenu.resourceId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{AuthMenu.type1,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{AuthMenu.type2,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{AuthMenu.parentId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{AuthMenu.rootId,jdbcType=VARCHAR} </if>            
+		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{AuthMenu.menuIndex,jdbcType=INTEGER} </if>      
+		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{AuthMenu.maxLevel,jdbcType=INTEGER} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO = #{AuthMenu.ico,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{AuthMenu.description,jdbcType=VARCHAR} </if>   
+		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{AuthMenu.updateTime,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{AuthMenu.createTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{AuthOrganization.id,jdbcType=VARCHAR} </if>                 
+		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME = #{AuthOrganization.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{AuthOrganization.parentId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{AuthOrganization.rootId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE = #{AuthOrganization.code,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{AuthOrganization.isUseRootMenu,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{AuthOrganization.type1,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{AuthOrganization.type2,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{AuthOrganization.description,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{AuthOrganization.updateTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{AuthOrganization.createTime,jdbcType=VARCHAR} </if> 
 				</where>
 				
 				UNION
@@ -427,38 +427,38 @@
 				
 				<where>
 		           <if test="vo!=null and vo.id != null and vo.id != ''                                     "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                                    
-		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+		           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''                     "> AND AuthAccount.LOGIN_EMAIL = #{vo.loginEmail,jdbcType=VARCHAR} </if>
 		           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''                   "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>                 
-		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
+		           <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS = #{vo.status,jdbcType=VARCHAR} </if>         
 		           <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
 		           <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
 		           <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
 		           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
 		           <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
-		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
-		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
-		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
-		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
-		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
-		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
-		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
-		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{vo.id,jdbcType=VARCHAR} </if>                 
-		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{vo.parentId,jdbcType=VARCHAR} </if>    
-		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>        
-		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE LIKE CONCAT('%',#{vo.code,jdbcType=VARCHAR},'%') </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{vo.isUseRootMenu,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>           
-		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>
-		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+		           <if test="AuthMenu!=null and AuthMenu.id != null and AuthMenu.id != ''                   "> AND AuthMenu.ID = #{AuthMenu.id,jdbcType=VARCHAR} </if>                     
+		           <if test="AuthMenu!=null and AuthMenu.name != null and AuthMenu.name != ''               "> AND AuthMenu.NAME = #{AuthMenu.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.resourceId != null and AuthMenu.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{AuthMenu.resourceId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.type1 != null and AuthMenu.type1 != ''             "> AND AuthMenu.TYPE1 = #{AuthMenu.type1,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.type2 != null and AuthMenu.type2 != ''             "> AND AuthMenu.TYPE2 = #{AuthMenu.type2,jdbcType=VARCHAR} </if>               
+		           <if test="AuthMenu!=null and AuthMenu.parentId != null and AuthMenu.parentId != ''       "> AND AuthMenu.PARENT_ID = #{AuthMenu.parentId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.rootId != null and AuthMenu.rootId != ''           "> AND AuthMenu.ROOT_ID = #{AuthMenu.rootId,jdbcType=VARCHAR} </if>            
+		           <if test="AuthMenu!=null and AuthMenu.menuIndex != null and AuthMenu.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{AuthMenu.menuIndex,jdbcType=INTEGER} </if>      
+		           <if test="AuthMenu!=null and AuthMenu.maxLevel != null and AuthMenu.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{AuthMenu.maxLevel,jdbcType=INTEGER} </if>        
+		           <if test="AuthMenu!=null and AuthMenu.ico != null and AuthMenu.ico != ''                 "> AND AuthMenu.ICO = #{AuthMenu.ico,jdbcType=VARCHAR} </if>
+		           <if test="AuthMenu!=null and AuthMenu.description != null and AuthMenu.description != '' "> AND AuthMenu.DESCRIPTION = #{AuthMenu.description,jdbcType=VARCHAR} </if>   
+		           <if test="AuthMenu!=null and AuthMenu.updateTime != null and AuthMenu.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{AuthMenu.updateTime,jdbcType=VARCHAR} </if>    
+		           <if test="AuthMenu!=null and AuthMenu.createTime != null and AuthMenu.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{AuthMenu.createTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.id != null and AuthOrganization.id != ''                       "> AND AuthOrganization.ID = #{AuthOrganization.id,jdbcType=VARCHAR} </if>                 
+		           <if test="AuthOrganization!=null and AuthOrganization.name != null and AuthOrganization.name != ''                   "> AND AuthOrganization.NAME = #{AuthOrganization.name,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.parentId != null and AuthOrganization.parentId != ''           "> AND AuthOrganization.PARENT_ID = #{AuthOrganization.parentId,jdbcType=VARCHAR} </if>    
+		           <if test="AuthOrganization!=null and AuthOrganization.rootId != null and AuthOrganization.rootId != ''               "> AND AuthOrganization.ROOT_ID = #{AuthOrganization.rootId,jdbcType=VARCHAR} </if>        
+		           <if test="AuthOrganization!=null and AuthOrganization.code != null and AuthOrganization.code != ''                   "> AND AuthOrganization.CODE = #{AuthOrganization.code,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.isUseRootMenu != null and AuthOrganization.isUseRootMenu != '' "> AND AuthOrganization.IS_USE_ROOT_MENU = #{AuthOrganization.isUseRootMenu,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.type1 != null and AuthOrganization.type1 != ''                 "> AND AuthOrganization.TYPE1 = #{AuthOrganization.type1,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.type2 != null and AuthOrganization.type2 != ''                 "> AND AuthOrganization.TYPE2 = #{AuthOrganization.type2,jdbcType=VARCHAR} </if>           
+		           <if test="AuthOrganization!=null and AuthOrganization.description != null and AuthOrganization.description != ''     "> AND AuthOrganization.DESCRIPTION = #{AuthOrganization.description,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.updateTime != null and AuthOrganization.updateTime != ''       "> AND AuthOrganization.UPDATE_TIME = #{AuthOrganization.updateTime,jdbcType=VARCHAR} </if>
+		           <if test="AuthOrganization!=null and AuthOrganization.createTime != null and AuthOrganization.createTime != ''       "> AND AuthOrganization.CREATE_TIME = #{AuthOrganization.createTime,jdbcType=VARCHAR} </if> 
 				</where>
 		) AS TMP
 		ORDER BY authAutherMenuSort, menuIndex
@@ -487,7 +487,7 @@
 
 		<where>
            <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND AuthMenu.ID = #{vo.id,jdbcType=VARCHAR} </if>                     
-           <if test="vo!=null and vo.name != null and vo.name != ''               "> AND AuthMenu.NAME LIKE CONCAT('%',#{vo.name,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.name != null and vo.name != ''               "> AND AuthMenu.NAME = #{vo.name,jdbcType=VARCHAR} </if>
            <if test="vo!=null and vo.resourceId != null and vo.resourceId != ''   "> AND AuthMenu.RESOURCE_ID = #{vo.resourceId,jdbcType=VARCHAR} </if>    
            <if test="vo!=null and vo.type1 != null and vo.type1 != ''             "> AND AuthMenu.TYPE1 = #{vo.type1,jdbcType=VARCHAR} </if>               
            <if test="vo!=null and vo.type2 != null and vo.type2 != ''             "> AND AuthMenu.TYPE2 = #{vo.type2,jdbcType=VARCHAR} </if>               
@@ -495,7 +495,7 @@
            <if test="vo!=null and vo.rootId != null and vo.rootId != ''           "> AND AuthMenu.ROOT_ID = #{vo.rootId,jdbcType=VARCHAR} </if>            
            <if test="vo!=null and vo.menuIndex != null and vo.menuIndex != ''     "> AND AuthMenu.MENU_INDEX = #{vo.menuIndex,jdbcType=INTEGER} </if>      
            <if test="vo!=null and vo.maxLevel != null and vo.maxLevel != ''       "> AND AuthMenu.MAX_LEVEL = #{vo.maxLevel,jdbcType=INTEGER} </if>        
-           <if test="vo!=null and vo.ico != null and vo.ico != ''                 "> AND AuthMenu.ICO LIKE CONCAT('%',#{vo.ico,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.ico != null and vo.ico != ''                 "> AND AuthMenu.ICO = #{vo.ico,jdbcType=VARCHAR} </if>
            <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthMenu.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
            <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthMenu.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
            <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthMenu.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 

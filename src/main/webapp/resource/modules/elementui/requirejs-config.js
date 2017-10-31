@@ -62,13 +62,6 @@ requirejs.config(requireConfig);
 /**
  * loading the app.js file undering the html page directory.
  */
-//define([ 'require', 'vue', "elementui", 'vuerouter', "vueresource", "vuex", "qdp", "globalstate" ], function (require) {
-//    var Vue = require('vue');
-//    var ElementUI = require('elementui');
-//    var VueRouter = require('vuerouter');
-//    var VueResource = require('vueresource');
-//    var Vuex = require('vuex');
-//});
 require([ 'vue', "ELEMENT", 'vuerouter', "vueresource", "vuex", "qdp", "globalstate" ], function(Vue, ELEMENT, VueRouter, VueResource, Vuex) {
 	//Vue.config.debug = true
 	//Vue.config.devtools = true
