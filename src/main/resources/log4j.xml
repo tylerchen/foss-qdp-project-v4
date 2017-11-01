@@ -31,10 +31,6 @@
 		<level value="INFO" />
 	</logger>
 	
-	<logger name="SystemAuth">
-		<level value="debug" />
-	</logger>
-
 	<logger name="FOSS">
 		<level value="debug" />
 	</logger>

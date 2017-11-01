@@ -50,20 +50,13 @@
         <el-row class="qdp-footer" type="flex" justify="center" align="top">
             <div>2017-2019 &copy; Forever Open Source & Forever Flying</div>
         </el-row>
-        <el-row type="flex" justify="center" align="top">
-            <el-col :span="12">
-            	<Code-mirror ref="codeMirror"></Code-mirror>
-            	<el-button @click="showCode">Show Code</el-button>
-            </el-col>
-        </el-row>
     </div>
 </template>
 <script type="text/javascript">
-define(['vue', 'vuel!codemirror/CodeMirror.html'], function(Vue, CodeMirror) {
+define(['vue'], function(Vue) {
     return {
         template: template, //
         components : {
-        	CodeMirror: CodeMirror
 		},
         data: function() {
             return {
@@ -160,9 +153,6 @@ define(['vue', 'vuel!codemirror/CodeMirror.html'], function(Vue, CodeMirror) {
                         sessionStorage.clear();
                         Router.push("/login");
                     });
-            },
-            showCode : function(){
-            	alert(this.$refs.codeMirror.getContent())
             },
             onPost: function(eventType, arg0, arg1, arg2, arg3) {
                 LOG("EV: home.onPost." + eventType);

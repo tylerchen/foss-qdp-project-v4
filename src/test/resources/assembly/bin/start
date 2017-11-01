@@ -72,10 +72,14 @@ JAVA_OPTS="-Dspring.config.location=$SERVER_HOME/conf/application.properties"
 SERVER_HOME=`cd "$SERVER_HOME"; pwd`
 
 # for springboot change xml file place
-sed -i '' 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/application.properties
-sed -i '' 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/spring/root.xml
-sed -i '' 's@file:${server.path.home}/conf/spring-tcutil/tc-util.xml@classpath:META-INF/spring-tcutil/tc-util.xml@g' conf/spring/root.xml
-sed -i '' 's@classpath\*:META-INF@file:${server.path.home}/conf@g' conf/spring-cxf/webservice-cxf.xml
+sedArg=""
+if [ "`uname`" = "Darwin" ]; then
+	sedArg="''"
+fi
+sed -i $sedArg 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/application.properties
+sed -i $sedArg 's@classpath:META-INF@file:${server.path.home}/conf@g' conf/spring/root.xml
+sed -i $sedArg 's@file:${server.path.home}/conf/spring-tcutil/tc-util.xml@classpath:META-INF/spring-tcutil/tc-util.xml@g' conf/spring/root.xml
+sed -i $sedArg 's@classpath\*:META-INF@file:${server.path.home}/conf@g' conf/spring-cxf/webservice-cxf.xml
 
 
 # If an include wasn't specified in the environment, then search for one...
@@ -153,11 +157,11 @@ while [ $# -gt 0 ]
 do
     case $1 in
       ## --*=*) properties="$properties -Dserver.${1#--}"
-      --*=*) properties="$properties -D${1#--}"
+      --*=*) properties="$properties $1"
            shift 1
            ;;
       ## --*) properties="$properties -Dserver.${1#--}=$2"
-      --*) properties="$properties -D${1#--}=$2"
+      --*) properties="$properties $1=$2"
            shift 2
            ;;
       *) ARGV="$ARGV $1" ; shift

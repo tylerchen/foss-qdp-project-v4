@@ -26,6 +26,8 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -105,5 +107,10 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 	@Bean(name = Bus.DEFAULT_BUS_ID)
 	public SpringBus springBus() {
 		return new SpringBus();
+	}
+
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new CommonsMultipartResolver();
 	}
 }
