@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,8 +24,6 @@ import org.iff.infra.util.mybatis.plugin.Page;
 import org.iff.infra.util.mybatis.service.Dao;
 
 import com.foreveross.common.application.AuthorizationApplication;
-import com.foreveross.qdp.application.system.auth.AuthAccountApplication;
-import com.foreveross.qdp.application.system.auth.AuthRoleApplication;
 
 /**
  * 授权
@@ -45,11 +42,6 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 	 * 不失效
 	 */
 	private static final int timeToIdle = 0;
-
-	@Inject
-	AuthAccountApplication authAccountApplication;
-	@Inject
-	AuthRoleApplication authRoleApplication;
 
 	public boolean isAdminByAccountId(final String id) {
 		if (StringUtils.isBlank(id)) {
