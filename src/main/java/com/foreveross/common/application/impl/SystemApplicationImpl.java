@@ -13,8 +13,10 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
 import org.iff.infra.util.Assert;
 import org.iff.infra.util.I18nHelper;
+import org.iff.infra.util.CacheHelper.CacheCallback;
 import org.iff.infra.util.mybatis.plugin.Page;
 import org.iff.infra.util.spring.bean.EncryptDencrypt;
 
@@ -66,10 +68,18 @@ public class SystemApplicationImpl implements SystemApplication {
 		return null;
 	}
 
-	public ShiroUser getShiroUserByLoginId(String loginId) {
-		AuthAccountVO account = authAccountApplication.getByLoginEmail(loginId);
-		ShiroUser user = authAccountVO2ShiroUser(account);
-		return user;
+	public ShiroUser getShiroUserByLoginId(final String loginId) {
+		if (StringUtils.isBlank(loginId)) {
+			return null;
+		}
+		return CacheCallback.process("SystemApplication.getShiroUserByLoginId-" + loginId, 5 * 60/*缓存5分钟*/, 0,
+				new CacheCallback<ShiroUser>() {
+					public ShiroUser call() {
+						AuthAccountVO account = authAccountApplication.getByLoginEmail(loginId);
+						ShiroUser user = authAccountVO2ShiroUser(account);
+						return user;
+					}
+				});
 	}
 
 	ShiroUser authAccountVO2ShiroUser(AuthAccountVO account) {

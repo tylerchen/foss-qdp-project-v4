@@ -134,6 +134,7 @@ public class ResultBean implements Serializable {
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
 	 * @since Jul 19, 2016
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> T getBody() {
 		return (T) body;
 	}

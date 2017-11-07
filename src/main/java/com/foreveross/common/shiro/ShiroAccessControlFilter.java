@@ -28,7 +28,6 @@ import org.iff.infra.util.FCS;
 import org.iff.infra.util.GsonHelper;
 import org.iff.infra.util.I18nHelper;
 import org.iff.infra.util.Logger;
-import org.iff.infra.util.StringHelper;
 import org.iff.infra.util.ThreadLocalHelper;
 
 import com.foreveross.common.ResultBean;
@@ -50,14 +49,6 @@ public class ShiroAccessControlFilter extends AdviceFilter {
 		String url = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
 		Subject subject = SecurityUtils.getSubject();
 		ShiroUser loginUser = null;
-		if (subject.getSession(false) != null) {
-			String sessionId = String.valueOf(subject.getSession(false).getId());
-			loginUser = (ShiroUser) subject.getSession(false).getAttribute("USER");
-			String traceId = Logger.getTraceId();
-			String[] split = StringUtils.split(traceId, '/');
-			Logger.updateTraceId(StringHelper.concat(split.length > 0 ? split[0] : StringHelper.uuid(), "/", sessionId,
-					"/", loginUser == null ? "" : loginUser.getLoginId()));
-		}
 		{
 			Logger.debug(FCS.get("ShiroAccessControlFilter.preHandle, uri: {0}", url));
 			LogHelper.accessLog(loginUser != null ? loginUser.getLoginId() : null, request.getRemoteAddr(), url, "URL",
@@ -114,19 +105,10 @@ public class ShiroAccessControlFilter extends AdviceFilter {
 			response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
 			return false;
 		}
-		{
-			if (subject.getSession(false) != null) {
-				String sessionId = String.valueOf(subject.getSession(false).getId());
-				String traceId = Logger.getTraceId();
-				String[] split = StringUtils.split(traceId, '/');
-				Logger.updateTraceId(StringHelper.concat(split.length > 0 ? split[0] : StringHelper.uuid(), "/",
-						sessionId, "/", loginUser == null ? "" : loginUser.getLoginId()));
-			}
-		}
-
 		{//设置当前用户到线程领域
 			ThreadLocalHelper.set("accountId", user.getId());
 			ThreadLocalHelper.set("LoginEmail", user.getLoginId());
+			ThreadLocalHelper.set("loginId", user.getLoginId());
 		}
 		// 如果是超级用户
 		if (subject.hasRole("ADMIN")) {

@@ -18,10 +18,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -81,6 +83,7 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 	public DelegatingFilterProxy shiroFilter() {
 		DelegatingFilterProxy filter = new DelegatingFilterProxy();
 		filter.setTargetFilterLifecycle(true);
+		filter.setTargetBeanName("shiroFilter");
 		return filter;
 	}
 

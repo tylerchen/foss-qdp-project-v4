@@ -25,6 +25,12 @@
 				<entry key="accip">
 					<bean class="com.foreveross.common.shiro.ShiroIpAccessControlFilter" />
 				</entry>
+				<entry key="acczuul">
+					<bean class="com.foreveross.common.shiro.ShiroZuulAccessControlFilter" />
+				</entry>
+				<entry key="traceid">
+					<bean class="com.foreveross.common.shiro.ShiroTraceIdFilter" />
+				</entry>
 			</map>
 		</property>
 		<property name="filterChainDefinitions">
@@ -32,9 +38,9 @@
 				/resource/** = anon
 				/system/** = anon
 				/anonws/** = anon
-				/rpc/http/** = accip
-				/ws/** = accctl
-				/** = accctl
+				/rpc/http/** = traceid,acczuul,accip
+				/ws/** = traceid,accctl
+				/** = traceid,accctl
 			</value>
 		</property>
 	</bean>

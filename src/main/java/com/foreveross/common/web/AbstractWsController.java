@@ -71,43 +71,52 @@ public abstract class AbstractWsController extends BaseController {
 	@ResponseBody
 	public String toJson(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		ActionHelper actionHelper = ActionHelper.create(request, response);
-		String requestURI = request.getRequestURI();
-		String reportPath = StringUtils.substringAfter(requestURI, "/json/");
-		String[] pathSplit = StringUtils.split(reportPath, "/");
-		String beanName = pathSplit[0];
-		String methodName = pathSplit[1];
-		Object bean = SpringContextHelper.getBean(beanName);
-		{
-			if (bean == null) {
-				return GsonHelper.toJsonString(
-						ResultBean.error().setBody(FCS.get("can't find bean[{0}]!", beanName).toString()));
-			}
-		}
-		Map<String, Object> conditionParams = new LinkedHashMap<String, Object>();
-		{
-			for (int i = 2; i < pathSplit.length; i++) {
-				String tmp = pathSplit[i];
-				String[] tmpSplit = StringUtils.split(tmp, "=");
-				if (tmpSplit.length == 1) {
-					conditionParams.put("arg" + (i - 2), actionHelper.urlDecode(tmpSplit[0]));
-				} else if (tmpSplit.length != 2) {
-					continue;
-				} else {
-					conditionParams.put(tmpSplit[0], actionHelper.urlDecode(tmpSplit[1]));
+		try {
+			ActionHelper actionHelper = ActionHelper.create(request, response);
+			String requestURI = request.getRequestURI();
+			String reportPath = StringUtils.substringAfter(requestURI, "/json/");
+			String[] pathSplit = StringUtils.split(reportPath, "/");
+			String beanName = pathSplit[0];
+			String methodName = pathSplit[1];
+			Object bean = null;
+			{
+				try {
+					bean = SpringContextHelper.getBean(beanName);
+				} catch (Exception e) {
+				}
+				if (bean == null) {
+					return GsonHelper.toJsonString(
+							ResultBean.error().setBody(FCS.get("can't find bean[{0}]!", beanName).toString()));
 				}
 			}
-		}
-		{
-			Enumeration<String> names = request.getParameterNames();
-			while (names.hasMoreElements()) {
-				String name = names.nextElement();
-				conditionParams.put(name, request.getParameter(name));
+			Map<String, Object> conditionParams = new LinkedHashMap<String, Object>();
+			{
+				for (int i = 2; i < pathSplit.length; i++) {
+					String tmp = pathSplit[i];
+					String[] tmpSplit = StringUtils.split(tmp, "=");
+					if (tmpSplit.length == 1) {
+						conditionParams.put("arg" + (i - 2), actionHelper.urlDecode(tmpSplit[0]));
+					} else if (tmpSplit.length != 2) {
+						continue;
+					} else {
+						conditionParams.put(tmpSplit[0], actionHelper.urlDecode(tmpSplit[1]));
+					}
+				}
 			}
-			conditionParams.putAll(modelMap);
+			{
+				Enumeration<String> names = request.getParameterNames();
+				while (names.hasMoreElements()) {
+					String name = names.nextElement();
+					conditionParams.put(name, request.getParameter(name));
+				}
+				conditionParams.putAll(modelMap);
+			}
+			String value = invokeToString(beanName, methodName, bean, conditionParams, GsonHelper.class);
+			return value;
+		} catch (Exception ex) {
+			return GsonHelper.toJsonString(
+					ResultBean.error().setBody(FCS.get("get json error: {0}", ex.getStackTrace()).toString()));
 		}
-		String value = invokeToString(beanName, methodName, bean, conditionParams, GsonHelper.class);
-		return value;
 	}
 
 	/**
@@ -124,37 +133,46 @@ public abstract class AbstractWsController extends BaseController {
 	@ResponseBody
 	public String toXml(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		ActionHelper actionHelper = ActionHelper.create(request, response);
-		String requestURI = request.getRequestURI();
-		String reportPath = StringUtils.substringAfter(requestURI, "/xml/");
-		String[] pathSplit = StringUtils.split(reportPath, "/");
-		String beanName = pathSplit[0];
-		String methodName = pathSplit[1];
-		Object bean = SpringContextHelper.getBean(beanName);
-		{
-			if (bean == null) {
-				return XStreamHelper
-						.toXml(ResultBean.error().setBody(FCS.get("can't find bean[{0}]!", beanName).toString()));
-			}
-		}
-		Map<String, Object> conditionParams = new LinkedHashMap<String, Object>();
-		{
-			for (int i = 2; i < pathSplit.length; i++) {
-				String tmp = pathSplit[i];
-				String[] tmpSplit = StringUtils.split(tmp, "=");
-				if (tmpSplit.length == 1) {
-					conditionParams.put("arg" + (i - 2), actionHelper.urlDecode(tmpSplit[0]));
-				} else if (tmpSplit.length != 2) {
-					continue;
-				} else {
-					conditionParams.put(tmpSplit[0], actionHelper.urlDecode(tmpSplit[1]));
+		try {
+			ActionHelper actionHelper = ActionHelper.create(request, response);
+			String requestURI = request.getRequestURI();
+			String reportPath = StringUtils.substringAfter(requestURI, "/xml/");
+			String[] pathSplit = StringUtils.split(reportPath, "/");
+			String beanName = pathSplit[0];
+			String methodName = pathSplit[1];
+			Object bean = null;
+			{
+				try {
+					bean = SpringContextHelper.getBean(beanName);
+				} catch (Exception e) {
+				}
+				if (bean == null) {
+					return XStreamHelper
+							.toXml(ResultBean.error().setBody(FCS.get("can't find bean[{0}]!", beanName).toString()));
 				}
 			}
+			Map<String, Object> conditionParams = new LinkedHashMap<String, Object>();
+			{
+				for (int i = 2; i < pathSplit.length; i++) {
+					String tmp = pathSplit[i];
+					String[] tmpSplit = StringUtils.split(tmp, "=");
+					if (tmpSplit.length == 1) {
+						conditionParams.put("arg" + (i - 2), actionHelper.urlDecode(tmpSplit[0]));
+					} else if (tmpSplit.length != 2) {
+						continue;
+					} else {
+						conditionParams.put(tmpSplit[0], actionHelper.urlDecode(tmpSplit[1]));
+					}
+				}
+			}
+			{
+				conditionParams.putAll(modelMap);
+			}
+			return invokeToString(beanName, methodName, bean, conditionParams, XStreamHelper.class);
+		} catch (Exception ex) {
+			return GsonHelper.toJsonString(
+					ResultBean.error().setBody(FCS.get("get xml error: {0}", ex.getStackTrace()).toString()));
 		}
-		{
-			conditionParams.putAll(modelMap);
-		}
-		return invokeToString(beanName, methodName, bean, conditionParams, XStreamHelper.class);
 	}
 
 	private String invokeToString(String beanName, String methodName, Object bean, Map<String, Object> conditionParams,

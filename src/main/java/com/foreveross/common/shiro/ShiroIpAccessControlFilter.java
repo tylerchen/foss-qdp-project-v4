@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.servlet.AdviceFilter;
@@ -34,20 +33,7 @@ public class ShiroIpAccessControlFilter extends AdviceFilter {
 
 	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		String url = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
 		String ip = HttpHelper.getRemoteIpAddr(request);
-		{/*set the trace id*/
-			String traceId = request.getHeader("TRACE_ID");
-			if (StringUtils.isBlank(traceId)) {
-				traceId = Logger.getTraceId();
-			}
-			String[] split = StringUtils.split(traceId, '/');
-			traceId = StringHelper.concat(split.length > 0 ? split[0] : StringHelper.uuid(), "/", ip);
-			Logger.updateTraceId(traceId);
-			response.addHeader("TRACE_ID", traceId);
-			Logger.debug(FCS.get("ShiroAccessControlFilter.preHandle, uri: {0}", url));
-		}
 		{/*check the match list.*/
 			String accessIp = ConstantBean.getProperty("access.ip", "").trim();
 			if (accessIp.length() > 0) {
@@ -76,7 +62,6 @@ public class ShiroIpAccessControlFilter extends AdviceFilter {
 
 	protected void cleanup(ServletRequest request, ServletResponse response, Exception existing)
 			throws ServletException, IOException {
-		ThreadLocalHelper.remove();
 		super.cleanup(request, response, existing);
 	}
 
