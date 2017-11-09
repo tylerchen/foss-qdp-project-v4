@@ -200,6 +200,8 @@
 						<tr><td class="qdp-infoform-title">状态</td><td class="qdp-infoform-content"><div><el-tag>{{getOption(infoForm, 'status')}}</el-tag></div></td></tr>
 						<tr><td class="qdp-infoform-title">类型</td><td class="qdp-infoform-content"><div><el-tag>{{getOption(infoForm, 'type')}}</el-tag></div></td></tr>
 						<tr><td class="qdp-infoform-title">用户</td><td class="qdp-infoform-content"><div><el-tag>{{infoForm.userIdName||""}}</el-tag></div></td></tr>
+						<tr><td class="qdp-infoform-title">最后登录</td><td class="qdp-infoform-content"><div>{{infoForm.lastLogin}}</div></td></tr>
+						<tr><td class="qdp-infoform-title">尝试次数</td><td class="qdp-infoform-content"><div>{{infoForm.loginTryTimes}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">描述</td><td class="qdp-infoform-content"><div>{{infoForm.description}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">修改时间</td><td class="qdp-infoform-content"><div>{{infoForm.updateTime}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">创建时间</td><td class="qdp-infoform-content"><div>{{infoForm.createTime}}</div></td></tr>
@@ -301,7 +303,7 @@
 					editFormRules : {"loginEmail":[{"type":"email","message":"登录 Email必须为email类型"},{"required":true,"message":"登录 Email不能为空"},{"min":1.0,"max":80.0,"message":"登录 Email范围1至80"}],"status":[{"type":"string","message":"状态必须为string类型"},{"required":true,"message":"状态不能为空"},{"len":1.0,"message":"状态长度为1"}],"type":[{"type":"string","message":"类型必须为string类型"},{"required":true,"message":"类型不能为空"},{"min":1.0,"max":50.0,"message":"类型范围1至50"}],"userId":[{"type":"string","message":"用户必须为string类型"},{"min":0.0,"max":40.0,"message":"用户范围0至40"}],"description":[{"type":"string","message":"描述必须为string类型"},{"min":0.0,"max":200.0,"message":"描述范围0至200"}]},
 					infoFormVisible : false,
 					infoForm : {
-						id : null, loginEmail : null, status : null, type : null, userId : null, userIdName : '', userIdSelections : [], description : null, updateTime : null, createTime : null
+						id : null, loginEmail : null, status : null, type : null, userId : null, userIdName : '', userIdSelections : [], lastLogin : null, loginTryTimes : null, description : null, updateTime : null, createTime : null
 					},
 					deleteFormUrl : '/ws/json/authAccountApplication/removeAuthAccountById',
 					editPasswordFormUrl : '/ws/json/authAccountApplication/editPassword',

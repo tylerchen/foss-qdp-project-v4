@@ -39,6 +39,7 @@
 				/system/** = anon
 				/anonws/** = anon
 				/rpc/http/** = traceid,acczuul,accip
+				/juneau/** = traceid,accctl
 				/ws/** = traceid,accctl
 				/** = traceid,accctl
 			</value>

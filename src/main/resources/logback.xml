@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<conversionRule conversionWord="traceid"
-		converterClass="com.foreveross.common.util.TraceIdConvert" />
+		converterClass="org.iff.infra.util.log.TraceIdConvert" />
 	<!-- from spring boot -->
 	<!-- base.xml -->
 	<!-- defaults.xml -->

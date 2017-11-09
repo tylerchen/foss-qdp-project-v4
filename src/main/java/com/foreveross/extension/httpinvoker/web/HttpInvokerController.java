@@ -58,19 +58,33 @@ public class HttpInvokerController extends BaseController {
 	public void invoke(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("beanName") String beanName) throws IOException {
 
-		Object orginBean = SpringContextHelper.getBean(beanName);
-
-		if (orginBean == null) {
+		/**
+		 * 获得原始Bean。
+		 */
+		Object orginBean = null;
+		try {
+			orginBean = SpringContextHelper.getBean(beanName);
+			if (orginBean == null) {
+				throw new IOException(new NoSuchBeanDefinitionException(beanName,
+						FCS.get("Bean not found by name [{0}] for rpc request!", beanName).toString()));
+			}
+		} catch (Exception e) {
 			throw new IOException(new NoSuchBeanDefinitionException(beanName,
 					FCS.get("Bean not found by name [{0}] for rpc request!", beanName).toString()));
 		}
 
+		/**
+		 * rpcBeanName是动态注册的Bean名称，获得RPC Bean。
+		 */
 		String rpcBeanName = beanName + "_HttpInvokerServiceBean";
 		Object httpInvokerBean = null;
 		try {
 			httpInvokerBean = SpringContextHelper.getBean(rpcBeanName);
 		} catch (Exception e) {
 		}
+		/**
+		 * 如果没有找到，获得RPC Bean，则使用Spring的机制动态注册一个。
+		 */
 		if (httpInvokerBean == null) {
 			try {
 				lock.lock();

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -25,7 +25,7 @@ import com.foreveross.qdp.infra.vo.system.auth.EditPasswordVO;
 /**
  * AuthAccount Application.
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -41,7 +41,7 @@ public interface AuthAccountRsApplication {
 	 * @param vo
 	 * @return AuthAccountVO
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -56,7 +56,7 @@ public interface AuthAccountRsApplication {
 	 * @param vo
 	 * @return AuthAccountVO
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@GET
@@ -72,7 +72,7 @@ public interface AuthAccountRsApplication {
 	 * @param page page setting
 	 * @return Page
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -88,7 +88,7 @@ public interface AuthAccountRsApplication {
 	 * @param page page setting
 	 * @return Page
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -103,7 +103,7 @@ public interface AuthAccountRsApplication {
 	 * @param vo
 	 * @return AuthAccountVO
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -118,7 +118,7 @@ public interface AuthAccountRsApplication {
 	 * @param vo
 	 * @return AuthAccountVO
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -132,7 +132,7 @@ public interface AuthAccountRsApplication {
 	 * </pre>
 	 * @param vo conditions.
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@DELETE
@@ -146,7 +146,7 @@ public interface AuthAccountRsApplication {
 	 * </pre>
 	 * @param id.
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@DELETE
@@ -160,7 +160,7 @@ public interface AuthAccountRsApplication {
 	 * </pre>
 	 * @param ids.
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@DELETE
@@ -175,7 +175,7 @@ public interface AuthAccountRsApplication {
 	 * Usage : AuthAccount.getByLoginEmail(loginEmail)
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	@POST
 	@Path("/getByLoginEmail")
@@ -193,7 +193,7 @@ public interface AuthAccountRsApplication {
 	 * @param page page setting
 	 * @return Page
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -207,7 +207,7 @@ public interface AuthAccountRsApplication {
 	 * </pre>
 	 * @param ids AuthRole id
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST
@@ -221,7 +221,7 @@ public interface AuthAccountRsApplication {
 	 * </pre>
 	 * @param vo EditPasswordVO
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	@POST

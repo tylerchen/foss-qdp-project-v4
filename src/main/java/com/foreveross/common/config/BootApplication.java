@@ -7,9 +7,6 @@
  ******************************************************************************/
 package com.foreveross.common.config;
 
-import org.apache.cxf.Bus;
-import org.apache.cxf.bus.spring.SpringBus;
-import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -18,20 +15,16 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -50,11 +43,6 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(BootApplication.class, args);
-	}
-
-	@Override
-	public void configurePathMatch(PathMatchConfigurer configurer) {
-		super.configurePathMatch(configurer);
 	}
 
 	@Override
@@ -96,22 +84,17 @@ public class BootApplication extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public ServletRegistrationBean dispatcherRegistration(DispatcherServlet dispatcherServlet) {
-		ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet);
-		registration.addUrlMappings("/*");
+		ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet, "/*");
 		registration.setLoadOnStartup(1);
 		return registration;
 	}
 
-	@Bean
-	public ServletRegistrationBean cxfServlet() {
-		return new ServletRegistrationBean(new CXFServlet(), "/webservice/*");
-	}
-
-	@Bean(name = Bus.DEFAULT_BUS_ID)
-	public SpringBus springBus() {
-		return new SpringBus();
-	}
-
+	/**
+	 * 文件上传
+	 * @return
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Nov 8, 2017
+	 */
 	@Bean
 	public MultipartResolver multipartResolver() {
 		return new CommonsMultipartResolver();

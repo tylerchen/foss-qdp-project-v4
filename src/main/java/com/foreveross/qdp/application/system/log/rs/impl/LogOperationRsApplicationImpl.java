@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.log.LogOperation;
 /**
  * LogOperation
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#getLogOperation(LogOperationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogOperationVO getLogOperation(LogOperationVO vo) {
@@ -62,7 +62,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#getLogOperationById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogOperationVO getLogOperationById(String id){
@@ -79,7 +79,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#pageFindLogOperation(LogOperationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindLogOperation(LogOperationVO vo, Page page) {
@@ -96,7 +96,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#pageFindLogOperationMap(LogOperationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindLogOperationMap(LogOperationVO vo, Page page) {
@@ -112,7 +112,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#addLogOperation(LogOperationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogOperationVO addLogOperation(LogOperationVO vo) {
@@ -128,7 +128,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#updateLogOperation(LogOperationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogOperationVO updateLogOperation(LogOperationVO vo) {
@@ -143,7 +143,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#removeLogOperation(LogOperationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogOperation(LogOperationVO vo) {
@@ -158,7 +158,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#removeLogOperationById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogOperationById(String id) {
@@ -173,7 +173,7 @@ public class LogOperationRsApplicationImpl implements LogOperationRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogOperationApplication#removeLogOperationByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogOperationByIds(String[] ids) {

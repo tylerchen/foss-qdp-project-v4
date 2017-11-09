@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -35,7 +35,7 @@ import com.foreveross.qdp.domain.system.auth.AuthMenu;
 /**
  * AuthRole
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -54,7 +54,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#getAuthRole(AuthRoleVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthRoleVO getAuthRole(AuthRoleVO vo) {
@@ -70,7 +70,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#getAuthRoleById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthRoleVO getAuthRoleById(String id){
@@ -87,7 +87,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#pageFindAuthRole(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthRole(AuthRoleVO vo, Page page) {
@@ -104,7 +104,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#pageFindAuthRoleMap(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthRoleMap(AuthRoleVO vo, Page page) {
@@ -120,7 +120,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#addAuthRole(AuthRoleVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthRoleVO addAuthRole(AuthRoleVO vo) {
@@ -136,7 +136,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#updateAuthRole(AuthRoleVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthRoleVO updateAuthRole(AuthRoleVO vo) {
@@ -151,7 +151,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#removeAuthRole(AuthRoleVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthRole(AuthRoleVO vo) {
@@ -166,7 +166,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#removeAuthRoleById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthRoleById(String id) {
@@ -181,7 +181,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#removeAuthRoleByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthRoleByIds(String[] ids) {
@@ -196,7 +196,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthRoleApplication#getByName(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthRoleVO getByName(String name) {
 		return authRoleApplication.getByName(name);
@@ -209,7 +209,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthRoleApplication#getByCode(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthRoleVO getByCode(String code) {
 		return authRoleApplication.getByCode(code);
@@ -228,7 +228,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#pageFindAssignAuthResource(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthResource(AuthRoleVO vo, Page page) {
@@ -243,7 +243,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#assignAuthResource(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthResource(AuthRoleVO vo) {
@@ -261,7 +261,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#pageFindAssignAuthMenu(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthMenu(AuthRoleVO vo, Page page) {
@@ -276,7 +276,7 @@ public class AuthRoleRsApplicationImpl implements AuthRoleRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthRoleApplication#assignAuthMenu(AuthRoleVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthMenu(AuthRoleVO vo) {

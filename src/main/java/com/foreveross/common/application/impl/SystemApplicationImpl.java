@@ -16,9 +16,9 @@ import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 import org.iff.infra.util.Assert;
 import org.iff.infra.util.I18nHelper;
+import org.iff.infra.util.MD5Helper;
 import org.iff.infra.util.CacheHelper.CacheCallback;
 import org.iff.infra.util.mybatis.plugin.Page;
-import org.iff.infra.util.spring.bean.EncryptDencrypt;
 
 import com.foreveross.common.application.SystemApplication;
 import com.foreveross.common.shiro.ShiroUser;
@@ -39,8 +39,6 @@ public class SystemApplicationImpl implements SystemApplication {
 	AuthAccountApplication authAccountApplication;
 	@Inject
 	SysI18nApplication sysI18nApplication;
-	@Inject
-	EncryptDencrypt encryptDencrypt;
 
 	public int initI18n() {
 		Page<?> page = sysI18nApplication.pageFindSysI18n(null, Page.offsetPage(0, 10000, null));
@@ -61,7 +59,8 @@ public class SystemApplicationImpl implements SystemApplication {
 		if (account == null) {
 			return null;
 		}
-		if (account.getLoginPasswd().equalsIgnoreCase(encryptDencrypt.encrypt("MD5", null, user.getLoginPasswd()))) {
+		if (StringUtils.equalsIgnoreCase(account.getLoginPasswd(),
+				MD5Helper.secondSalt(MD5Helper.firstSalt(user.getLoginPasswd())))) {
 			user = authAccountVO2ShiroUser(account);
 			return user;
 		}
@@ -98,6 +97,8 @@ public class SystemApplicationImpl implements SystemApplication {
 			user.setUpdateTime(account.getUpdateTime());
 			user.setUserId(account.getUserId());
 			user.setUserIdName(account.getUserIdName());
+			user.setLoginTryTimes(account.getLoginTryTimes());
+			user.setLastLogin(account.getLastLogin());
 		}
 		return user;
 	}

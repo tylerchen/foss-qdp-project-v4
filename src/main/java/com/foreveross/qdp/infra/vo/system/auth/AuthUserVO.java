@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 用户管理 - AuthUserVO
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -38,6 +38,14 @@ public class AuthUserVO implements Serializable {
 	private String email;
 	/** 性别 **/
 	private String sex;
+	/** 生日 **/
+	private Date birthday;
+	/** 家庭地址 **/
+	private String familyAddr;
+	/** 工作地址 **/
+	private String workAddr;
+	/** 工作电话 **/
+	private String workTel;
 	/** 描述 **/
 	private String description;
 	/** 修改时间 **/
@@ -101,6 +109,38 @@ public class AuthUserVO implements Serializable {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getFamilyAddr() {
+		return familyAddr;
+	}
+
+	public void setFamilyAddr(String familyAddr) {
+		this.familyAddr = familyAddr;
+	}
+
+	public String getWorkAddr() {
+		return workAddr;
+	}
+
+	public void setWorkAddr(String workAddr) {
+		this.workAddr = workAddr;
+	}
+
+	public String getWorkTel() {
+		return workTel;
+	}
+
+	public void setWorkTel(String workTel) {
+		this.workTel = workTel;
 	}
 
 	public String getDescription() {

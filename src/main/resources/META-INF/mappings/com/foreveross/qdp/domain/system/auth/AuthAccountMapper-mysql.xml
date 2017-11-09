@@ -2,34 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AuthAccount">
 	<resultMap id="AuthAccount" type="com.foreveross.qdp.domain.system.auth.AuthAccount">
-        <id     property="id"          column="ID"/>                        
-        <result property="loginEmail"  column="LOGIN_EMAIL"/>               
-        <result property="loginPasswd" column="LOGIN_PASSWD"/>              
-        <result property="status"      column="STATUS"/>                    
-        <result property="type"        column="TYPE"/>                      
-        <result property="userId"      column="USER_ID"/>                   
-        <result property="description" column="DESCRIPTION"/>               
-        <result property="updateTime"  column="UPDATE_TIME"/>               
-        <result property="createTime"  column="CREATE_TIME"/>               
+        <id     property="id"            column="ID"/>                          
+        <result property="loginEmail"    column="LOGIN_EMAIL"/>                 
+        <result property="loginPasswd"   column="LOGIN_PASSWD"/>                
+        <result property="status"        column="STATUS"/>                      
+        <result property="type"          column="TYPE"/>                        
+        <result property="userId"        column="USER_ID"/>                     
+        <result property="lastLogin"     column="LAST_LOGIN"/>                  
+        <result property="loginTryTimes" column="LOGIN_TRY_TIMES"/>             
+        <result property="description"   column="DESCRIPTION"/>                 
+        <result property="updateTime"    column="UPDATE_TIME"/>                 
+        <result property="createTime"    column="CREATE_TIME"/>                 
 
 	</resultMap>
 	<sql id="orderBy">
 		<if test="page !=null and page.orderBy!=null">
 			<bind name="fieldColMap" value="#{
-           'ID'           : 'ID'          ,
-           'LOGINEMAIL'   : 'LOGIN_EMAIL' ,
-           'LOGIN_EMAIL'  : 'LOGIN_EMAIL' ,
-           'LOGINPASSWD'  : 'LOGIN_PASSWD',
-           'LOGIN_PASSWD' : 'LOGIN_PASSWD',
-           'STATUS'       : 'STATUS'      ,
-           'TYPE'         : 'TYPE'        ,
-           'USERID'       : 'USER_ID'     ,
-           'USER_ID'      : 'USER_ID'     ,
-           'DESCRIPTION'  : 'DESCRIPTION' ,
-           'UPDATETIME'   : 'UPDATE_TIME' ,
-           'UPDATE_TIME'  : 'UPDATE_TIME' ,
-           'CREATETIME'   : 'CREATE_TIME' ,
-           'CREATE_TIME'  : 'CREATE_TIME' 
+           'ID'              : 'ID'             ,
+           'LOGINEMAIL'      : 'LOGIN_EMAIL'    ,
+           'LOGIN_EMAIL'     : 'LOGIN_EMAIL'    ,
+           'LOGINPASSWD'     : 'LOGIN_PASSWD'   ,
+           'LOGIN_PASSWD'    : 'LOGIN_PASSWD'   ,
+           'STATUS'          : 'STATUS'         ,
+           'TYPE'            : 'TYPE'           ,
+           'USERID'          : 'USER_ID'        ,
+           'USER_ID'         : 'USER_ID'        ,
+           'LASTLOGIN'       : 'LAST_LOGIN'     ,
+           'LAST_LOGIN'      : 'LAST_LOGIN'     ,
+           'LOGINTRYTIMES'   : 'LOGIN_TRY_TIMES',
+           'LOGIN_TRY_TIMES' : 'LOGIN_TRY_TIMES',
+           'DESCRIPTION'     : 'DESCRIPTION'    ,
+           'UPDATETIME'      : 'UPDATE_TIME'    ,
+           'UPDATE_TIME'     : 'UPDATE_TIME'    ,
+           'CREATETIME'      : 'CREATE_TIME'    ,
+           'CREATE_TIME'     : 'CREATE_TIME'    
 
 			}"/>
 			<bind name="orderMap" value="#{'ASC':'ASC', 'DESC':'DESC'}"/>
@@ -49,16 +55,18 @@
 	</select>
 	<select id="getAuthAccountMapById" parameterType="com.foreveross.qdp.domain.system.auth.AuthAccount" resultType="hashmap">
 		SELECT 
-           AuthAccount.ID            AS  id                      ,
-           AuthAccount.LOGIN_EMAIL   AS  loginEmail              ,
-           AuthAccount.LOGIN_PASSWD  AS  loginPasswd             ,
-           AuthAccount.STATUS        AS  status                  ,
-           AuthAccount.TYPE          AS  type                    ,
-           AuthAccount.USER_ID       AS  userId                  ,
-           AuthAccount.DESCRIPTION   AS  description             ,
-           AuthAccount.UPDATE_TIME   AS  updateTime              ,
-           AuthAccount.CREATE_TIME   AS  createTime              ,
-           userIdAuthUser.NAME       AS  userIdName              
+           AuthAccount.ID               AS  id                         ,
+           AuthAccount.LOGIN_EMAIL      AS  loginEmail                 ,
+           AuthAccount.LOGIN_PASSWD     AS  loginPasswd                ,
+           AuthAccount.STATUS           AS  status                     ,
+           AuthAccount.TYPE             AS  type                       ,
+           AuthAccount.USER_ID          AS  userId                     ,
+           AuthAccount.LAST_LOGIN       AS  lastLogin                  ,
+           AuthAccount.LOGIN_TRY_TIMES  AS  loginTryTimes              ,
+           AuthAccount.DESCRIPTION      AS  description                ,
+           AuthAccount.UPDATE_TIME      AS  updateTime                 ,
+           AuthAccount.CREATE_TIME      AS  createTime                 ,
+           userIdAuthUser.NAME          AS  userIdName                 
 
 		FROM AUTH_ACCOUNT AuthAccount
 		LEFT JOIN AUTH_USER userIdAuthUser ON AuthAccount.USER_ID = userIdAuthUser.ID                                        
@@ -71,52 +79,58 @@
 		SELECT *
 		FROM AUTH_ACCOUNT
 		<where>
-           <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND ID = #{vo.id,jdbcType=VARCHAR} </if>                              
-           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''   "> AND LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != '' "> AND LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>           
-           <if test="vo!=null and vo.status != null and vo.status != ''           "> AND STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>   
-           <if test="vo!=null and vo.type != null and vo.type != ''               "> AND TYPE = #{vo.type,jdbcType=VARCHAR} </if>                          
-           <if test="vo!=null and vo.userId != null and vo.userId != ''           "> AND USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                     
-           <if test="vo!=null and vo.description != null and vo.description != '' "> AND DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>            
-           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>             
-           <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>             
+           <if test="vo!=null and vo.id != null and vo.id != ''                       "> AND ID = #{vo.id,jdbcType=VARCHAR} </if>                                  
+           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''       "> AND LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''     "> AND LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>               
+           <if test="vo!=null and vo.status != null and vo.status != ''               "> AND STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>       
+           <if test="vo!=null and vo.type != null and vo.type != ''                   "> AND TYPE = #{vo.type,jdbcType=VARCHAR} </if>                              
+           <if test="vo!=null and vo.userId != null and vo.userId != ''               "> AND USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                         
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''         "> AND LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>                   
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != '' "> AND LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>          
+           <if test="vo!=null and vo.description != null and vo.description != ''     "> AND DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''       "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                 
+           <if test="vo!=null and vo.createTime != null and vo.createTime != ''       "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                 
 
 		</where>
 		<bind name="aliasDot" value="''"/><include refid="orderBy"/>
 	</select>
 	<select id="pageFindAuthAccountMap" resultType="hashmap">
 		SELECT 
-           AuthAccount.ID            AS  id                      ,
-           AuthAccount.LOGIN_EMAIL   AS  loginEmail              ,
-           AuthAccount.LOGIN_PASSWD  AS  loginPasswd             ,
-           AuthAccount.STATUS        AS  status                  ,
-           AuthAccount.TYPE          AS  type                    ,
-           AuthAccount.USER_ID       AS  userId                  ,
-           AuthAccount.DESCRIPTION   AS  description             ,
-           AuthAccount.UPDATE_TIME   AS  updateTime              ,
-           AuthAccount.CREATE_TIME   AS  createTime              ,
-           userIdAuthUser.NAME       AS  userIdName              
+           AuthAccount.ID               AS  id                         ,
+           AuthAccount.LOGIN_EMAIL      AS  loginEmail                 ,
+           AuthAccount.LOGIN_PASSWD     AS  loginPasswd                ,
+           AuthAccount.STATUS           AS  status                     ,
+           AuthAccount.TYPE             AS  type                       ,
+           AuthAccount.USER_ID          AS  userId                     ,
+           AuthAccount.LAST_LOGIN       AS  lastLogin                  ,
+           AuthAccount.LOGIN_TRY_TIMES  AS  loginTryTimes              ,
+           AuthAccount.DESCRIPTION      AS  description                ,
+           AuthAccount.UPDATE_TIME      AS  updateTime                 ,
+           AuthAccount.CREATE_TIME      AS  createTime                 ,
+           userIdAuthUser.NAME          AS  userIdName                 
 
 		FROM AUTH_ACCOUNT AuthAccount
 		LEFT JOIN AUTH_USER userIdAuthUser ON AuthAccount.USER_ID = userIdAuthUser.ID                                        
 
 		<where>
-           <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                  
-           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''   "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != '' "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.status != null and vo.status != ''           "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.type != null and vo.type != ''               "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>              
-           <if test="vo!=null and vo.userId != null and vo.userId != ''           "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>         
-           <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if> 
-           <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+           <if test="vo!=null and vo.id != null and vo.id != ''                       "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''       "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''     "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>   
+           <if test="vo!=null and vo.status != null and vo.status != ''               "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.type != null and vo.type != ''                   "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                  
+           <if test="vo!=null and vo.userId != null and vo.userId != ''               "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>             
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''         "> AND AuthAccount.LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>       
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != '' "> AND AuthAccount.LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>
+           <if test="vo!=null and vo.description != null and vo.description != ''     "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''       "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>     
+           <if test="vo!=null and vo.createTime != null and vo.createTime != ''       "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>     
 
 		</where>
 		<bind name="aliasDot" value="'AuthAccount.'"/><include refid="orderBy"/>
 	</select>
 	<insert id="insertAuthAccount" parameterType="com.foreveross.qdp.domain.system.auth.AuthAccount"  useGeneratedKeys="true" keyProperty="id" >
 		INSERT INTO AUTH_ACCOUNT
-			( ID, LOGIN_EMAIL, LOGIN_PASSWD, STATUS, TYPE, USER_ID, DESCRIPTION, UPDATE_TIME, CREATE_TIME )
+			( ID, LOGIN_EMAIL, LOGIN_PASSWD, STATUS, TYPE, USER_ID, LAST_LOGIN, LOGIN_TRY_TIMES, DESCRIPTION, UPDATE_TIME, CREATE_TIME )
 		VALUES
 			(
            #{id,jdbcType=VARCHAR},
@@ -125,6 +139,8 @@
            #{status,jdbcType=VARCHAR},
            #{type,jdbcType=VARCHAR},
            #{userId,jdbcType=VARCHAR},
+           #{lastLogin,jdbcType=VARCHAR},
+           #{loginTryTimes,jdbcType=INTEGER},
            #{description,jdbcType=VARCHAR},
            #{updateTime,jdbcType=VARCHAR},
            #{createTime,jdbcType=VARCHAR}
@@ -134,15 +150,17 @@
 	<update id="updateAuthAccount" parameterType="com.foreveross.qdp.domain.system.auth.AuthAccount">
 		UPDATE AUTH_ACCOUNT
 		<set>
-           <if test="id != null          "> ID = #{id,jdbcType=VARCHAR},</if>
-           <if test="loginEmail != null  "> LOGIN_EMAIL = #{loginEmail,jdbcType=VARCHAR},</if>
-           <if test="loginPasswd != null "> LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},</if>
-           <if test="status != null      "> STATUS = #{status,jdbcType=VARCHAR},</if>
-           <if test="type != null        "> TYPE = #{type,jdbcType=VARCHAR},</if>
-           USER_ID = #{userId,jdbcType=VARCHAR},                               
-           DESCRIPTION = #{description,jdbcType=VARCHAR},                               
-           <if test="updateTime != null  "> UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},</if>
-           <if test="createTime != null  "> CREATE_TIME = #{createTime,jdbcType=VARCHAR},</if>
+           <if test="id != null            "> ID = #{id,jdbcType=VARCHAR},</if>
+           <if test="loginEmail != null    "> LOGIN_EMAIL = #{loginEmail,jdbcType=VARCHAR},</if>
+           <if test="loginPasswd != null   "> LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},</if>
+           <if test="status != null        "> STATUS = #{status,jdbcType=VARCHAR},</if>
+           <if test="type != null          "> TYPE = #{type,jdbcType=VARCHAR},</if>
+           USER_ID = #{userId,jdbcType=VARCHAR},                                 
+           <if test="lastLogin != null     "> LAST_LOGIN = #{lastLogin,jdbcType=VARCHAR},</if>
+           <if test="loginTryTimes != null "> LOGIN_TRY_TIMES = #{loginTryTimes,jdbcType=INTEGER},</if>
+           DESCRIPTION = #{description,jdbcType=VARCHAR},                                 
+           <if test="updateTime != null    "> UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},</if>
+           <if test="createTime != null    "> CREATE_TIME = #{createTime,jdbcType=VARCHAR},</if>
 
 		</set>
 		<where>
@@ -164,16 +182,18 @@
 	</select>
 	<select id="getAuthAccountMapByLoginEmail" parameterType="com.foreveross.qdp.domain.system.auth.AuthAccount" resultType="hashmap">
 		SELECT 
-           AuthAccount.ID            AS  id                      ,
-           AuthAccount.LOGIN_EMAIL   AS  loginEmail              ,
-           AuthAccount.LOGIN_PASSWD  AS  loginPasswd             ,
-           AuthAccount.STATUS        AS  status                  ,
-           AuthAccount.TYPE          AS  type                    ,
-           AuthAccount.USER_ID       AS  userId                  ,
-           AuthAccount.DESCRIPTION   AS  description             ,
-           AuthAccount.UPDATE_TIME   AS  updateTime              ,
-           AuthAccount.CREATE_TIME   AS  createTime              ,
-           userIdAuthUser.NAME       AS  userIdName              
+           AuthAccount.ID               AS  id                         ,
+           AuthAccount.LOGIN_EMAIL      AS  loginEmail                 ,
+           AuthAccount.LOGIN_PASSWD     AS  loginPasswd                ,
+           AuthAccount.STATUS           AS  status                     ,
+           AuthAccount.TYPE             AS  type                       ,
+           AuthAccount.USER_ID          AS  userId                     ,
+           AuthAccount.LAST_LOGIN       AS  lastLogin                  ,
+           AuthAccount.LOGIN_TRY_TIMES  AS  loginTryTimes              ,
+           AuthAccount.DESCRIPTION      AS  description                ,
+           AuthAccount.UPDATE_TIME      AS  updateTime                 ,
+           AuthAccount.CREATE_TIME      AS  createTime                 ,
+           userIdAuthUser.NAME          AS  userIdName                 
 
 		FROM AUTH_ACCOUNT AuthAccount
 		LEFT JOIN AUTH_USER userIdAuthUser ON AuthAccount.USER_ID = userIdAuthUser.ID                                        
@@ -197,6 +217,8 @@
            <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
            <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
            <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''                       "> AND AuthAccount.LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>                     
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != ''               "> AND AuthAccount.LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>            
            <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
            <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
            <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
@@ -233,15 +255,17 @@
 		INNER JOIN AUTH_ROLE AuthRole               ON  AuthRole.ID    = AuthAutherRole.ROLE_ID                                        
 
 		<where>
-           <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                  
-           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''   "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != '' "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.status != null and vo.status != ''           "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.type != null and vo.type != ''               "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>              
-           <if test="vo!=null and vo.userId != null and vo.userId != ''           "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>         
-           <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if> 
-           <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+           <if test="vo!=null and vo.id != null and vo.id != ''                       "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''       "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''     "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>   
+           <if test="vo!=null and vo.status != null and vo.status != ''               "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.type != null and vo.type != ''                   "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                  
+           <if test="vo!=null and vo.userId != null and vo.userId != ''               "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>             
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''         "> AND AuthAccount.LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>       
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != '' "> AND AuthAccount.LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>
+           <if test="vo!=null and vo.description != null and vo.description != ''     "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''       "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>     
+           <if test="vo!=null and vo.createTime != null and vo.createTime != ''       "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>     
 
 		</where>
 	</select>
@@ -269,6 +293,8 @@
            <if test="vo!=null and vo.status != null and vo.status != ''                             "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>         
            <if test="vo!=null and vo.type != null and vo.type != ''                                 "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                                
            <if test="vo!=null and vo.userId != null and vo.userId != ''                             "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>                           
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''                       "> AND AuthAccount.LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>                     
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != ''               "> AND AuthAccount.LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>            
            <if test="vo!=null and vo.description != null and vo.description != ''                   "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>                  
            <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''                     "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>                   
            <if test="vo!=null and vo.createTime != null and vo.createTime != ''                     "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>                   
@@ -300,15 +326,17 @@
 		INNER JOIN AUTH_AUTHER_ROLE AuthAutherRole  ON  AuthAccount.ID = AuthAutherRole.AUTHER_ID                                      
 
 		<where>
-           <if test="vo!=null and vo.id != null and vo.id != ''                   "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                  
-           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''   "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != '' "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.status != null and vo.status != ''           "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
-           <if test="vo!=null and vo.type != null and vo.type != ''               "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>              
-           <if test="vo!=null and vo.userId != null and vo.userId != ''           "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>         
-           <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>
-           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if> 
-           <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if> 
+           <if test="vo!=null and vo.id != null and vo.id != ''                       "> AND AuthAccount.ID = #{vo.id,jdbcType=VARCHAR} </if>                      
+           <if test="vo!=null and vo.loginEmail != null and vo.loginEmail != ''       "> AND AuthAccount.LOGIN_EMAIL LIKE CONCAT('%',#{vo.loginEmail,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.loginPasswd != null and vo.loginPasswd != ''     "> AND AuthAccount.LOGIN_PASSWD = #{vo.loginPasswd,jdbcType=VARCHAR} </if>   
+           <if test="vo!=null and vo.status != null and vo.status != ''               "> AND AuthAccount.STATUS LIKE CONCAT('%',#{vo.status,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.type != null and vo.type != ''                   "> AND AuthAccount.TYPE = #{vo.type,jdbcType=VARCHAR} </if>                  
+           <if test="vo!=null and vo.userId != null and vo.userId != ''               "> AND AuthAccount.USER_ID = #{vo.userId,jdbcType=VARCHAR} </if>             
+           <if test="vo!=null and vo.lastLogin != null and vo.lastLogin != ''         "> AND AuthAccount.LAST_LOGIN = #{vo.lastLogin,jdbcType=VARCHAR} </if>       
+           <if test="vo!=null and vo.loginTryTimes != null and vo.loginTryTimes != '' "> AND AuthAccount.LOGIN_TRY_TIMES = #{vo.loginTryTimes,jdbcType=INTEGER} </if>
+           <if test="vo!=null and vo.description != null and vo.description != ''     "> AND AuthAccount.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''       "> AND AuthAccount.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>     
+           <if test="vo!=null and vo.createTime != null and vo.createTime != ''       "> AND AuthAccount.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>     
 
 		</where>
 	</select>

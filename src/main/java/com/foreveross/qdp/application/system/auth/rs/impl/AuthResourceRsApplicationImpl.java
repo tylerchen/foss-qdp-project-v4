@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.auth.AuthResource;
 /**
  * AuthResource
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#getAuthResource(AuthResourceVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthResourceVO getAuthResource(AuthResourceVO vo) {
@@ -62,7 +62,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#getAuthResourceById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthResourceVO getAuthResourceById(String id){
@@ -79,7 +79,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#pageFindAuthResource(AuthResourceVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthResource(AuthResourceVO vo, Page page) {
@@ -96,7 +96,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#pageFindAuthResourceMap(AuthResourceVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthResourceMap(AuthResourceVO vo, Page page) {
@@ -112,7 +112,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#addAuthResource(AuthResourceVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthResourceVO addAuthResource(AuthResourceVO vo) {
@@ -128,7 +128,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#updateAuthResource(AuthResourceVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthResourceVO updateAuthResource(AuthResourceVO vo) {
@@ -143,7 +143,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#removeAuthResource(AuthResourceVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthResource(AuthResourceVO vo) {
@@ -158,7 +158,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#removeAuthResourceById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthResourceById(String id) {
@@ -173,7 +173,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthResourceApplication#removeAuthResourceByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthResourceByIds(String[] ids) {
@@ -188,7 +188,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthResourceApplication#getByName(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthResourceVO getByName(String name) {
 		return authResourceApplication.getByName(name);
@@ -201,7 +201,7 @@ public class AuthResourceRsApplicationImpl implements AuthResourceRsApplication 
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthResourceApplication#getByCode(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthResourceVO getByCode(String code) {
 		return authResourceApplication.getByCode(code);

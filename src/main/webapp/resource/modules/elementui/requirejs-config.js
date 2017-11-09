@@ -17,7 +17,9 @@ var requireConfig = {
 		/**
 		 * common js
 		 */
-		qdp : "elementui/qdp", encrypt : "encrypt/jsencrypt.min",
+		qdp : "elementui/qdp", //
+		version : "elementui/version", //
+		encrypt : "encrypt/jsencrypt.min",
 		/**
 		 * define vue
 		 */
@@ -62,7 +64,7 @@ requirejs.config(requireConfig);
 /**
  * loading the app.js file undering the html page directory.
  */
-require([ 'vue', "ELEMENT", 'vuerouter', "vueresource", "vuex", "qdp", "globalstate" ], function(Vue, ELEMENT, VueRouter, VueResource, Vuex) {
+require([ 'vue', "ELEMENT", 'vuerouter', "vueresource", "vuex", "qdp", "globalstate", "version" ], function(Vue, ELEMENT, VueRouter, VueResource, Vuex) {
 	//Vue.config.debug = true
 	//Vue.config.devtools = true
 	/**@see http://www.tuicool.com/articles/jIRrAfI**/

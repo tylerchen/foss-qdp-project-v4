@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.common.SysExData;
 /**
  * SysExData
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#getSysExData(SysExDataVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExDataVO getSysExData(SysExDataVO vo) {
@@ -62,7 +62,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#getSysExDataById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExDataVO getSysExDataById(String id){
@@ -79,7 +79,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#pageFindSysExData(SysExDataVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysExData(SysExDataVO vo, Page page) {
@@ -96,7 +96,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#pageFindSysExDataMap(SysExDataVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysExDataMap(SysExDataVO vo, Page page) {
@@ -112,7 +112,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#addSysExData(SysExDataVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExDataVO addSysExData(SysExDataVO vo) {
@@ -128,7 +128,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#updateSysExData(SysExDataVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExDataVO updateSysExData(SysExDataVO vo) {
@@ -143,7 +143,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#removeSysExData(SysExDataVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExData(SysExDataVO vo) {
@@ -158,7 +158,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#removeSysExDataById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExDataById(String id) {
@@ -173,7 +173,7 @@ public class SysExDataRsApplicationImpl implements SysExDataRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExDataApplication#removeSysExDataByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExDataByIds(String[] ids) {

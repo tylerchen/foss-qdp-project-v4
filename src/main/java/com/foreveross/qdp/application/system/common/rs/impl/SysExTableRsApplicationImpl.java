@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.common.SysExTable;
 /**
  * SysExTable
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#getSysExTable(SysExTableVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExTableVO getSysExTable(SysExTableVO vo) {
@@ -62,7 +62,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#getSysExTableById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExTableVO getSysExTableById(String id){
@@ -79,7 +79,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#pageFindSysExTable(SysExTableVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysExTable(SysExTableVO vo, Page page) {
@@ -96,7 +96,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#pageFindSysExTableMap(SysExTableVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysExTableMap(SysExTableVO vo, Page page) {
@@ -112,7 +112,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#addSysExTable(SysExTableVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExTableVO addSysExTable(SysExTableVO vo) {
@@ -128,7 +128,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#updateSysExTable(SysExTableVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysExTableVO updateSysExTable(SysExTableVO vo) {
@@ -143,7 +143,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#removeSysExTable(SysExTableVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExTable(SysExTableVO vo) {
@@ -158,7 +158,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#removeSysExTableById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExTableById(String id) {
@@ -173,7 +173,7 @@ public class SysExTableRsApplicationImpl implements SysExTableRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysExTableApplication#removeSysExTableByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysExTableByIds(String[] ids) {

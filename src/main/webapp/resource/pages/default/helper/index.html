@@ -9,6 +9,22 @@
 			<el-col :span="24">
 				<el-collapse>
 					<el-collapse-item>
+						<template slot="title">登录密码加密</template>
+						<el-form class="qdp-edit-form" :model="passwordForm" label-width="80px" @keydown.13.native.stop="">
+							<el-form-item label="原始密码" prop="password">
+								<el-input v-model="passwordForm.password" placeholder="" size="small"></el-input>
+							</el-form-item>
+							<el-form-item label="加密结果" prop="result">
+								<el-input v-model="passwordForm.result" placeholder="" size="small"></el-input>
+							</el-form-item>
+							<el-row type="flex" justify="center" align="top" class="qdp-dialog-btns">
+								<el-button type="primary" @click="passwordFormEncrypt" icon="ion-checkmark">加密</el-button>
+							</el-row>
+						</el-form>
+					</el-collapse-item>
+				</el-collapse>
+				<el-collapse>
+					<el-collapse-item>
 						<template slot="title">RSA加密解密（BASE64）</template>
 						<el-form class="qdp-edit-form" :model="rsaForm" label-width="80px" @keydown.13.native.stop="">
 							<el-form-item label="RSA公钥/密钥" prop="key">
@@ -85,6 +101,9 @@
 			components : {},
 			data : function() {
 				return {
+					passwordForm:{
+						password:'', result:''
+					},
 					rsaForm : {
 						key : '', content : '', result : ''
 					}, urlBuilderForm : {
@@ -107,6 +126,15 @@
 			methods : {
 				cache : getters.cache,//
 				accountId : getters.accountId, //
+				passwordFormEncrypt : function() {
+					var root = this;
+					var url = qdpFormatUrl("/system/encryptPassword.do?password={{d.password}}", root.passwordForm);
+					root.$http.get(qdpPathJoin(ctx, url)).then(function(data) {
+						root.passwordForm.result = qdpAjaxDataBody(data);
+					}, function(response) {
+						root.passwordForm.result = qdpToString(response);
+					});
+				},
 				rsaFormEncrypt : function() {
 					try {
 						var encrypt = new JSEncryptExports.JSEncrypt();

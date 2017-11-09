@@ -18,6 +18,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.iff.infra.util.FCS;
 import org.iff.infra.util.StreamHelper;
 import org.iff.infra.util.StringHelper;
 import org.iff.infra.util.ZipHelper;
@@ -57,9 +58,12 @@ public class PackTemplateAndFramework {
 				version = version + "-" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			}
 			{
+				String filePath = "src/main/resources/META-INF/config/version.properties";
 				String content = StreamHelper
-						.getContent(new FileInputStream(new File(StringHelper.pathConcat(new File("").getAbsolutePath(),
-								"src/main/resources/META-INF/config/version.properties"))), false);
+						.getContent(
+								new FileInputStream(
+										new File(StringHelper.pathConcat(new File("").getAbsolutePath(), filePath))),
+								false);
 				String[] split = StringUtils.splitPreserveAllTokens(StringUtils.replace(content, "\r", ""), "\n");
 				for (int i = 0; i < split.length; i++) {
 					String str = split[i];
@@ -69,11 +73,20 @@ public class PackTemplateAndFramework {
 					}
 				}
 				content = StringUtils.join(split, "\r\n");
-				FileWriter fileWriter = new FileWriter(new File(StringHelper.pathConcat(new File("").getAbsolutePath(),
-						"src/main/resources/META-INF/config/version.properties")));
+				FileWriter fileWriter = new FileWriter(
+						new File(StringHelper.pathConcat(new File("").getAbsolutePath(), filePath)));
 				fileWriter.write(content);
 				StreamHelper.closeWithoutError(fileWriter);
-				System.out.println("Version: " + version);
+				System.out.println(FCS.get("Set version {0} to file : {1}", version, filePath));
+			}
+			{
+				String filePath = "src/main/webapp/resource/modules/elementui/version.js";
+				String content = ";var app_version='" + version + "';";
+				FileWriter fileWriter = new FileWriter(
+						new File(StringHelper.pathConcat(new File("").getAbsolutePath(), filePath)));
+				fileWriter.write(content);
+				StreamHelper.closeWithoutError(fileWriter);
+				System.out.println(FCS.get("Set version {0} to file : {1}", version, filePath));
 			}
 
 		} catch (Exception e) {

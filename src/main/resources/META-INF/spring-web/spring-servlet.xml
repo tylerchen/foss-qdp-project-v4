@@ -13,6 +13,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation" expression="javax.inject.Named" />
 		<context:exclude-filter type="annotation" expression="javax.inject.Inject" />
+		<context:exclude-filter type="regex" expression="com.foreveross.common.config.*"/>
 	</context:component-scan>
 	<!-- MVC -->
 	<mvc:default-servlet-handler />

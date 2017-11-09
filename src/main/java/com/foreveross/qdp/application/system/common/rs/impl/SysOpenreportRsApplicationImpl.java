@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.common.SysOpenreport;
 /**
  * SysOpenreport
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#getSysOpenreport(SysOpenreportVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysOpenreportVO getSysOpenreport(SysOpenreportVO vo) {
@@ -62,7 +62,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#getSysOpenreportById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysOpenreportVO getSysOpenreportById(String id){
@@ -79,7 +79,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#pageFindSysOpenreport(SysOpenreportVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysOpenreport(SysOpenreportVO vo, Page page) {
@@ -96,7 +96,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#pageFindSysOpenreportMap(SysOpenreportVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindSysOpenreportMap(SysOpenreportVO vo, Page page) {
@@ -112,7 +112,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#addSysOpenreport(SysOpenreportVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysOpenreportVO addSysOpenreport(SysOpenreportVO vo) {
@@ -128,7 +128,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#updateSysOpenreport(SysOpenreportVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public SysOpenreportVO updateSysOpenreport(SysOpenreportVO vo) {
@@ -143,7 +143,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#removeSysOpenreport(SysOpenreportVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysOpenreport(SysOpenreportVO vo) {
@@ -158,7 +158,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#removeSysOpenreportById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysOpenreportById(String id) {
@@ -173,7 +173,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.ws.SysOpenreportApplication#removeSysOpenreportByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeSysOpenreportByIds(String[] ids) {
@@ -188,7 +188,7 @@ public class SysOpenreportRsApplicationImpl implements SysOpenreportRsApplicatio
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.common.SysOpenreportApplication#getByName(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public SysOpenreportVO getByName(String name) {
 		return sysOpenreportApplication.getByName(name);

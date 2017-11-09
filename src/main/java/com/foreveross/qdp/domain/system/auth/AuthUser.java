@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * AuthUser
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -49,6 +49,14 @@ public class AuthUser implements Serializable {
 	private String email;
 	/** 性别 **/
 	private String sex;
+	/** 生日 **/
+	private Date birthday;
+	/** 家庭地址 **/
+	private String familyAddr;
+	/** 工作地址 **/
+	private String workAddr;
+	/** 工作电话 **/
+	private String workTel;
 	/** 描述 **/
 	private String description;
 	/** 修改时间 **/
@@ -109,6 +117,34 @@ public class AuthUser implements Serializable {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+	public String getFamilyAddr() {
+		return familyAddr;
+	}
+
+	public void setFamilyAddr(String familyAddr) {
+		this.familyAddr = familyAddr;
+	}
+	public String getWorkAddr() {
+		return workAddr;
+	}
+
+	public void setWorkAddr(String workAddr) {
+		this.workAddr = workAddr;
+	}
+	public String getWorkTel() {
+		return workTel;
+	}
+
+	public void setWorkTel(String workTel) {
+		this.workTel = workTel;
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -139,7 +175,7 @@ public class AuthUser implements Serializable {
 	 * @param authUser
 	 * @return AuthUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthUser get(AuthUser authUser) {
 		return Dao.queryOne("AuthUser.getAuthUserById", authUser);
@@ -153,7 +189,7 @@ public class AuthUser implements Serializable {
 	 * @param id
 	 * @return AuthUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthUser get(String id) {
 		AuthUser authUser = new AuthUser();
@@ -168,7 +204,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param authUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(AuthUser authUser) {
 		authUser.remove();
@@ -181,7 +217,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param authUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(String id) {
 		AuthUser authUser = new AuthUser();
@@ -196,7 +232,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param authUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(String[] ids) {
 		if (ids != null) {
@@ -215,7 +251,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param authUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static boolean hasName(AuthUser authUser) {
 		return Dao.querySize("AuthUser.hasName", authUser) > 0;
@@ -228,7 +264,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param authUser
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static boolean hasEmail(AuthUser authUser) {
 		return Dao.querySize("AuthUser.hasEmail", authUser) > 0;
@@ -240,7 +276,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.add()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthUser add() {
 		ValidateHelper validate = validate("add");
@@ -257,7 +293,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.update()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthUser update() {
 		ValidateHelper validate = validate("edit");
@@ -274,7 +310,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.update()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthUser addOrUpdate() {
 		if (StringUtils.isBlank(getId())) {
@@ -290,7 +326,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.remove()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public void remove() {
 		ValidateHelper validate = validate("delete");
@@ -307,7 +343,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.getByName(name)
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthUser getByName(String name) {
 		AuthUser domain = new AuthUser();
@@ -321,7 +357,7 @@ public class AuthUser implements Serializable {
 	 * Usage : AuthUser.getByEmail(email)
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthUser getByEmail(String email) {
 		AuthUser domain = new AuthUser();
@@ -338,7 +374,7 @@ public class AuthUser implements Serializable {
 	 * </pre>
 	 * @param type add/update/delete
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	private ValidateHelper validate(String type) {
 		ValidateHelper validate = ValidateHelper.create();

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -27,7 +27,7 @@ import com.foreveross.qdp.domain.system.log.LogAccess;
 /**
  * LogAccess
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -46,7 +46,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#getLogAccess(LogAccessVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogAccessVO getLogAccess(LogAccessVO vo) {
@@ -62,7 +62,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#getLogAccessById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogAccessVO getLogAccessById(String id){
@@ -79,7 +79,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#pageFindLogAccess(LogAccessVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindLogAccess(LogAccessVO vo, Page page) {
@@ -96,7 +96,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#pageFindLogAccessMap(LogAccessVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindLogAccessMap(LogAccessVO vo, Page page) {
@@ -112,7 +112,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#addLogAccess(LogAccessVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogAccessVO addLogAccess(LogAccessVO vo) {
@@ -128,7 +128,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#updateLogAccess(LogAccessVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public LogAccessVO updateLogAccess(LogAccessVO vo) {
@@ -143,7 +143,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#removeLogAccess(LogAccessVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogAccess(LogAccessVO vo) {
@@ -158,7 +158,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#removeLogAccessById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogAccessById(String id) {
@@ -173,7 +173,7 @@ public class LogAccessRsApplicationImpl implements LogAccessRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.log.ws.LogAccessApplication#removeLogAccessByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeLogAccessByIds(String[] ids) {

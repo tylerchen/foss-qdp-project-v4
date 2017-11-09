@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -39,7 +39,7 @@ import com.foreveross.qdp.domain.system.auth.AuthRole;
 /**
  * AuthOrganization
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -58,7 +58,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#getAuthOrganization(AuthOrganizationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthOrganizationVO getAuthOrganization(AuthOrganizationVO vo) {
@@ -74,7 +74,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#getAuthOrganizationById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthOrganizationVO getAuthOrganizationById(String id){
@@ -91,7 +91,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#pageFindAuthOrganization(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthOrganization(AuthOrganizationVO vo, Page page) {
@@ -108,7 +108,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#pageFindAuthOrganizationMap(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthOrganizationMap(AuthOrganizationVO vo, Page page) {
@@ -124,7 +124,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#addAuthOrganization(AuthOrganizationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthOrganizationVO addAuthOrganization(AuthOrganizationVO vo) {
@@ -140,7 +140,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#updateAuthOrganization(AuthOrganizationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthOrganizationVO updateAuthOrganization(AuthOrganizationVO vo) {
@@ -155,7 +155,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#removeAuthOrganization(AuthOrganizationVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthOrganization(AuthOrganizationVO vo) {
@@ -170,7 +170,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#removeAuthOrganizationById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthOrganizationById(String id) {
@@ -185,7 +185,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#removeAuthOrganizationByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthOrganizationByIds(String[] ids) {
@@ -200,7 +200,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthOrganizationApplication#getByName(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthOrganizationVO getByName(String name) {
 		return authOrganizationApplication.getByName(name);
@@ -213,7 +213,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthOrganizationApplication#getByCode(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthOrganizationVO getByCode(String code) {
 		return authOrganizationApplication.getByCode(code);
@@ -232,7 +232,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#pageFindAssignAuthMenu(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthMenu(AuthOrganizationVO vo, Page page) {
@@ -247,7 +247,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#assignAuthMenu(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthMenu(AuthOrganizationVO vo) {
@@ -265,7 +265,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#pageFindAssignAuthUser(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthUser(AuthOrganizationVO vo, Page page) {
@@ -280,7 +280,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#assignAuthUser(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthUser(AuthOrganizationVO vo) {
@@ -298,7 +298,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#pageFindAssignAuthRole(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthRole(AuthOrganizationVO vo, Page page) {
@@ -313,7 +313,7 @@ public class AuthOrganizationRsApplicationImpl implements AuthOrganizationRsAppl
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthOrganizationApplication#assignAuthRole(AuthOrganizationVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthRole(AuthOrganizationVO vo) {

@@ -92,6 +92,18 @@
 					    	<el-option label="未知"  value="N"></el-option>
 					   	</el-select>
 					</el-form-item>
+					<el-form-item label="生日" prop="birthday">
+						<el-date-picker v-model="addForm.birthday" type="date" placeholder="" size="small"></el-date-picker>
+					</el-form-item>
+					<el-form-item label="家庭地址" prop="familyAddr">
+						<el-input v-model="addForm.familyAddr" placeholder="" size="small"></el-input>
+					</el-form-item>
+					<el-form-item label="工作地址" prop="workAddr">
+						<el-input v-model="addForm.workAddr" placeholder="" size="small"></el-input>
+					</el-form-item>
+					<el-form-item label="工作电话" prop="workTel">
+						<el-input v-model="addForm.workTel" placeholder="" size="small"></el-input>
+					</el-form-item>
 					<el-form-item label="描述" prop="description">
 						<el-input v-model="addForm.description" placeholder="" size="small"></el-input>
 					</el-form-item>
@@ -134,6 +146,18 @@
 					    	<el-option label="未知"  value="N"></el-option>
 					   	</el-select>
 					</el-form-item>
+					<el-form-item label="生日" prop="birthday">
+						<el-date-picker v-model="editForm.birthday" type="date" placeholder="" size="small"></el-date-picker>
+					</el-form-item>
+					<el-form-item label="家庭地址" prop="familyAddr">
+						<el-input v-model="editForm.familyAddr" placeholder="" size="small"></el-input>
+					</el-form-item>
+					<el-form-item label="工作地址" prop="workAddr">
+						<el-input v-model="editForm.workAddr" placeholder="" size="small"></el-input>
+					</el-form-item>
+					<el-form-item label="工作电话" prop="workTel">
+						<el-input v-model="editForm.workTel" placeholder="" size="small"></el-input>
+					</el-form-item>
 					<el-form-item label="描述" prop="description">
 						<el-input v-model="editForm.description" placeholder="" size="small"></el-input>
 					</el-form-item>
@@ -157,6 +181,10 @@
 						<tr><td class="qdp-infoform-title">联系电话</td><td class="qdp-infoform-content"><div>{{infoForm.tel}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">联系 Email</td><td class="qdp-infoform-content"><div>{{infoForm.email}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">性别</td><td class="qdp-infoform-content"><div><el-tag>{{getOption(infoForm, 'sex')}}</el-tag></div></td></tr>
+						<tr><td class="qdp-infoform-title">生日</td><td class="qdp-infoform-content"><div>{{infoForm.birthday}}</div></td></tr>
+						<tr><td class="qdp-infoform-title">家庭地址</td><td class="qdp-infoform-content"><div>{{infoForm.familyAddr}}</div></td></tr>
+						<tr><td class="qdp-infoform-title">工作地址</td><td class="qdp-infoform-content"><div>{{infoForm.workAddr}}</div></td></tr>
+						<tr><td class="qdp-infoform-title">工作电话</td><td class="qdp-infoform-content"><div>{{infoForm.workTel}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">描述</td><td class="qdp-infoform-content"><div>{{infoForm.description}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">修改时间</td><td class="qdp-infoform-content"><div>{{infoForm.updateTime}}</div></td></tr>
 						<tr><td class="qdp-infoform-title">创建时间</td><td class="qdp-infoform-content"><div>{{infoForm.createTime}}</div></td></tr>
@@ -189,18 +217,18 @@
 					addFormUrl : '/ws/json/authUserApplication/addAuthUser',
 					addFormVisible : false,
 					addForm : {
-						name : null, status : null, type : null, tel : null, email : null, sex : null, description : null
+						name : null, status : null, type : null, tel : null, email : null, sex : null, birthday : null, familyAddr : null, workAddr : null, workTel : null, description : null
 					},
 					addFormRules : {"name":[{"type":"string","message":"用户名称必须为string类型"},{"required":true,"message":"用户名称不能为空"},{"min":1.0,"max":100.0,"message":"用户名称范围1至100"}],"status":[{"type":"string","message":"状态必须为string类型"},{"required":true,"message":"状态不能为空"},{"len":1.0,"message":"状态长度为1"}],"type":[{"type":"string","message":"类型必须为string类型"},{"required":true,"message":"类型不能为空"},{"min":1.0,"max":50.0,"message":"类型范围1至50"}],"tel":[{"type":"string","message":"联系电话必须为string类型"},{"required":true,"message":"联系电话不能为空"},{"min":0.0,"max":40.0,"message":"联系电话范围0至40"}],"email":[{"type":"string","message":"联系 Email必须为string类型"},{"required":true,"message":"联系 Email不能为空"},{"min":0.0,"max":80.0,"message":"联系 Email范围0至80"}],"sex":[{"type":"string","message":"性别必须为string类型"},{"required":true,"message":"性别不能为空"},{"len":1.0,"message":"性别长度为1"}],"description":[{"type":"string","message":"描述必须为string类型"},{"min":0.0,"max":200.0,"message":"描述范围0至200"}]},
 					editFormUrl : '/ws/json/authUserApplication/updateAuthUser',
 					editFormVisible : false,
 					editForm : {
-						name : null, status : null, type : null, tel : null, email : null, sex : null, description : null
+						name : null, status : null, type : null, tel : null, email : null, sex : null, birthday : null, familyAddr : null, workAddr : null, workTel : null, description : null
 					},
 					editFormRules : {"name":[{"type":"string","message":"用户名称必须为string类型"},{"required":true,"message":"用户名称不能为空"},{"min":1.0,"max":100.0,"message":"用户名称范围1至100"}],"status":[{"type":"string","message":"状态必须为string类型"},{"required":true,"message":"状态不能为空"},{"len":1.0,"message":"状态长度为1"}],"type":[{"type":"string","message":"类型必须为string类型"},{"required":true,"message":"类型不能为空"},{"min":1.0,"max":50.0,"message":"类型范围1至50"}],"tel":[{"type":"string","message":"联系电话必须为string类型"},{"required":true,"message":"联系电话不能为空"},{"min":0.0,"max":40.0,"message":"联系电话范围0至40"}],"email":[{"type":"string","message":"联系 Email必须为string类型"},{"required":true,"message":"联系 Email不能为空"},{"min":0.0,"max":80.0,"message":"联系 Email范围0至80"}],"sex":[{"type":"string","message":"性别必须为string类型"},{"required":true,"message":"性别不能为空"},{"len":1.0,"message":"性别长度为1"}],"description":[{"type":"string","message":"描述必须为string类型"},{"min":0.0,"max":200.0,"message":"描述范围0至200"}]},
 					infoFormVisible : false,
 					infoForm : {
-						id : null, name : null, status : null, type : null, tel : null, email : null, sex : null, description : null, updateTime : null, createTime : null
+						id : null, name : null, status : null, type : null, tel : null, email : null, sex : null, birthday : null, familyAddr : null, workAddr : null, workTel : null, description : null, updateTime : null, createTime : null
 					},
 					deleteFormUrl : '/ws/json/authUserApplication/removeAuthUserById',
 					enums : {"index":{"status":{"Y":"可用","N":"停用"},"type":{"S":"默认"},"sex":{"F":"女","M":"男","N":"未知"}}},

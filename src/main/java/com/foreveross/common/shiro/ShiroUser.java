@@ -30,6 +30,10 @@ public class ShiroUser implements Serializable {
 	private String type;
 	/** 用户 **/
 	private String userId;
+	/** 最后登录 **/
+	private Date lastLogin;
+	/** 尝试次数 **/
+	private Integer loginTryTimes;
 	/** 描述 **/
 	private String description;
 	/** 修改时间 **/
@@ -94,6 +98,22 @@ public class ShiroUser implements Serializable {
 		this.userId = userId;
 	}
 
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public Integer getLoginTryTimes() {
+		return loginTryTimes;
+	}
+
+	public void setLoginTryTimes(Integer loginTryTimes) {
+		this.loginTryTimes = loginTryTimes;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -145,8 +165,16 @@ public class ShiroUser implements Serializable {
 	@Override
 	public String toString() {
 		return "ShiroUser [id=" + id + ", loginId=" + loginId + ", loginPasswd=" + loginPasswd + ", status=" + status
-				+ ", type=" + type + ", userId=" + userId + ", description=" + description + ", updateTime="
-				+ updateTime + ", createTime=" + createTime + ", roles=" + Arrays.toString(roles) + ", resources="
-				+ Arrays.toString(resources) + ", userIdName=" + userIdName + "]";
+				+ ", type=" + type + ", userId=" + userId + ", lastLogin=" + lastLogin + ", loginTryTimes="
+				+ loginTryTimes + ", description=" + description + ", updateTime=" + updateTime + ", createTime="
+				+ createTime + ", roles=" + Arrays.toString(roles) + ", resources=" + Arrays.toString(resources)
+				+ ", userIdName=" + userIdName + ", getId()=" + getId() + ", getLoginId()=" + getLoginId()
+				+ ", getLoginPasswd()=" + getLoginPasswd() + ", getStatus()=" + getStatus() + ", getType()=" + getType()
+				+ ", getUserId()=" + getUserId() + ", getLastLogin()=" + getLastLogin() + ", getLoginTryTimes()="
+				+ getLoginTryTimes() + ", getDescription()=" + getDescription() + ", getUpdateTime()=" + getUpdateTime()
+				+ ", getCreateTime()=" + getCreateTime() + ", getRoles()=" + Arrays.toString(getRoles())
+				+ ", getResources()=" + Arrays.toString(getResources()) + ", getUserIdName()=" + getUserIdName()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 }

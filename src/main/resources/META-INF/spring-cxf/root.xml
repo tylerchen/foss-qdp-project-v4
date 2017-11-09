@@ -7,6 +7,25 @@
             http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
             http://www.springframework.org/schema/tx
-			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
+			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	<description>
+		<![CDATA[
+		默认不再通过CXF提供REST或SOAP功能，如果需要SOAP功能需要以下步骤：
+		1. 打开pom.xml中的cxf依赖
+		2. BootApplication中注册CXF：
+			@Bean
+			public ServletRegistrationBean cxfServlet() {
+				return new ServletRegistrationBean(new CXFServlet(), "/webservice/*");
+			}
+			
+			@Bean(name = Bus.DEFAULT_BUS_ID)
+			public SpringBus springBus() {
+				return new SpringBus();
+			}
+		3. META-INF/spring/root.xml加入：
+			<import resource="classpath:META-INF/spring-cxf/root.xml" />
+		4. 对于Application还需要实现CXF的Application（如：*RsApplication）
+		]]>
+	</description>
 	<import resource="webservice-cxf.xml" />
 </beans>

@@ -56,7 +56,7 @@ public class LoggerBean {
 			long end = System.currentTimeMillis();
 			if (ms != null) {
 				Method method = ms.getMethod();
-				String methodName = method.getDeclaringClass().getName() + "." + method.getName();
+				String methodName = method.getDeclaringClass().getSimpleName() + "." + method.getName();
 				logger.debug(FCS.get("Enter method {0}", methodName));
 				LogHelper.operationLog((String) ThreadLocalHelper.get("LoginEmail"), methodName, new Date(start),
 						new Date(end), Long.valueOf(end - start).intValue(), "METHOD", new Date(),

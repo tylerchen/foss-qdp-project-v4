@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 帐户管理 - AuthAccountVO
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -36,6 +36,10 @@ public class AuthAccountVO implements Serializable {
 	private String type;
 	/** 用户 **/
 	private String userId;
+	/** 最后登录 **/
+	private Date lastLogin;
+	/** 尝试次数 **/
+	private Integer loginTryTimes;
 	/** 描述 **/
 	private String description;
 	/** 修改时间 **/
@@ -97,6 +101,22 @@ public class AuthAccountVO implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public Integer getLoginTryTimes() {
+		return loginTryTimes;
+	}
+
+	public void setLoginTryTimes(Integer loginTryTimes) {
+		this.loginTryTimes = loginTryTimes;
 	}
 
 	public String getDescription() {

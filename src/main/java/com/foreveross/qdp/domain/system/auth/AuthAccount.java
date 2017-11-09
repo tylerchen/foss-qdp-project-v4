@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * AuthAccount
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -47,6 +47,10 @@ public class AuthAccount implements Serializable {
 	private String type;
 	/** 用户 **/
 	private String userId;
+	/** 最后登录 **/
+	private Date lastLogin;
+	/** 尝试次数 **/
+	private Integer loginTryTimes;
 	/** 描述 **/
 	private String description;
 	/** 修改时间 **/
@@ -100,6 +104,20 @@ public class AuthAccount implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	public Integer getLoginTryTimes() {
+		return loginTryTimes;
+	}
+
+	public void setLoginTryTimes(Integer loginTryTimes) {
+		this.loginTryTimes = loginTryTimes;
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -130,7 +148,7 @@ public class AuthAccount implements Serializable {
 	 * @param authAccount
 	 * @return AuthAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthAccount get(AuthAccount authAccount) {
 		return Dao.queryOne("AuthAccount.getAuthAccountById", authAccount);
@@ -144,7 +162,7 @@ public class AuthAccount implements Serializable {
 	 * @param id
 	 * @return AuthAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthAccount get(String id) {
 		AuthAccount authAccount = new AuthAccount();
@@ -159,7 +177,7 @@ public class AuthAccount implements Serializable {
 	 * </pre>
 	 * @param authAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(AuthAccount authAccount) {
 		authAccount.remove();
@@ -172,7 +190,7 @@ public class AuthAccount implements Serializable {
 	 * </pre>
 	 * @param authAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(String id) {
 		AuthAccount authAccount = new AuthAccount();
@@ -187,7 +205,7 @@ public class AuthAccount implements Serializable {
 	 * </pre>
 	 * @param authAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static void remove(String[] ids) {
 		if (ids != null) {
@@ -206,7 +224,7 @@ public class AuthAccount implements Serializable {
 	 * </pre>
 	 * @param authAccount
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static boolean hasLoginEmail(AuthAccount authAccount) {
 		return Dao.querySize("AuthAccount.hasLoginEmail", authAccount) > 0;
@@ -218,7 +236,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.add()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthAccount add() {
 		ValidateHelper validate = validate("add");
@@ -235,7 +253,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.update()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthAccount update() {
 		ValidateHelper validate = validate("edit");
@@ -252,7 +270,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.update()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthAccount addOrUpdate() {
 		if (StringUtils.isBlank(getId())) {
@@ -268,7 +286,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.remove()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public void remove() {
 		ValidateHelper validate = validate("delete");
@@ -288,7 +306,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.getByLoginEmail(loginEmail)
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public static AuthAccount getByLoginEmail(String loginEmail) {
 		AuthAccount domain = new AuthAccount();
@@ -305,7 +323,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.findAuthAutherRole()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public List<AuthRole> findAuthRole() {
 		AuthAccount condition = new AuthAccount();
@@ -322,7 +340,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.findAuthAutherRole()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public List<AuthAutherRole> findAuthAutherRole() {
 		AuthAccount condition = new AuthAccount();
@@ -339,7 +357,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.removeAuthAutherRole()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public void removeAuthAutherRole() {
 		List<AuthAutherRole> list = findAuthAutherRole();
@@ -354,7 +372,7 @@ public class AuthAccount implements Serializable {
 	 * Usage : AuthAccount.assignAuthRole()
 	 * </pre>
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public void assignAuthRoleByIds(String[] ids) {
 		ValidateHelper validate = validate("edit");
@@ -403,7 +421,7 @@ public class AuthAccount implements Serializable {
 	 * </pre>
 	 * @param type add/update/delete
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	private ValidateHelper validate(String type) {
 		ValidateHelper validate = ValidateHelper.create();

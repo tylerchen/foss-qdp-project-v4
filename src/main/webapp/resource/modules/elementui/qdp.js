@@ -599,7 +599,7 @@ function qdpFormatUrl(url, query) {
 		var val = EUC(param);
 		condition[prop] = val;
 	}
-	return qdpStringTemplate(url || '', condition);
+	return qdpStringTemplate((url || '').replace('\/\/',''), condition);
 }
 function qdpJsonForm(formData) {
 	var newFormData = {};

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017-10-17 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
+ * Copyright (c) 2017-11-09 @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>.
  * All rights reserved.
  *
  * Contributors:
@@ -32,7 +32,7 @@ import com.foreveross.qdp.domain.system.auth.AuthRole;
 /**
  * AuthAccount
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-10-17
+ * @since 2017-11-09
  * @version 1.0.0
  * auto generate by qdp v3.0.
  */
@@ -51,7 +51,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#getAuthAccount(AuthAccountVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthAccountVO getAuthAccount(AuthAccountVO vo) {
@@ -67,7 +67,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#getAuthAccountById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthAccountVO getAuthAccountById(String id){
@@ -84,7 +84,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#pageFindAuthAccount(AuthAccountVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthAccount(AuthAccountVO vo, Page page) {
@@ -101,7 +101,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#pageFindAuthAccountMap(AuthAccountVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAuthAccountMap(AuthAccountVO vo, Page page) {
@@ -117,7 +117,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#addAuthAccount(AuthAccountVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthAccountVO addAuthAccount(AuthAccountVO vo) {
@@ -133,7 +133,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#updateAuthAccount(AuthAccountVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public AuthAccountVO updateAuthAccount(AuthAccountVO vo) {
@@ -148,7 +148,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#removeAuthAccount(AuthAccountVO)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthAccount(AuthAccountVO vo) {
@@ -163,7 +163,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#removeAuthAccountById(String)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthAccountById(String id) {
@@ -178,7 +178,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#removeAuthAccountByIds(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void removeAuthAccountByIds(String[] ids) {
@@ -193,7 +193,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.AuthAccountApplication#getByLoginEmail(String[])
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 */
 	public AuthAccountVO getByLoginEmail(String loginEmail) {
 		return authAccountApplication.getByLoginEmail(loginEmail);
@@ -212,7 +212,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#pageFindAssignAuthRole(AuthAccountVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public Page pageFindAssignAuthRole(AuthAccountVO vo, Page page) {
@@ -227,7 +227,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#assignAuthRole(AuthAccountVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void assignAuthRole(AuthAccountVO vo) {
@@ -242,7 +242,7 @@ public class AuthAccountRsApplicationImpl implements AuthAccountRsApplication {
 	 * (non-Javadoc)
 	 * @see com.foreveross.qdp.application.system.auth.ws.AuthAccountApplication#editPassword(EditPasswordVO, Page)
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-10-17
+	 * @since 2017-11-09
 	 * auto generate by qdp v3.0.
 	 */
 	public void editPassword(EditPasswordVO vo) {

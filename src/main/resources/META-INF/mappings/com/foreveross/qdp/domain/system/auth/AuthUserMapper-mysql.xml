@@ -9,6 +9,10 @@
         <result property="tel"         column="TEL"/>                       
         <result property="email"       column="EMAIL"/>                     
         <result property="sex"         column="SEX"/>                       
+        <result property="birthday"    column="BIRTHDAY"/>                  
+        <result property="familyAddr"  column="FAMILY_ADDR"/>               
+        <result property="workAddr"    column="WORK_ADDR"/>                 
+        <result property="workTel"     column="WORK_TEL"/>                  
         <result property="description" column="DESCRIPTION"/>               
         <result property="updateTime"  column="UPDATE_TIME"/>               
         <result property="createTime"  column="CREATE_TIME"/>               
@@ -24,6 +28,13 @@
            'TEL'         : 'TEL'        ,
            'EMAIL'       : 'EMAIL'      ,
            'SEX'         : 'SEX'        ,
+           'BIRTHDAY'    : 'BIRTHDAY'   ,
+           'FAMILYADDR'  : 'FAMILY_ADDR',
+           'FAMILY_ADDR' : 'FAMILY_ADDR',
+           'WORKADDR'    : 'WORK_ADDR'  ,
+           'WORK_ADDR'   : 'WORK_ADDR'  ,
+           'WORKTEL'     : 'WORK_TEL'   ,
+           'WORK_TEL'    : 'WORK_TEL'   ,
            'DESCRIPTION' : 'DESCRIPTION',
            'UPDATETIME'  : 'UPDATE_TIME',
            'UPDATE_TIME' : 'UPDATE_TIME',
@@ -55,6 +66,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          
@@ -76,6 +91,10 @@
            <if test="vo!=null and vo.tel != null and vo.tel != ''                 "> AND TEL = #{vo.tel,jdbcType=VARCHAR} </if>                            
            <if test="vo!=null and vo.email != null and vo.email != ''             "> AND EMAIL LIKE CONCAT('%',#{vo.email,jdbcType=VARCHAR},'%') </if>     
            <if test="vo!=null and vo.sex != null and vo.sex != ''                 "> AND SEX LIKE CONCAT('%',#{vo.sex,jdbcType=VARCHAR},'%') </if>         
+           <if test="vo!=null and vo.birthday != null and vo.birthday != ''       "> AND BIRTHDAY = #{vo.birthday,jdbcType=VARCHAR} </if>                  
+           <if test="vo!=null and vo.familyAddr != null and vo.familyAddr != ''   "> AND FAMILY_ADDR = #{vo.familyAddr,jdbcType=VARCHAR} </if>             
+           <if test="vo!=null and vo.workAddr != null and vo.workAddr != ''       "> AND WORK_ADDR = #{vo.workAddr,jdbcType=VARCHAR} </if>                 
+           <if test="vo!=null and vo.workTel != null and vo.workTel != ''         "> AND WORK_TEL = #{vo.workTel,jdbcType=VARCHAR} </if>                   
            <if test="vo!=null and vo.description != null and vo.description != '' "> AND DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>            
            <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>             
            <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>             
@@ -92,6 +111,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          
@@ -106,6 +129,10 @@
            <if test="vo!=null and vo.tel != null and vo.tel != ''                 "> AND AuthUser.TEL = #{vo.tel,jdbcType=VARCHAR} </if>                   
            <if test="vo!=null and vo.email != null and vo.email != ''             "> AND AuthUser.EMAIL LIKE CONCAT('%',#{vo.email,jdbcType=VARCHAR},'%') </if>
            <if test="vo!=null and vo.sex != null and vo.sex != ''                 "> AND AuthUser.SEX LIKE CONCAT('%',#{vo.sex,jdbcType=VARCHAR},'%') </if>
+           <if test="vo!=null and vo.birthday != null and vo.birthday != ''       "> AND AuthUser.BIRTHDAY = #{vo.birthday,jdbcType=VARCHAR} </if>         
+           <if test="vo!=null and vo.familyAddr != null and vo.familyAddr != ''   "> AND AuthUser.FAMILY_ADDR = #{vo.familyAddr,jdbcType=VARCHAR} </if>    
+           <if test="vo!=null and vo.workAddr != null and vo.workAddr != ''       "> AND AuthUser.WORK_ADDR = #{vo.workAddr,jdbcType=VARCHAR} </if>        
+           <if test="vo!=null and vo.workTel != null and vo.workTel != ''         "> AND AuthUser.WORK_TEL = #{vo.workTel,jdbcType=VARCHAR} </if>          
            <if test="vo!=null and vo.description != null and vo.description != '' "> AND AuthUser.DESCRIPTION = #{vo.description,jdbcType=VARCHAR} </if>   
            <if test="vo!=null and vo.updateTime != null and vo.updateTime != ''   "> AND AuthUser.UPDATE_TIME = #{vo.updateTime,jdbcType=VARCHAR} </if>    
            <if test="vo!=null and vo.createTime != null and vo.createTime != ''   "> AND AuthUser.CREATE_TIME = #{vo.createTime,jdbcType=VARCHAR} </if>    
@@ -115,7 +142,7 @@
 	</select>
 	<insert id="insertAuthUser" parameterType="com.foreveross.qdp.domain.system.auth.AuthUser"  useGeneratedKeys="true" keyProperty="id" >
 		INSERT INTO AUTH_USER
-			( ID, NAME, STATUS, TYPE, TEL, EMAIL, SEX, DESCRIPTION, UPDATE_TIME, CREATE_TIME )
+			( ID, NAME, STATUS, TYPE, TEL, EMAIL, SEX, BIRTHDAY, FAMILY_ADDR, WORK_ADDR, WORK_TEL, DESCRIPTION, UPDATE_TIME, CREATE_TIME )
 		VALUES
 			(
            #{id,jdbcType=VARCHAR},
@@ -125,6 +152,10 @@
            #{tel,jdbcType=VARCHAR},
            #{email,jdbcType=VARCHAR},
            #{sex,jdbcType=VARCHAR},
+           #{birthday,jdbcType=VARCHAR},
+           #{familyAddr,jdbcType=VARCHAR},
+           #{workAddr,jdbcType=VARCHAR},
+           #{workTel,jdbcType=VARCHAR},
            #{description,jdbcType=VARCHAR},
            #{updateTime,jdbcType=VARCHAR},
            #{createTime,jdbcType=VARCHAR}
@@ -141,6 +172,10 @@
            <if test="tel != null        "> TEL = #{tel,jdbcType=VARCHAR},</if>
            <if test="email != null      "> EMAIL = #{email,jdbcType=VARCHAR},</if>
            <if test="sex != null        "> SEX = #{sex,jdbcType=VARCHAR},</if>
+           BIRTHDAY = #{birthday,jdbcType=VARCHAR},                              
+           FAMILY_ADDR = #{familyAddr,jdbcType=VARCHAR},                              
+           WORK_ADDR = #{workAddr,jdbcType=VARCHAR},                              
+           WORK_TEL = #{workTel,jdbcType=VARCHAR},                              
            DESCRIPTION = #{description,jdbcType=VARCHAR},                              
            <if test="updateTime != null "> UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},</if>
            <if test="createTime != null "> CREATE_TIME = #{createTime,jdbcType=VARCHAR},</if>
@@ -172,6 +207,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          
@@ -198,6 +237,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          

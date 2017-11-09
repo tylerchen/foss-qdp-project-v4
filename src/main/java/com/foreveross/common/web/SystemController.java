@@ -19,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.iff.infra.util.Logger;
+import org.iff.infra.util.MD5Helper;
 import org.iff.infra.util.RSAHelper;
 import org.iff.infra.util.SocketHelper;
 import org.springframework.stereotype.Controller;
@@ -156,10 +156,10 @@ public class SystemController extends BaseController {
 			request.getSession().invalidate();
 			request.getSession(true);
 			currentUser.logout();
-		} catch (AuthenticationException e) {
-			return ResultBean.error().setBody("Unauthorized");
+		} catch (Exception e) {
+			return error("Unauthorized");
 		}
-		return ResultBean.success().setBody("Logout success.");
+		return success("Logout success.");
 	}
 
 	@RequestMapping("/valid.png")
@@ -179,6 +179,20 @@ public class SystemController extends BaseController {
 			SocketHelper.closeWithoutError(out);
 		} catch (Exception e) {
 			error(e);
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping("/encryptPassword.do")
+	public ResultBean encryptPassword(HttpServletRequest request) {
+		try {
+			String parameter = request.getParameter("password");
+			if (!StringUtils.isBlank(parameter)) {
+				parameter = MD5Helper.secondSalt(MD5Helper.firstSalt(parameter));
+			}
+			return success(parameter);
+		} catch (Exception e) {
+			return error(e);
 		}
 	}
 }

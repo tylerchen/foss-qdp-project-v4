@@ -415,6 +415,10 @@
            <if test="AuthUser!=null and AuthUser.tel != null and AuthUser.tel != ''                 "> AND AuthUser.TEL = #{AuthUser.tel,jdbcType=VARCHAR} </if>                               
            <if test="AuthUser!=null and AuthUser.email != null and AuthUser.email != ''             "> AND AuthUser.EMAIL LIKE CONCAT('%',#{AuthUser.email,jdbcType=VARCHAR},'%') </if>        
            <if test="AuthUser!=null and AuthUser.sex != null and AuthUser.sex != ''                 "> AND AuthUser.SEX LIKE CONCAT('%',#{AuthUser.sex,jdbcType=VARCHAR},'%') </if>            
+           <if test="AuthUser!=null and AuthUser.birthday != null and AuthUser.birthday != ''       "> AND AuthUser.BIRTHDAY = #{AuthUser.birthday,jdbcType=VARCHAR} </if>                     
+           <if test="AuthUser!=null and AuthUser.familyAddr != null and AuthUser.familyAddr != ''   "> AND AuthUser.FAMILY_ADDR = #{AuthUser.familyAddr,jdbcType=VARCHAR} </if>                
+           <if test="AuthUser!=null and AuthUser.workAddr != null and AuthUser.workAddr != ''       "> AND AuthUser.WORK_ADDR = #{AuthUser.workAddr,jdbcType=VARCHAR} </if>                    
+           <if test="AuthUser!=null and AuthUser.workTel != null and AuthUser.workTel != ''         "> AND AuthUser.WORK_TEL = #{AuthUser.workTel,jdbcType=VARCHAR} </if>                      
            <if test="AuthUser!=null and AuthUser.description != null and AuthUser.description != '' "> AND AuthUser.DESCRIPTION = #{AuthUser.description,jdbcType=VARCHAR} </if>               
            <if test="AuthUser!=null and AuthUser.updateTime != null and AuthUser.updateTime != ''   "> AND AuthUser.UPDATE_TIME = #{AuthUser.updateTime,jdbcType=VARCHAR} </if>                
            <if test="AuthUser!=null and AuthUser.createTime != null and AuthUser.createTime != ''   "> AND AuthUser.CREATE_TIME = #{AuthUser.createTime,jdbcType=VARCHAR} </if>                
@@ -432,6 +436,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          
@@ -465,6 +473,10 @@
            AuthUser.TEL          AS  tel                 ,
            AuthUser.EMAIL        AS  email               ,
            AuthUser.SEX          AS  sex                 ,
+           AuthUser.BIRTHDAY     AS  birthday            ,
+           AuthUser.FAMILY_ADDR  AS  familyAddr          ,
+           AuthUser.WORK_ADDR    AS  workAddr            ,
+           AuthUser.WORK_TEL     AS  workTel             ,
            AuthUser.DESCRIPTION  AS  description         ,
            AuthUser.UPDATE_TIME  AS  updateTime          ,
            AuthUser.CREATE_TIME  AS  createTime          
@@ -492,6 +504,10 @@
            <if test="AuthUser!=null and AuthUser.tel != null and AuthUser.tel != ''                 "> AND AuthUser.TEL = #{AuthUser.tel,jdbcType=VARCHAR} </if>                               
            <if test="AuthUser!=null and AuthUser.email != null and AuthUser.email != ''             "> AND AuthUser.EMAIL LIKE CONCAT('%',#{AuthUser.email,jdbcType=VARCHAR},'%') </if>        
            <if test="AuthUser!=null and AuthUser.sex != null and AuthUser.sex != ''                 "> AND AuthUser.SEX LIKE CONCAT('%',#{AuthUser.sex,jdbcType=VARCHAR},'%') </if>            
+           <if test="AuthUser!=null and AuthUser.birthday != null and AuthUser.birthday != ''       "> AND AuthUser.BIRTHDAY = #{AuthUser.birthday,jdbcType=VARCHAR} </if>                     
+           <if test="AuthUser!=null and AuthUser.familyAddr != null and AuthUser.familyAddr != ''   "> AND AuthUser.FAMILY_ADDR = #{AuthUser.familyAddr,jdbcType=VARCHAR} </if>                
+           <if test="AuthUser!=null and AuthUser.workAddr != null and AuthUser.workAddr != ''       "> AND AuthUser.WORK_ADDR = #{AuthUser.workAddr,jdbcType=VARCHAR} </if>                    
+           <if test="AuthUser!=null and AuthUser.workTel != null and AuthUser.workTel != ''         "> AND AuthUser.WORK_TEL = #{AuthUser.workTel,jdbcType=VARCHAR} </if>                      
            <if test="AuthUser!=null and AuthUser.description != null and AuthUser.description != '' "> AND AuthUser.DESCRIPTION = #{AuthUser.description,jdbcType=VARCHAR} </if>               
            <if test="AuthUser!=null and AuthUser.updateTime != null and AuthUser.updateTime != ''   "> AND AuthUser.UPDATE_TIME = #{AuthUser.updateTime,jdbcType=VARCHAR} </if>                
            <if test="AuthUser!=null and AuthUser.createTime != null and AuthUser.createTime != ''   "> AND AuthUser.CREATE_TIME = #{AuthUser.createTime,jdbcType=VARCHAR} </if>                

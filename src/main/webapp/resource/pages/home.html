@@ -48,7 +48,7 @@
             <el-col class="qdp-content-end" :span="menuFold?23:20"><router-view></router-view></el-col>
         </el-row>
         <el-row class="qdp-footer" type="flex" justify="center" align="top">
-            <div>2017-2019 &copy; Forever Open Source & Forever Flying</div>
+            <div>2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>
         </el-row>
     </div>
 </template>
@@ -60,6 +60,7 @@ define(['vue'], function(Vue) {
 		},
         data: function() {
             return {
+            	app_version: app_version||'',
             	logoutUrl: ctx + '/system/logout.do',
             	menuFold: false,
             	activeCollapse: '',
