@@ -73,7 +73,7 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		{//加载数据库I18N
-			SpringContextHelper.getBean(SystemApplication.class).initI18n();
+			((SystemApplication) SpringContextHelper.getBean("systemApplication")).initI18n();
 		}
 		{//设置默认的缓存
 			EhcacheHelper.init((CacheManager) SpringContextHelper.getBean("cacheManager"));

@@ -278,7 +278,7 @@ public class AuthAccountApplicationImpl implements AuthAccountApplication {
 		AuthAccount domain = AuthAccount.get(vo.getId());
 		Assert.notNull(domain);
 		Assert.notBlank(vo.getLoginPasswd());
-		domain.setLoginPasswd(org.iff.infra.util.MD5Helper.string2MD5(vo.getLoginPasswd()));
+		domain.setLoginPasswd(vo.getLoginPasswd());
 		domain.update();
 	}
 }

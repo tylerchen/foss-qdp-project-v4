@@ -38,6 +38,7 @@ import com.foreveross.common.application.SystemApplication;
 public class MonitorRealm extends AuthorizingRealm {
 
 	@Inject
+	@Named("systemApplication")
 	SystemApplication systemApplication;
 	@Inject
 	AuthorizationApplication authorizationApplication;

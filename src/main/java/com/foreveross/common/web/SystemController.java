@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +51,7 @@ public class SystemController extends BaseController {
 	ImageCaptchaApplication imageCaptchaApplication;
 
 	@Inject
+	@Named("systemApplication")
 	SystemApplication systemApplication;
 
 	@ResponseBody

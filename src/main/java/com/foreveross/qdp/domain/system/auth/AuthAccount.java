@@ -427,6 +427,11 @@ public class AuthAccount implements Serializable {
 		ValidateHelper validate = ValidateHelper.create();
 		if ("add".equals(type)) {
 			{//初始化值
+				if( StringUtils.isNotBlank(getLoginPasswd()) ){
+					setLoginPasswd(org.iff.infra.util.MD5Helper.secondSalt(org.iff.infra.util.MD5Helper.firstSalt(getLoginPasswd())));
+				} else {
+					setLoginPasswd( null );
+				}
 				setUpdateTime(new java.util.Date());
 				setCreateTime(new java.util.Date());
 			}
@@ -464,6 +469,11 @@ public class AuthAccount implements Serializable {
 			}
 		} else if ("edit".equals(type)) {
 			{//初始化值
+				if( StringUtils.isNotBlank(getLoginPasswd()) ){
+					setLoginPasswd(org.iff.infra.util.MD5Helper.secondSalt(org.iff.infra.util.MD5Helper.firstSalt(getLoginPasswd())));
+				} else {
+					setLoginPasswd( null );
+				}
 				setUpdateTime(new java.util.Date());
 				setCreateTime(null);
 			}

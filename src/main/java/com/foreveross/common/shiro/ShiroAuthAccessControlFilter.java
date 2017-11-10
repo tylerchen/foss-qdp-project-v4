@@ -10,6 +10,7 @@ package com.foreveross.common.shiro;
 import java.io.IOException;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -35,6 +36,7 @@ import com.foreveross.common.application.SystemApplication;
 public class ShiroAuthAccessControlFilter extends AdviceFilter {
 
 	@Inject
+	@Named("systemApplication")
 	SystemApplication systemApplication;
 
 	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
