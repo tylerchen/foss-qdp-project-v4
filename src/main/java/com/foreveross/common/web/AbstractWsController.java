@@ -14,6 +14,7 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -33,6 +34,9 @@ import org.iff.infra.util.TypeConvertHelper;
 import org.iff.infra.util.TypeConvertHelper.TypeConvert;
 import org.iff.infra.util.XStreamHelper;
 import org.iff.infra.util.spring.SpringContextHelper;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -259,6 +263,7 @@ public abstract class AbstractWsController extends BaseController {
 
 	private List<Method> findMethod(String beanName, String methodName, Object bean) {
 		String beanMethodKey = beanMethodKey(beanName, methodName);
+		beanMehtodMap.clear();
 		List<Method> list = beanMehtodMap.get(beanMethodKey);
 		if (list != null) {
 			return list;
@@ -271,31 +276,30 @@ public abstract class AbstractWsController extends BaseController {
 			}
 		}
 		list = new ArrayList<Method>();
-		Class<?> clazz = bean.getClass();
+		List<Class<?>> clazzList = new ArrayList<Class<?>>();
+		try {
+			ApplicationContext applicationContext = SpringContextHelper.getApplicationContext();
+			ConfigurableApplicationContext xml = (ConfigurableApplicationContext) applicationContext;
+			DefaultListableBeanFactory bf = (DefaultListableBeanFactory) xml.getBeanFactory();
+			String className = bf.getBeanDefinition(beanName).getBeanClassName();
+			Class<?> loadClass = xml.getClassLoader().loadClass(className);
+			Class<?>[] interfaces = loadClass.getInterfaces();
+			clazzList.addAll(Arrays.asList(interfaces));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		{
-			Class<?>[] interfaces = clazz.getInterfaces();
-			for (Class<?> cls : interfaces) {
+			for (Class<?> cls : clazzList) {
 				if (cls.getName().endsWith("Application")) {
 					Method[] methods = cls.getDeclaredMethods();
 					for (Method m : methods) {
 						map.put(m.getName(), Boolean.TRUE);
+						if (methodName.equals(m.getName()) && Modifier.isPublic(m.getModifiers())) {
+							list.add(m);
+						}
 					}
 				}
-			}
-			if (map.get(methodName) == null) {
-				return list;
-			}
-		}
-		for (Class<?> superClass = clazz; superClass != Object.class; superClass = superClass.getSuperclass()) {
-			try {
-				Method[] methods = superClass.getDeclaredMethods();
-				for (Method m : methods) {
-					if (methodName.equals(m.getName()) && Modifier.isPublic(m.getModifiers())) {
-						list.add(m);
-					}
-				}
-			} catch (Exception e) {
 			}
 		}
 		synchronized (beanMehtodMap) {

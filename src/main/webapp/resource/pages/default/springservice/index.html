@@ -77,7 +77,7 @@
 					url = qdpFormatUrl(ctx + url, query);
 					LOG("FN: Grid.grid-load-data.url=" + url);
 					root.$http.get(url).then(function(data) {
-						Vue.set(grid.data, 'rows', qdpAjaxDataBody(data));
+						Vue.set(grid.data, 'rows', qdpIsSuccess(data) ? qdpAjaxDataBody(data) : []);
 					}, function(response) {
 						root.$notify({
 							title : 'Http=>Error', desc : response.url + '\n<br/>' + qdpToString(response), duration : 0

@@ -107,6 +107,11 @@
 		</dependency>
 		<!-- spring boot end -->
 		<!-- spring framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${version.spring}</version>
+		</dependency>
 		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-web</artifactId> 
 			<version>${version.spring}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
 			<artifactId>spring-webmvc</artifactId> <version>${version.spring}</version> 
@@ -119,10 +124,8 @@
 			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-aop</artifactId> 
 			<version>${version.spring}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
 			<artifactId>spring-jdbc</artifactId> <version>${version.spring}</version> 
-			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-tx</artifactId> 
-			<version>${version.spring}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
-			<artifactId>spring-test</artifactId> <version>${version.spring}</version> 
-			<scope>test</scope> </dependency> -->
+			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-test</artifactId> 
+			<version>${version.spring}</version> <scope>test</scope> </dependency> -->
 		<!-- cxf 不打算再通过CXF提供REST或SOAP功能。 -->
 		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-jaxrs</artifactId> 
 			<version>1.9.2</version> </dependency> <dependency> <groupId>org.codehaus.jackson</groupId> 

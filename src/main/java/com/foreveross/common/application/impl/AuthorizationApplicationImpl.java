@@ -14,6 +14,7 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.iff.infra.util.mybatis.plugin.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foreveross.common.ConstantBean;
 import com.foreveross.common.application.AuthorizationApplication;
@@ -30,6 +31,7 @@ public class AuthorizationApplicationImpl implements AuthorizationApplication {
 	AuthorizationApplication simpleAuthorizationApplication;
 	@Inject
 	@Named("defaultAuthorizationApplication")
+	@Autowired(required = false)
 	AuthorizationApplication defaultAuthorizationApplication;
 
 	private Boolean enableSimple = null;

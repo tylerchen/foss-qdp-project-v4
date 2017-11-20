@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foreveross.common.ConstantBean;
 import com.foreveross.common.application.SystemApplication;
@@ -29,6 +30,7 @@ public class SystemApplicationImpl implements SystemApplication {
 	SystemApplication simpleSystemApplication;
 	@Inject
 	@Named("defaultSystemApplication")
+	@Autowired(required = false)
 	SystemApplication defaultSystemApplication;
 
 	private Boolean enableSimple = null;

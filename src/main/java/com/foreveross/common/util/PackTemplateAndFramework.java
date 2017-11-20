@@ -36,6 +36,8 @@ public class PackTemplateAndFramework {
 		genVersion();
 
 		zipFramework();
+
+		zipSimpleAuthFramework();
 	}
 
 	public static void genVersion() {
@@ -188,6 +190,123 @@ public class PackTemplateAndFramework {
 			ZipHelper.zip(zipPaths.toArray(new String[zipPaths.size()]),
 					StringHelper.pathConcat(projectRoot, "src/main/webapp/resource/baseproject", "qdp-4.0.0.zip"),
 					null);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (StringUtils.isNotEmpty(tmpRoot)) {
+				try {
+					FileUtils.deleteDirectory(new File(tmpRoot));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public static void zipSimpleAuthFramework() {
+		String tmpRoot = null;
+		try {
+			String projectRoot = new File("").getAbsolutePath();
+			List<String> paths = new ArrayList<String>();
+			{
+				paths.add("pom.xml");
+				paths.add(".gitignore");
+				paths.add("codetemplates.xml");
+				paths.add("stylejava.xml");
+				paths.add("stylejs.xml");
+				paths.add("lib");
+				paths.add("src/test");
+				paths.add("src/main/java");
+				paths.add("src/main/resources");
+				paths.add("src/main/webapp/index.html");
+				paths.add("src/main/webapp/WEB-INF");
+				paths.add("src/main/webapp/resource/docs");
+				paths.add("src/main/webapp/resource/modules");
+				paths.add("src/main/webapp/resource/pages");
+			}
+			File tmpDir = File.createTempFile("project_framework", StringHelper.uuid());
+			{// create project directory
+				File parent = tmpDir.getParentFile();
+				tmpDir.delete();
+				tmpDir = new File(parent, "project_framework/" + StringHelper.uuid());
+				tmpDir.mkdirs();
+				FileUtils.cleanDirectory(tmpDir);
+			}
+			tmpRoot = tmpDir.getAbsolutePath();
+			{// copy files
+				for (String path : paths) {
+					String dirSrc = StringHelper.pathConcat(projectRoot, path);
+					String dirDes = StringHelper.pathConcat(tmpRoot, path);
+					File file = new File(dirSrc);
+					if (file.isDirectory()) {
+						FileUtils.copyDirectory(new File(dirSrc), new File(dirDes));
+					} else if (file.isFile()) {
+						FileUtils.copyFile(new File(dirSrc), new File(dirDes));
+					}
+				}
+			}
+			{// replace files
+				paths.clear();
+				String replaceBase = "src/test/resources/replace-noauth/";
+				paths.add("src");
+				paths.add("pom.xml");
+				for (String path : paths) {
+					String dirSrc = StringHelper.pathConcat(projectRoot, replaceBase, path);
+					String dirDes = StringHelper.pathConcat(tmpRoot, path);
+					File file = new File(dirSrc);
+					if (file.isDirectory()) {
+						FileUtils.copyDirectory(new File(dirSrc), new File(dirDes));
+					} else if (file.isFile()) {
+						FileUtils.copyFile(new File(dirSrc), new File(dirDes));
+					}
+				}
+			}
+			{// delete files
+				paths.clear();
+				paths.add("src/test/java/com");
+				paths.add("src/test/resources/replace");
+				paths.add("src/test/resources/replace-noauth");
+				//
+				paths.add("src/main/java/com/foreveross/common/util/CodeGenerator.java");
+				paths.add("src/main/java/com/foreveross/common/util/PackClient.java");
+				paths.add("src/main/java/com/foreveross/common/util/PackTemplateAndFramework.java");
+				//
+				paths.add("src/main/java/com/foreveross/qdp/application/system/auth");
+				paths.add("src/main/java/com/foreveross/qdp/application/system/common");
+				paths.add("src/main/java/com/foreveross/qdp/domain/system/auth");
+				paths.add("src/main/java/com/foreveross/qdp/domain/system/common");
+				paths.add("src/main/java/com/foreveross/qdp/infra/vo/system/auth");
+				paths.add("src/main/java/com/foreveross/qdp/infra/vo/system/common");
+				paths.add("src/main/resources/META-INF/mappings/com/foreveross/qdp/domain/system/auth");
+				paths.add("src/main/resources/META-INF/mappings/com/foreveross/qdp/domain/system/common");
+				//
+				paths.add("src/main/java/com/foreveross/extension/query");
+				paths.add("src/main/java/com/foreveross/extension/mvel");
+				//
+				paths.add(
+						"src/main/java/com/foreveross/common/application/impl/DefaultAuthorizationApplicationImpl.java");
+				paths.add("src/main/java/com/foreveross/common/application/impl/DefaultSystemApplicationImpl.java");
+				//
+				paths.add("src/main/resources/diagrams");
+				paths.add("src/main/resources/models");
+				//
+				paths.add("src/main/resources/META-INF/spring-rpc-consumer/rpc-consumer-systemcore.xml");
+				//
+				paths.add("src/main/webapp/resource/pages/system");
+				for (String path : paths) {
+					String dirDes = StringHelper.pathConcat(tmpRoot, path);
+					File file = new File(dirDes);
+					FileUtils.deleteQuietly(file);
+				}
+			}
+			List<String> zipPaths = new ArrayList<String>();
+			{
+				for (File f : tmpDir.listFiles()) {
+					zipPaths.add(f.getAbsolutePath());
+				}
+			}
+			ZipHelper.zip(zipPaths.toArray(new String[zipPaths.size()]), StringHelper.pathConcat(projectRoot,
+					"src/main/webapp/resource/baseproject", "qdp-simpleauth-4.0.0.zip"), null);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
