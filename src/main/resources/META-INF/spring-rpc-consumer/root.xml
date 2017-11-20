@@ -10,7 +10,9 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<description>
-	<![CDATA[]]>
+	<![CDATA[
+		这里可以配置远程HTTP-RPC调用。
+	]]>
 	</description>
 	<import resource="rpc-common.xml" />
 	<import resource="rpc-consumer-*.xml" />

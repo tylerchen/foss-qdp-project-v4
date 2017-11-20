@@ -8,5 +8,10 @@
 			http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
             http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
+	<description>
+	<![CDATA[
+		缓存的配置
+	]]>
+	</description>
 	<import resource="spring-ehcache.xml" />
 </beans>

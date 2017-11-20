@@ -28,6 +28,9 @@
 				<entry key="acczuul">
 					<bean class="com.foreveross.common.shiro.ShiroZuulAccessControlFilter" />
 				</entry>
+				<entry key="accauth">
+					<bean class="com.foreveross.common.shiro.ShiroAuthAccessControlFilter" />
+				</entry>
 				<entry key="traceid">
 					<bean class="com.foreveross.common.shiro.ShiroTraceIdFilter" />
 				</entry>

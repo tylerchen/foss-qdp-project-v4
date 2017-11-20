@@ -10,7 +10,9 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<description>
-	<![CDATA[]]>
+	<![CDATA[
+		这里的配置不用启用，默认这些服务会在第一次调用时自动注册。
+	]]>
 	</description>
 	<import resource="rpc-common.xml" />
 	<import resource="rpc-provider-*.xml" />
