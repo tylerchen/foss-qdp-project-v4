@@ -6,15 +6,205 @@
 	<version>4.0.0</version>
 	<packaging>war</packaging>
 	<name>${project.groupId}-${project.artifactId}-${project.version}</name>
+	<description>
+	<![CDATA[
+	Usage:
+	dev     : mvn clean package                       : small version for dev. 
+	workflow: mvn clean package -Dworkflow            : add workflow.
+	web     : mvn clean package -Dproduct -Dweb       : remove tomcat lib, deploy to servlet 3.
+	rpc     : mvn clean package -Drpc                 : add http rpc invoker.
+	edas    : mvn clean package -Dproduct -Dedas      : add edas rpc.
+	]]>
+	</description>
 
 	<profiles>
 		<profile>
 			<id>dev</id>
+			<!-- 使用方法，不要添加-Dproduct参数 -->
 			<activation>
 				<property>
 					<name>!product</name>
 				</property>
 			</activation>
+			<dependencies>
+				<!-- spring boot -->
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+					<version>${version.spring.boot}</version>
+				</dependency>
+				<!-- workflow activiti -->
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-modeler</artifactId>
+					<version>5.21.0</version>
+					<scope>provided</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-config</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-crypto</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-web</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-diagram-rest</artifactId>
+					<version>5.21.0</version>
+					<scope>provided</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-config</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-crypto</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-web</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-spring</artifactId>
+					<version>5.21.0</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>workflow</id>
+			<!-- 使用方法，添加-Dworkflow参数，引入工作流包 -->
+			<activation>
+				<property>
+					<name>workflow</name>
+				</property>
+			</activation>
+			<properties>
+				<workflow.root.xml.import>
+					<![CDATA[--><import resource="classpath:META-INF/spring-workflow/root.xml" /><!--]]>
+				</workflow.root.xml.import>
+			</properties>
+			<dependencies>
+				<!-- workflow activiti -->
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-modeler</artifactId>
+					<version>5.21.0</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-config</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-crypto</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-web</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-diagram-rest</artifactId>
+					<version>5.21.0</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-config</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-crypto</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.springframework.security</groupId>
+							<artifactId>spring-security-web</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>org.activiti</groupId>
+					<artifactId>activiti-spring</artifactId>
+					<version>5.21.0</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>web</id>
+			<!-- 使用方法，添加-Dweb参数，这个去除tomcat相关包，可以部署到Servlet3容器。 -->
+			<activation>
+				<property>
+					<name>web</name>
+				</property>
+			</activation>
+			<dependencies>
+				<!-- spring boot -->
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+					<version>3.1.0</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+					<version>${version.spring.boot}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-starter-tomcat</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>rpc</id>
+			<!-- 使用方法，添加-Drpc参数，引入http rpc ivoker -->
+			<activation>
+				<property>
+					<name>rpc</name>
+				</property>
+			</activation>
+			<properties>
+				<rpc.root.xml.import>
+					<![CDATA[--><import resource="classpath:META-INF/spring-rpc-provider/root.xml" /><import resource="classpath:META-INF/spring-rpc-consumer/root.xml" /><!--]]>
+				</rpc.root.xml.import>
+			</properties>
+		</profile>
+		<profile>
+			<id>edas</id>
+			<!-- 使用方法，添加-Dedas参数，引入阿里面的EDAS -->
+			<activation>
+				<property>
+					<name>edas</name>
+				</property>
+			</activation>
+			<properties>
+				<edas.root.xml.import>
+					<![CDATA[--><import resource="classpath:META-INF/spring-edas-provider/root.xml" /><import resource="classpath:META-INF/spring-edas-consumer/root.xml" /><!--]]>
+				</edas.root.xml.import>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.alibaba.edas</groupId>
+					<artifactId>edas-sdk</artifactId>
+					<version>1.6.6</version>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
@@ -78,13 +268,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<version>${version.spring.boot}</version>
-		</dependency>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
-			<version>${version.spring.boot}</version> <scope>provided</scope> </dependency> -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<version>${version.spring.boot}</version>
 		</dependency>
@@ -124,10 +307,8 @@
 			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-aop</artifactId> 
 			<version>${version.spring}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
 			<artifactId>spring-jdbc</artifactId> <version>${version.spring}</version> 
-			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-tx</artifactId> 
-			<version>${version.spring}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
-			<artifactId>spring-test</artifactId> <version>${version.spring}</version> 
-			<scope>test</scope> </dependency> -->
+			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-test</artifactId> 
+			<version>${version.spring}</version> <scope>test</scope> </dependency> -->
 		<!-- cxf 不打算再通过CXF提供REST或SOAP功能。 -->
 		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-jaxrs</artifactId> 
 			<version>1.9.2</version> </dependency> <dependency> <groupId>org.codehaus.jackson</groupId> 
@@ -477,50 +658,6 @@
 			<artifactId>jcl-core</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<!-- workflow activiti -->
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-modeler</artifactId>
-			<version>5.21.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-config</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-crypto</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-web</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-diagram-rest</artifactId>
-			<version>5.21.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-config</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-crypto</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-web</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>5.21.0</version>
-		</dependency>
 		<!-- report -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -592,6 +729,9 @@
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.1</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
 				</plugin>
 				<plugin>
 					<artifactId>maven-antrun-plugin</artifactId>
