@@ -9,11 +9,14 @@ package com.foreveross.extension.dictionary.application;
 
 import java.util.Map;
 
+import com.foreveross.common.application.Authorization;
+
 /**
  * 系统字典。
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
  * @since Aug 11, 2016
  */
+@Authorization(anonymous = true)
 public interface SystemDictionaryApplication {
 
 	/**

@@ -19,7 +19,6 @@ import org.iff.infra.util.CacheHelper.CacheCallback;
 import org.iff.infra.util.MapHelper;
 import org.iff.infra.util.mybatis.service.Dao;
 
-import com.foreveross.common.application.Authorization;
 import com.foreveross.extension.dictionary.application.SystemDictionaryApplication;
 
 /**
@@ -28,7 +27,6 @@ import com.foreveross.extension.dictionary.application.SystemDictionaryApplicati
  * @since Aug 28, 2017
  */
 @Named("systemDictionaryApplication")
-@Authorization(anonymous = true)
 @SuppressWarnings("rawtypes")
 public class SystemDictionaryApplicationImpl implements SystemDictionaryApplication {
 
