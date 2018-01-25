@@ -292,6 +292,8 @@ public class PackTemplateAndFramework {
 				//
 				paths.add("src/main/resources/META-INF/spring-rpc-consumer/rpc-consumer-systemcore.xml");
 				//
+				paths.add("src/main/resources/META-INF/restful");
+				//
 				paths.add("src/main/webapp/resource/pages/system");
 				for (String path : paths) {
 					String dirDes = StringHelper.pathConcat(tmpRoot, path);
