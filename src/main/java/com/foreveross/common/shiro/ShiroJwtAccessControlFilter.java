@@ -8,8 +8,12 @@
 package com.foreveross.common.shiro;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -19,10 +23,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.iff.infra.util.ActionHelper;
+import org.iff.infra.util.BaseCryptHelper;
 import org.iff.infra.util.FCS;
 import org.iff.infra.util.GsonHelper;
 import org.iff.infra.util.I18nHelper;
@@ -33,7 +40,14 @@ import org.iff.infra.util.ThreadLocalHelper;
 
 import com.foreveross.common.ConstantBean;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 
 /**
  * <pre>
@@ -70,8 +84,8 @@ public class ShiroJwtAccessControlFilter extends AdviceFilter {
 				return accessAllowed;
 			}
 			jwt = jwt.substring(jwt.indexOf(" "));
-			String username = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(SECRET))
-					.parseClaimsJws(jwt).getBody().getSubject();
+			String username = Jwts.parser().setSigningKey(Base64.encode(SECRET.getBytes())).parseClaimsJws(jwt)
+					.getBody().getSubject();
 			String subjectName = (String) subject.getPrincipal();
 			if (!username.equals(subjectName)) {
 				return accessAllowed;
@@ -175,4 +189,69 @@ public class ShiroJwtAccessControlFilter extends AdviceFilter {
 		super.cleanup(request, response, existing);
 	}
 
+	/**
+	 * 由字符串生成加密key
+	 * 
+	 * @return
+	 */
+	public static SecretKey generalKey(String stringKey) {
+		byte[] encodedKey = Base64.encode(stringKey.getBytes());
+		SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
+		return key;
+	}
+
+	/**
+	 * createJWT: 创建jwt<br/>
+	 *
+	 * @author guooo
+	 * @param id
+	 *            唯一id，uuid即可
+	 * @param subject
+	 *            json形式字符串或字符串，增加用户非敏感信息存储，如user tid，与token解析后进行对比，防止乱用
+	 * @param ttlMillis
+	 *            有效期
+	 * @param stringKey
+	 * @return jwt token
+	 * @throws Exception
+	 * @since JDK 1.6
+	 */
+	public static String createJWT(String id, String subject, long ttlMillis) throws Exception {
+		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+		long nowMillis = System.currentTimeMillis();
+		Date now = new Date(nowMillis);
+		SecretKey key = generalKey(SECRET);
+		JwtBuilder builder = Jwts.builder().setIssuer("").setId(id).setIssuedAt(now).setSubject(subject)
+				.signWith(signatureAlgorithm, key);
+		if (ttlMillis >= 0) {
+			long expMillis = nowMillis + ttlMillis;
+			Date exp = new Date(expMillis);
+			builder.setExpiration(exp);
+		}
+		return builder.compact();
+	}
+
+	/**
+	 * parseJWT: 解密jwt <br/>
+	 *
+	 * @author guooo
+	 * @param jwt
+	 * @param stringKey
+	 * @return
+	 * @throws ExpiredJwtException
+	 * @throws UnsupportedJwtException
+	 * @throws MalformedJwtException
+	 * @throws SignatureException
+	 * @throws IllegalArgumentException
+	 * @since JDK 1.6
+	 */
+	public static Claims parseJWT(String jwt) throws ExpiredJwtException, UnsupportedJwtException,
+			MalformedJwtException, SignatureException, IllegalArgumentException {
+		SecretKey key = generalKey(SECRET);
+		Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(jwt).getBody();
+		return claims;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(DateUtils.addDays(new Date(), 183)));
+	}
 }

@@ -41,9 +41,10 @@
 				/resource/** = anon
 				/system/** = anon
 				/anonws/** = anon
+				/rest/** = traceid,anon
 				/rpc/http/** = traceid,acczuul,accip
-				/juneau/** = traceid,accctl
-				/ws/** = traceid,accctl
+				/juneau/** = traceid,acczuul,accctl
+				/ws/** = traceid,acczuul,accctl
 				/** = traceid,accctl
 			</value>
 		</property>

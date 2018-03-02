@@ -28,6 +28,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.foreveross.common.application.SystemApplication;
+import com.foreveross.common.restfull.RestClientUtil;
 import com.foreveross.common.restfull.UriManager;
 import com.foreveross.extension.monitor.application.MonitorApplication;
 
@@ -57,7 +58,7 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 						.loadPropertyFiles(new String[] { "classpath://META-INF/config" });
 				ConstantBean.setProperties(map);
 			}
-			{//加载系统的配置
+			{//加载 restful 的配置
 				Map<String, String> map = PropertiesHelper
 						.loadPropertyFiles(new String[] { "classpath://META-INF/restful" });
 				UriManager.parseProperties(map);
@@ -85,6 +86,11 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 				EhcacheHelper.init((CacheManager) SpringContextHelper.getBean("cacheManager"));
 				CacheHelper.init(new CacheHelper.EhCacheCacheable());
 				//CacheHelper.init(new CacheHelper.DisabledCacheable());
+			}
+			{//加载 restful client 的配置
+				Map<String, String> map = PropertiesHelper
+						.loadPropertyFiles(new String[] { "classpath://META-INF/restclient" });
+				RestClientUtil.parseProperties(map);
 			}
 			try {
 				MonitorApplication monitorApplication = SpringContextHelper.getBean(MonitorApplication.class);
