@@ -7,12 +7,14 @@
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<description><![CDATA[Shiro 配置: http://www.sojson.com/blog/199.html]]></description>
+	
+	<bean id="shiroChainDefinitionManager" class="com.foreveross.common.shiro.ShiroChainDefinitionManager" />
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login.html" />
 		<property name="successUrl" value="/index.html" />
-		<property name="unauthorizedUrl" value="/error/noperms.html" />
+		<property name="unauthorizedUrl" value="/error/401.html" />
 		<!-- shiro连接约束配置 -->
 		<!-- 其实这个问题的真正原因是定义了多个filter与shirofilter 一同被spring-boot 识别,加入了filterChain. 
 			相当于myFilter与shiroFilter不再是上下级的关系,而是平级的关系,由spring ApplicationFilterConfig 
@@ -36,18 +38,9 @@
 				</entry>
 			</map>
 		</property>
-		<property name="filterChainDefinitions">
-			<value>
-				/resource/** = anon
-				/system/** = anon
-				/anonws/** = anon
-				/rest/** = traceid,anon
-				/rpc/http/** = traceid,acczuul,accip
-				/juneau/** = traceid,acczuul,accctl
-				/ws/** = traceid,acczuul,accctl
-				/** = traceid,accctl
-			</value>
-		</property>
+		<!-- 默认从/src/main/resources/META-INF/config/shiro.properties加载配置，如要如果要动态更新filterChainDefinitions，先要shiroChainDefinitionManager.setFilterChainDefinitions，然后再调用shiroChainDefinitionManager.reCreateFilterChains。 -->
+		<property name="filterChainDefinitions"
+			value="#{shiroChainDefinitionManager.loadFilterChainDefinitions()}" />
 	</bean>
 
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">

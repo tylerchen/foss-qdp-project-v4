@@ -7,12 +7,16 @@
  ******************************************************************************/
 package com.foreveross.common.restfull;
 
+import static java.lang.String.format;
+
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.ByteBuffer;
@@ -24,10 +28,17 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.zip.DeflaterOutputStream;
+import java.util.zip.GZIPOutputStream;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocketFactory;
 
 import org.iff.infra.util.Assert;
 import org.iff.infra.util.BeanHelper;
@@ -44,8 +55,6 @@ import org.iff.infra.util.TypeConvertHelper.TypeConvert;
 import org.iff.infra.util.XStreamHelper;
 
 import com.foreveross.common.ResultBean;
-
-import okhttp3.HttpUrl;
 
 /**
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
@@ -812,6 +821,39 @@ public interface RestClient {
 
 	public static class Util {
 		/**
+		 * The HTTP Content-Length header field name.
+		 */
+		public static final String CONTENT_LENGTH = "Content-Length";
+		/**
+		 * The HTTP Content-Encoding header field name.
+		 */
+		public static final String CONTENT_ENCODING = "Content-Encoding";
+		/**
+		 * The HTTP Retry-After header field name.
+		 */
+		public static final String RETRY_AFTER = "Retry-After";
+		/**
+		 * Value for the Content-Encoding header that indicates that GZIP encoding is in use.
+		 */
+		public static final String ENCODING_GZIP = "gzip";
+		/**
+		 * Value for the Content-Encoding header that indicates that DEFLATE encoding is in use.
+		 */
+		public static final String ENCODING_DEFLATE = "deflate";
+		/**
+		 * UTF-8: eight-bit UCS Transformation Format.
+		 */
+		public static final Charset UTF_8 = Charset.forName("UTF-8");
+
+		// com.google.common.base.Charsets
+		/**
+		 * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).
+		 */
+		public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
+
+		//private static final int BUF_SIZE = 0x800; // 2K chars (4K bytes)
+
+		/**
 		 * Copy of {@code com.google.common.base.Preconditions#checkNotNull}.
 		 */
 		public static <T> T checkNotNull(T reference, String errorMessageTemplate, Object... errorMessageArgs) {
@@ -850,5 +892,124 @@ public interface RestClient {
 			return map.containsKey(key) && map.get(key) != null ? map.get(key) : Collections.<T> emptyList();
 		}
 
+	}
+
+	public static class DefaultRestClient implements RestClient {
+
+		private final SSLSocketFactory sslContextFactory;
+		private final HostnameVerifier hostnameVerifier;
+
+		/**
+		 * Null parameters imply platform defaults.
+		 */
+		public DefaultRestClient(SSLSocketFactory sslContextFactory, HostnameVerifier hostnameVerifier) {
+			this.sslContextFactory = sslContextFactory;
+			this.hostnameVerifier = hostnameVerifier;
+		}
+
+		public Response execute(Request request, Options options) throws IOException {
+			HttpURLConnection connection = convertAndSend(request, options);
+			return convertResponse(connection).toBuilder().request(request).build();
+		}
+
+		HttpURLConnection convertAndSend(Request request, Options options) throws IOException {
+			final HttpURLConnection connection = (HttpURLConnection) new URL(request.url()).openConnection();
+			if (connection instanceof HttpsURLConnection) {
+				HttpsURLConnection sslCon = (HttpsURLConnection) connection;
+				if (sslContextFactory != null) {
+					sslCon.setSSLSocketFactory(sslContextFactory);
+				}
+				if (hostnameVerifier != null) {
+					sslCon.setHostnameVerifier(hostnameVerifier);
+				}
+			}
+			connection.setConnectTimeout(options.connectTimeoutMillis());
+			connection.setReadTimeout(options.readTimeoutMillis());
+			connection.setAllowUserInteraction(false);
+			connection.setInstanceFollowRedirects(true);
+			connection.setRequestMethod(request.method());
+
+			Collection<String> contentEncodingValues = request.headers().get(Util.CONTENT_ENCODING);
+			boolean gzipEncodedRequest = contentEncodingValues != null
+					&& contentEncodingValues.contains(Util.ENCODING_GZIP);
+			boolean deflateEncodedRequest = contentEncodingValues != null
+					&& contentEncodingValues.contains(Util.ENCODING_DEFLATE);
+
+			boolean hasAcceptHeader = false;
+			Integer contentLength = null;
+			for (String field : request.headers().keySet()) {
+				if (field.equalsIgnoreCase("Accept")) {
+					hasAcceptHeader = true;
+				}
+				for (String value : request.headers().get(field)) {
+					if (field.equals(Util.CONTENT_LENGTH)) {
+						if (!gzipEncodedRequest && !deflateEncodedRequest) {
+							contentLength = Integer.valueOf(value);
+							connection.addRequestProperty(field, value);
+						}
+					} else {
+						connection.addRequestProperty(field, value);
+					}
+				}
+			}
+			// Some servers choke on the default accept string.
+			if (!hasAcceptHeader) {
+				connection.addRequestProperty("Accept", "*/*");
+			}
+
+			if (request.body() != null) {
+				if (contentLength != null) {
+					connection.setFixedLengthStreamingMode(contentLength);
+				} else {
+					connection.setChunkedStreamingMode(8196);
+				}
+				connection.setDoOutput(true);
+				OutputStream out = connection.getOutputStream();
+				if (gzipEncodedRequest) {
+					out = new GZIPOutputStream(out);
+				} else if (deflateEncodedRequest) {
+					out = new DeflaterOutputStream(out);
+				}
+				try {
+					out.write(request.body());
+				} finally {
+					try {
+						out.close();
+					} catch (IOException suppressed) { // NOPMD
+					}
+				}
+			}
+			return connection;
+		}
+
+		Response convertResponse(HttpURLConnection connection) throws IOException {
+			int status = connection.getResponseCode();
+			String reason = connection.getResponseMessage();
+
+			if (status < 0) {
+				throw new IOException(format("Invalid status(%s) executing %s %s", status,
+						connection.getRequestMethod(), connection.getURL()));
+			}
+
+			Map<String, Collection<String>> headers = new LinkedHashMap<String, Collection<String>>();
+			for (Map.Entry<String, List<String>> field : connection.getHeaderFields().entrySet()) {
+				// response message
+				if (field.getKey() != null) {
+					headers.put(field.getKey(), field.getValue());
+				}
+			}
+
+			Integer length = connection.getContentLength();
+			if (length == -1) {
+				length = null;
+			}
+			InputStream stream;
+			if (status >= 400) {
+				stream = connection.getErrorStream();
+			} else {
+				stream = connection.getInputStream();
+			}
+			return Response.builder().status(status).reason(reason).headers(headers).body(stream, length).build();
+		}
 	}
 }

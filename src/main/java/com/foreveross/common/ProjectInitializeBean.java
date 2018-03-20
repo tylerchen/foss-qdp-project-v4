@@ -30,6 +30,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import com.foreveross.common.application.SystemApplication;
 import com.foreveross.common.restfull.RestClientUtil;
 import com.foreveross.common.restfull.UriManager;
+import com.foreveross.common.shiro.ShiroChainDefinitionManager;
 import com.foreveross.extension.monitor.application.MonitorApplication;
 
 import net.sf.ehcache.CacheManager;
@@ -91,6 +92,10 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 				Map<String, String> map = PropertiesHelper
 						.loadPropertyFiles(new String[] { "classpath://META-INF/restclient" });
 				RestClientUtil.parseProperties(map);
+			}
+			{//初始化Shiro配置
+				((ShiroChainDefinitionManager) SpringContextHelper.getBean("shiroChainDefinitionManager"))
+						.reCreateFilterChains();
 			}
 			try {
 				MonitorApplication monitorApplication = SpringContextHelper.getBean(MonitorApplication.class);

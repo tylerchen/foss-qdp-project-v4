@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.iff.infra.util.FCS;
 import org.iff.infra.util.GsonHelper;
 import org.iff.infra.util.XStreamHelper;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,19 +53,23 @@ public class RestfulController extends BaseController {
 	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
 	 * @since Jul 19, 2016
 	 */
-	@RequestMapping(value = "/**", produces = "application/json; charset=UTF-8", consumes = {
-			"application/x-www-form-urlencoded", "application/xml", "application/json; charset=UTF-8" })
-	public String rest(@RequestBody(required = false) String body, @RequestHeader("Accept") String accept,
-			@RequestHeader("Content-Type") String contentType, HttpServletRequest request, HttpServletResponse response)
-					throws IOException {
+	@RequestMapping(value = "/**", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
+			MediaType.APPLICATION_ATOM_XML_VALUE }, consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+					MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE })
+	public String rest(@RequestBody(required = false) String body,
+			@RequestHeader(name = "Accept", required = false) String accept,
+			@RequestHeader(name = "Content-Type", required = false) String contentType, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		try {
 			String requestURI = request.getRequestURI();
 			String reportPath = StringUtils.substringAfter(requestURI, "/rest/");
 
 			//检测输入数据的类型。
-			boolean isJson = "application/json".equalsIgnoreCase(contentType);
-			boolean isXml = "application/xml".equalsIgnoreCase(contentType);
-			boolean isForm = "application/x-www-form-urlencoded".equalsIgnoreCase(contentType);
+			boolean isJson = StringUtils.contains(contentType, "application/json");
+			boolean isXml = StringUtils.contains(contentType, "application/xml");
+			boolean isForm = StringUtils.contains(contentType, "application/x-www-form-urlencoded")
+					|| (!isJson && !isXml);
 
 			//设置输出的格式：xml-xstream, json。
 			Class<?> xmlOrJsonHelper = accept != null && accept.indexOf("xml") > -1 ? XStreamHelper.class
