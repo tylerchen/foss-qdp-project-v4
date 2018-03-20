@@ -9,6 +9,7 @@
 package com.foreveross.common;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -20,7 +21,10 @@ import org.iff.infra.util.EhcacheHelper;
 import org.iff.infra.util.I18nHelper;
 import org.iff.infra.util.PropertiesHelper;
 import org.iff.infra.util.spring.SpringContextHelper;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -30,7 +34,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import com.foreveross.common.application.SystemApplication;
 import com.foreveross.common.restfull.RestClientUtil;
 import com.foreveross.common.restfull.UriManager;
-import com.foreveross.common.shiro.ShiroChainDefinitionManager;
 import com.foreveross.extension.monitor.application.MonitorApplication;
 
 import net.sf.ehcache.CacheManager;
@@ -41,12 +44,20 @@ import net.sf.ehcache.CacheManager;
  * @since Aug 9, 2015
  * auto generate by qdp.
  */
-public class ProjectInitializeBean implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
+public class ProjectInitializeBean
+		implements InitializingBean, ApplicationListener<ContextRefreshedEvent>, BeanFactoryPostProcessor {
 
 	private static boolean hasInit = false;
 	private static boolean hasRefresh = false;
 
-	public synchronized void afterPropertiesSet() throws Exception {
+	/**
+	 * 【Bean未开始加载】在Bean开始初始化前就加载一些配置或进行预处理。
+	 * (non-Javadoc)
+	 * @see org.springframework.beans.factory.config.BeanFactoryPostProcessor#postProcessBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Mar 20, 2018
+	 */
+	public synchronized void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		if (!hasInit) {
 			{//使用POVOCopy，生成Groovy代码。
 				BeanHelper.setUsePOVOCopyHelper(true);
@@ -65,7 +76,7 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 				UriManager.parseProperties(map);
 			}
 			{//加载系统属性
-				Map<String, String> map = new HashMap<String, String>();
+				Map<String, String> map = new LinkedHashMap<String, String>();
 				Properties properties = System.getProperties();
 				for (Entry<Object, Object> entry : properties.entrySet()) {
 					if (entry.getKey() instanceof String && entry.getValue() instanceof String) {
@@ -78,6 +89,25 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 		}
 	}
 
+	/**
+	 * 【Bean开始加载但未完成】在Bean开始初始化就进行预处理。
+	 * (non-Javadoc)
+	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Mar 20, 2018
+	 */
+	public void afterPropertiesSet() throws Exception {
+
+	}
+
+	/**
+	 * 【Bean已经初始化完成】所有Bean加载完成后，会调用这个方法，也就是说这个方法执行时所有的Bean已经初始化完成了。
+	 * (non-Javadoc)
+	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Mar 20, 2018
+	 */
+	@SuppressWarnings("resource")
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if (!hasRefresh) {
 			{//加载数据库I18N
@@ -94,8 +124,8 @@ public class ProjectInitializeBean implements InitializingBean, ApplicationListe
 				RestClientUtil.parseProperties(map);
 			}
 			{//初始化Shiro配置
-				((ShiroChainDefinitionManager) SpringContextHelper.getBean("shiroChainDefinitionManager"))
-						.reCreateFilterChains();
+				//((ShiroChainDefinitionManager) SpringContextHelper.getBean("shiroChainDefinitionManager"))
+				//		.reCreateFilterChains();
 			}
 			try {
 				MonitorApplication monitorApplication = SpringContextHelper.getBean(MonitorApplication.class);

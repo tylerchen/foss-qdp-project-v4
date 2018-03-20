@@ -20,7 +20,6 @@ import org.iff.infra.util.FCS;
 import org.iff.infra.util.HttpHelper;
 import org.iff.infra.util.Logger;
 import org.iff.infra.util.StringHelper;
-import org.iff.infra.util.ThreadLocalHelper;
 
 import com.foreveross.common.ConstantBean;
 

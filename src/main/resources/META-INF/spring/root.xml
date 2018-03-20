@@ -9,9 +9,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<aop:aspectj-autoproxy />
+	<tx:annotation-driven />
+
+	<!-- default bean -->
+	<bean class="com.foreveross.common.ProjectInitializeBean" />
+	<bean class="com.foreveross.common.LoggerBean" />
+	<bean id="springContextUtil" class="org.iff.infra.util.spring.SpringContextHelper" />
+	<bean id="encryptDencrypt" class="org.iff.infra.util.spring.bean.EncryptDencryptImpl" />
+
+	<!-- load properties -->
 	<context:property-placeholder location="classpath:META-INF/config/*.properties"
 		file-encoding="UTF-8" ignore-unresolvable="true" order="-1000" />
 	<context:annotation-config />
+
+	<!-- bean package scan -->
 	<context:component-scan
 		base-package="com.foreveross.qdp,com.foreveross.common,com.foreveross.extension">
 		<context:exclude-filter type="annotation"
@@ -26,7 +37,6 @@
 		<!-- type="regex", expression="com\.Default*" , 过滤掉com下的且类名以Default开头的类 -->
 		<!-- type="assignable" expression="com.MovieFinder" 过滤掉com下的类名为MovieFinder的类 -->
 	</context:component-scan>
-	<tx:annotation-driven />
 
 	<import resource="classpath:META-INF/spring-tcutil/tc-util.xml" />
 	<import resource="classpath:META-INF/spring-cache/root.xml" />
@@ -36,7 +46,8 @@
 	<import resource="classpath:META-INF/spring-tcutil/spring-quartz.xml" />
 	<!-- <import resource="classpath:META-INF/spring-workflow/root.xml" /> -->
 	<!-- ${workflow.root.xml.import} -->
-	<!-- <import resource="classpath:META-INF/spring-rpc-provider/root.xml" /><import resource="classpath:META-INF/spring-rpc-consumer/root.xml" /> -->
+	<!-- <import resource="classpath:META-INF/spring-rpc-provider/root.xml" 
+		/><import resource="classpath:META-INF/spring-rpc-consumer/root.xml" /> -->
 	<!-- ${rpc.root.xml.import} -->
 	<!-- ${edas.root.xml.import} -->
 </beans>

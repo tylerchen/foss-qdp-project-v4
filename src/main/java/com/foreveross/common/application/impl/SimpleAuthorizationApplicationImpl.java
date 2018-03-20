@@ -26,7 +26,6 @@ import org.iff.infra.util.mybatis.plugin.Page;
 
 import com.foreveross.common.ConstantBean;
 import com.foreveross.common.application.AuthorizationApplication;
-import com.foreveross.common.shiro.ShiroUser;
 
 /**
  * 授权

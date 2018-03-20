@@ -9,10 +9,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<description>
 	<![CDATA[
-		spring-common.xml，是项目初始化所需要的Bean。
 		spring-data-access.xml，如果使用了数据库，那相关的DataSource、事务、MyBatis等配置。
 	]]>
 	</description>
-	<import resource="spring-common.xml" />
 	<import resource="spring-data-access.xml" />
 </beans>

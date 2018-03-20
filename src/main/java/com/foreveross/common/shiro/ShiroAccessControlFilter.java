@@ -41,7 +41,7 @@ import com.foreveross.extension.log.LogHelper;
 public class ShiroAccessControlFilter extends AdviceFilter {
 
 	private static List<String> skipUrls = Arrays.asList("", "/", "/index.html", "/system/login.do",
-			"/system/logout.do", "/system/valid.png", "/common/accessDeny.html", "/common/errors.html");
+			"/system/logout.do", "/system/valid.png");
 
 	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;

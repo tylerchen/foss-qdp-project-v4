@@ -47,58 +47,43 @@
 	]]>
 	</description>
 
-	<!-- Instructs Spring to perfrom declarative transaction managemenet on annotated classes -->
+	<!-- Instructs Spring to perfrom declarative transaction managemenet on 
+		annotated classes -->
 
-	<!-- in-memory database and a datasource
-	<bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" destroy-method="dispose">
-		<constructor-arg>
-			<bean class="org.h2.jdbcx.JdbcDataSource">
-				<property name="URL" value="jdbc:h2:mem:testdb;DATABASE_TO_UPPER=FALSE"/>
-				<property name="user" value="sa"/>
-				<property name="password" value=""/>
-			 </bean>
-		</constructor-arg>
-	</bean>
-	<jdbc:initialize-database data-source="dataSource">
-		<jdbc:script location="classpath:database/*-table-h2.sql" encoding="UTF-8"/>
-		<jdbc:script location="classpath:database/*-data-h2.sql" encoding="UTF-8"/>
-	</jdbc:initialize-database>
-	 	-->
+	<!-- in-memory database and a datasource <bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" 
+		destroy-method="dispose"> <constructor-arg> <bean class="org.h2.jdbcx.JdbcDataSource"> 
+		<property name="URL" value="jdbc:h2:mem:testdb;DATABASE_TO_UPPER=FALSE"/> 
+		<property name="user" value="sa"/> <property name="password" value=""/> </bean> 
+		</constructor-arg> </bean> <jdbc:initialize-database data-source="dataSource"> 
+		<jdbc:script location="classpath:database/*-table-h2.sql" encoding="UTF-8"/> 
+		<jdbc:script location="classpath:database/*-data-h2.sql" encoding="UTF-8"/> 
+		</jdbc:initialize-database> -->
 
- 	<!-- mysql
- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClassName}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="iff" />
-        <property name="defaultAutoCommit" value="false" />
-        <property name="initialSize" value="10" />
-        <property name="maxActive" value="20" />
-        <property name="maxWait" value="1000" />
-    </bean>
-     -->
-    
- 	<!-- do not use this driver in production environment.
- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/new_qdp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
-        <property name="username" value="iff" />
-        <property name="password" value="iff" />
-    </bean>
- 	 -->
- 	<!-- oracle
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:AUTH" />
-		<property name="username" value="test" />
-		<property name="password" value="test" />
-	</bean>
-	 -->
-	<bean id="dencryptPassword" factory-bean="encryptDencryptPassword" factory-method="dencryptPassword">
+	<!-- mysql <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="${jdbc.driverClassName}" 
+		/> <property name="url" value="${jdbc.url}" /> <property name="username" 
+		value="${jdbc.username}" /> <property name="password" value="iff" /> <property 
+		name="defaultAutoCommit" value="false" /> <property name="initialSize" value="10" 
+		/> <property name="maxActive" value="20" /> <property name="maxWait" value="1000" 
+		/> </bean> -->
+
+	<!-- do not use this driver in production environment. <bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> <property 
+		name="driverClassName" value="com.mysql.jdbc.Driver"/> <property name="url" 
+		value="jdbc:mysql://localhost:3306/new_qdp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/> 
+		<property name="username" value="iff" /> <property name="password" value="iff" 
+		/> </bean> -->
+	<!-- oracle <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" /> <property 
+		name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:AUTH" /> <property name="username" 
+		value="test" /> <property name="password" value="test" /> </bean> -->
+	<bean id="dencryptPassword" factory-bean="encryptDencryptPassword"
+		factory-method="dencryptPassword">
 		<constructor-arg index="0" value="${jdbc.password}" />
 		<constructor-arg index="1" value="${rsa.key.private.base64}" />
 	</bean>
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" primary="true">
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close" primary="true">
 		<description>https://github.com/alibaba/druid/wiki</description>
 		<property name="driverClassName" value="${jdbc.driverClassName}">
 			<description>基本属性driverClass、url、user、password</description>
@@ -147,7 +132,8 @@
 			<description>打开PSCache，并且指定每个连接上PSCache的大小，如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。
 			</description>
 		</property>
-		<property name="maxPoolPreparedStatementPerConnectionSize" value="20">
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20">
 			<description>打开PSCache，并且指定每个连接上PSCache的大小，如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。
 			</description>
 		</property>
@@ -184,17 +170,19 @@
 			</props>
 		</property>
 	</bean>
-	
-	<bean id="uuidPlugin" class="org.iff.infra.util.mybatis.plugin.UUIDPlugin"/>
+
+	<bean id="uuidPlugin" class="org.iff.infra.util.mybatis.plugin.UUIDPlugin" />
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.foreveross.qdp,com.foreveross.common,com.foreveross.extension" />
+		<property name="basePackage"
+			value="com.foreveross.qdp,com.foreveross.common,com.foreveross.extension" />
 		<property name="annotationClass" value="org.iff.infra.util.mybatis.mapper.Mapper" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.foreveross.qdp,com.foreveross.common,com.foreveross.extension" />
+		<property name="typeAliasesPackage"
+			value="com.foreveross.qdp,com.foreveross.common,com.foreveross.extension" />
 		<property name="plugins">
 			<array>
 				<ref bean="pagePlugin" />
@@ -208,18 +196,21 @@
 		</property>
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	
-	<bean id="tcRepositoryService" class="org.iff.infra.util.mybatis.service.impl.MybatisRepositoryServiceImpl" />
-	<bean id="tcSqlService" class="org.iff.infra.util.mybatis.service.impl.MybatisSqlServiceImpl" />
-	
-	<bean id="logJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
-        <property name="dataSource" ref="dataSource" />  
+
+	<bean id="tcRepositoryService"
+		class="org.iff.infra.util.mybatis.service.impl.MybatisRepositoryServiceImpl" />
+	<bean id="tcSqlService"
+		class="org.iff.infra.util.mybatis.service.impl.MybatisSqlServiceImpl" />
+
+	<bean id="logJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 </beans>
