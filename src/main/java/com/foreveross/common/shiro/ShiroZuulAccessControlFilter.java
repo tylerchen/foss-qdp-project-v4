@@ -13,10 +13,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.servlet.AdviceFilter;
+import org.iff.infra.util.Exceptions;
 import org.iff.infra.util.FCS;
 import org.iff.infra.util.HttpHelper;
+
+import com.foreveross.common.ResultBean;
 
 /**
  * Shiro ZUUL验证过滤器
@@ -29,9 +34,9 @@ public class ShiroZuulAccessControlFilter extends AdviceFilter implements OnceVa
 
 	public boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
-
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		//是否为OnceValidAdvice。
-		//boolean isOnceValidAdvice = Boolean.TRUE.equals(request.getAttribute(OnceValidAdvice.REQUEST_MARK));
+		boolean isOnceValidAdvice = Boolean.TRUE.equals(request.getAttribute(OnceValidAdvice.REQUEST_MARK));
 
 		String ip = HttpHelper.getRemoteIpAddr(request);
 		/**
@@ -39,22 +44,21 @@ public class ShiroZuulAccessControlFilter extends AdviceFilter implements OnceVa
 		 */
 		String zuul = request.getHeader("zuul");
 
+		if (StringUtils.isBlank(zuul)) {
+			return false;
+		}
+
 		Logger.debug(FCS.get("Shiro ShiroZuulAccessControlFilter.preHandle, ip: {0}, zuul: {1}", ip, zuul));
 
 		boolean valid = HttpHelper.validateIpMd5(ip, zuul);
-		//		if (!valid) {
-		//			//enable localhost, if you don't want to enable localhost use ShiroIpAccessControlFilter
-		//			String[] ips = new String[] { "0:0:0:0:0:0:0:*", "127.0.0.*" };
-		//			for (String aip : ips) {
-		//				valid = StringHelper.wildCardMatch(ip, aip.trim());
-		//				if (valid) {
-		//					break;
-		//				}
-		//			}
-		//		}
+
 		if (valid) {
 			return true;
 		} else {
+			ShiroHelper.retrun401(request, response, ResultBean.error().setBody("Unauthorized"));
+			if (isOnceValidAdvice) {
+				Exceptions.runtime("Shiro not permit, end OnceValidAdvice chain.", "FOSS-SHIRO-0100");
+			}
 			return false;
 		}
 	}

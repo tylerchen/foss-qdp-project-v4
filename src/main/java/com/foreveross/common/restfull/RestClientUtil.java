@@ -123,7 +123,5 @@ public class RestClientUtil {
 		// 注册bean  
 		defaultListableBeanFactory.registerBeanDefinition(beanName, definition.getRawBeanDefinition());
 		Logger.info("Success to regist bean: " + interfaceClass.getName() + ", as " + beanName);
-		Object bean = defaultListableBeanFactory.getBean(interfaceClass);
-		System.out.println(bean);
 	}
 }

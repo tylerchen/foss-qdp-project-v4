@@ -21,13 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.iff.infra.util.FCS;
-import org.iff.infra.util.GsonHelper;
-import org.iff.infra.util.StringHelper;
 import org.iff.infra.util.ThreadLocalHelper;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 
-import com.foreveross.common.ConstantBean;
 import com.foreveross.common.ResultBean;
 import com.foreveross.extension.log.LogHelper;
 
@@ -46,6 +41,9 @@ public class ShiroOnceValidAccessControlFilter extends AdviceFilter implements O
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		String url = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
+		if (ShiroHelper.skipUrl(url)) {
+			return true;
+		}
 		{
 			Logger.debug(FCS.get("Shiro filter " + getClass().getSimpleName() + " preHandle, uri: {0}", url));
 			LogHelper.accessLog(null, request.getRemoteAddr(), url, "URL", new Date());
@@ -53,15 +51,17 @@ public class ShiroOnceValidAccessControlFilter extends AdviceFilter implements O
 		{
 			request.setAttribute(OnceValidAdvice.REQUEST_MARK, true);
 		}
-		for (OnceValidAdvice filter : onceFilterChains) {
-			if (filter.preHandle(request, response)) {
-				return true;
+		try {//会通过抛出异常来终止验证过程
+			for (OnceValidAdvice filter : onceFilterChains) {
+				if (filter.preHandle(request, response)) {
+					return true;
+				}
 			}
-		}
-		if (!sendRedirect(response, url)) {
-			response.reset();
-			response.setStatus(401);
-			response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
+			if (!ShiroHelper.sendRedirect(response, url)) {
+				ShiroHelper.retrun401(request, response, ResultBean.error().setBody("Unauthorized"));
+			}
+		} catch (Exception e) {
+			//异常直接终止，需要在各个OnceValidAdvice中处理response。
 		}
 		return false;
 	}
@@ -78,58 +78,5 @@ public class ShiroOnceValidAccessControlFilter extends AdviceFilter implements O
 
 	public void setOnceFilterChains(List<OnceValidAdvice> onceFilterChains) {
 		this.onceFilterChains = onceFilterChains;
-	}
-
-	private String unauthorizedUrl = "";
-	private String toUrl = "";
-	private String[] unauthorizedUrls = new String[0];
-
-	/**
-	 * 根据配置决定是否发送重定向，如果发送就返回true，否则就返回false。
-	 * @param response
-	 * @param url
-	 * @return
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since Mar 21, 2018
-	 */
-	private boolean sendRedirect(HttpServletResponse response, String url) {
-		if (unauthorizedUrl.length() < 1) {
-			unauthorizedUrl = ConstantBean.getProperty("shiro.redirect.unauthorized.url", "");
-			if (StringUtils.isEmpty(unauthorizedUrl)) {
-				return false;
-			}
-		}
-		if (toUrl.length() < 1) {
-			toUrl = ConstantBean.getProperty("shiro.redirect.to.url", "");
-			if (StringUtils.isEmpty(toUrl)) {
-				return false;
-			}
-		}
-		if (unauthorizedUrls.length < 1) {
-			unauthorizedUrls = StringUtils.split(unauthorizedUrl, ',');
-		}
-		boolean match = false;
-		for (String redirectUrl : unauthorizedUrls) {
-			if (redirectUrl.indexOf('*') < 0 && redirectUrl.equals(url)) {
-				match = true;
-				break;
-			} else {
-				match = StringHelper.wildCardMatch(url, redirectUrl);
-				if (match == true) {
-					break;
-				}
-			}
-		}
-		if (match) {
-			Logger.debug(FCS.get("Shiro unauthorized url configured and redirect: {0} to {1}.", url, toUrl));
-			response.reset();
-			response.setHeader(HttpHeaders.LOCATION, toUrl);
-			response.setStatus(HttpStatus.FOUND.value());
-			return true;
-		} else {
-			Logger.debug(FCS.get("Shiro unauthorized url configured and not match to redirect: {0} not match {1}.", url,
-					unauthorizedUrl));
-		}
-		return false;
 	}
 }
