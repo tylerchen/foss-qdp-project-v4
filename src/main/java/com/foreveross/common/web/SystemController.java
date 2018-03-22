@@ -29,12 +29,14 @@ import org.iff.infra.util.SocketHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.foreveross.common.ConstantBean;
 import com.foreveross.common.ResultBean;
 import com.foreveross.common.application.ImageCaptchaApplication;
 import com.foreveross.common.application.SystemApplication;
+import com.foreveross.common.shiro.JWTTokenHelper;
 import com.foreveross.common.shiro.ShiroUser;
 
 /**
@@ -55,7 +57,7 @@ public class SystemController extends BaseController {
 	SystemApplication systemApplication;
 
 	@ResponseBody
-	@RequestMapping("/login.do")
+	@RequestMapping(path = "/login.do", method = RequestMethod.POST)
 	public ResultBean login(ShiroUser user, HttpServletRequest request, HttpServletResponse response,
 			ModelMap modelMap) {
 		// get login info if has login
@@ -147,6 +149,51 @@ public class SystemController extends BaseController {
 			return error(e);
 		}
 
+	}
+
+	@ResponseBody
+	@RequestMapping(path = "/login.jwt", method = RequestMethod.POST)
+	public ResultBean jwtToken(ShiroUser user, HttpServletRequest request, HttpServletResponse response,
+			ModelMap modelMap) {
+		// get login info if has login
+		if (user == null || user.getLoginId() == null || user.getLoginPasswd() == null) {
+			response.setStatus(401);
+			return error("Unauthorized");
+		}
+
+		try {
+			{
+				String loginPasswdEnc = user.getLoginPasswd();
+				if (StringUtils.isBlank(loginPasswdEnc)) {
+					return error("无此帐户或登录密码错误！");
+				}
+				try {
+					String realPassword = RSAHelper.decrypt(loginPasswdEnc,
+							RSAHelper.getPrivateKeyFromBase64(ConstantBean.getProperty("rsa.key.private.base64")));
+					user.setLoginPasswd(realPassword);
+				} catch (Exception e) {
+					return error("无此帐户或登录密码错误！");
+				}
+			}
+
+			user = systemApplication.login(user);
+
+			if (user == null) {
+				return error("无此帐户或登录密码错误！");
+			}
+
+			{
+				/*禁止缓存*/
+				response.setHeader("Pragma", "no-cache");
+				response.setHeader("Cache-Control", "no-cache");
+				response.setDateHeader("Expires", 0);
+				response.setContentType("application/json;charset=UTF-8");
+				response.setStatus(200);
+				return success(JWTTokenHelper.encodeToken(user.getLoginId())).addHeader("Expires", 5 * 60 * 1000);
+			}
+		} catch (Exception e) {
+			return error(e);
+		}
 	}
 
 	@ResponseBody

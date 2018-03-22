@@ -8,8 +8,11 @@
  ******************************************************************************/
 package com.foreveross.common;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -58,7 +61,7 @@ public class ProjectInitializeBean
 	 * @since Mar 20, 2018
 	 */
 	public synchronized void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		if (!hasInit) {
+		if (!hasInit && (hasInit = true)) {
 			{//使用POVOCopy，生成Groovy代码。
 				BeanHelper.setUsePOVOCopyHelper(true);
 			}
@@ -85,7 +88,6 @@ public class ProjectInitializeBean
 				}
 				ConstantBean.setProperties(map);
 			}
-			hasInit = true;
 		}
 	}
 
@@ -109,7 +111,7 @@ public class ProjectInitializeBean
 	 */
 	@SuppressWarnings("resource")
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		if (!hasRefresh) {
+		if (!hasRefresh && (hasRefresh = true)) {
 			{//加载数据库I18N
 				((SystemApplication) SpringContextHelper.getBean("systemApplication")).initI18n();
 			}
@@ -142,6 +144,7 @@ public class ProjectInitializeBean
 					}
 					bf = (DefaultListableBeanFactory) bf.getParentBeanFactory();
 				}
+				List<Class<?>> initSpringService = new ArrayList<Class<?>>();
 				for (Entry<String, DefaultListableBeanFactory> entry : beanNames.entrySet()) {
 					try {
 						String beanName = entry.getKey();
@@ -156,14 +159,17 @@ public class ProjectInitializeBean
 							loadClass = xml.getClassLoader().loadClass(className);
 						}
 						if (loadClass.isInterface()) {//如果只是代理类，一般就是接口
-							monitorApplication.initSpringServiceMap(new Class<?>[] { loadClass });
+							initSpringService.add(loadClass);
 						} else {//如果是实现类，一般要拿到其接口
 							Class<?>[] interfaces = loadClass.getInterfaces();
-							monitorApplication.initSpringServiceMap(interfaces);
+							initSpringService.addAll(Arrays.asList(interfaces));
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+				}
+				if (initSpringService.size() > 0) {
+					monitorApplication.initSpringServiceMap(initSpringService.toArray(new Class<?>[0]));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

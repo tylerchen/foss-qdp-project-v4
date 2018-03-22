@@ -34,8 +34,7 @@ import com.foreveross.common.application.SystemApplication;
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
  * @since Aug 28, 2017
  */
-@Named("monitorRealm")
-public class MonitorRealm extends AuthorizingRealm {
+public class UserNamePasswordRealm extends AuthorizingRealm {
 
 	@Inject
 	@Named("systemApplication")
@@ -43,7 +42,7 @@ public class MonitorRealm extends AuthorizingRealm {
 	@Inject
 	AuthorizationApplication authorizationApplication;
 
-	public MonitorRealm() {
+	public UserNamePasswordRealm() {
 		super();
 		setPermissionResolver(new UrlWildcardPermissionResolver());
 	}
@@ -96,4 +95,16 @@ public class MonitorRealm extends AuthorizingRealm {
 			}
 		}
 	}
+
+	/**
+	 * 仅支持UsernamePasswordToken验证。
+	 * (non-Javadoc)
+	 * @see org.apache.shiro.realm.AuthenticatingRealm#supports(org.apache.shiro.authc.AuthenticationToken)
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Mar 21, 2018
+	 */
+	public boolean supports(AuthenticationToken token) {
+		return token instanceof UsernamePasswordToken;
+	}
+
 }

@@ -265,7 +265,7 @@
 		<dependency>
 			<groupId>org.iff</groupId>
 			<artifactId>tc-util-project</artifactId>
-			<version>1.0.21</version>
+			<version>1.0.22</version>
 		</dependency>
 		<!-- iff infra end -->
 		<!-- javax.servlet -->

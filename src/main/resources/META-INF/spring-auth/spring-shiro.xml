@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<description><![CDATA[Shiro 配置: http://www.sojson.com/blog/199.html]]></description>
-	
+
 	<bean id="shiroChainDefinitionManager" class="com.foreveross.common.shiro.ShiroChainDefinitionManager" />
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -33,8 +33,28 @@
 				<entry key="accauth">
 					<bean class="com.foreveross.common.shiro.ShiroAuthAccessControlFilter" />
 				</entry>
+				<entry key="accjwt">
+					<bean class="com.foreveross.common.shiro.ShiroJwtAccessControlFilter" />
+				</entry>
+				<entry key="acconce">
+					<bean
+						class="com.foreveross.common.shiro.ShiroOnceValidAccessControlFilter">
+						<property name="onceFilterChains">
+							<list>
+								<bean class="com.foreveross.common.shiro.ShiroZuulAccessControlFilter" />
+								<bean class="com.foreveross.common.shiro.ShiroJwtAccessControlFilter" />
+								<bean class="com.foreveross.common.shiro.ShiroAuthAccessControlFilter" />
+								<bean class="com.foreveross.common.shiro.ShiroAccessControlFilter" />
+								<bean class="com.foreveross.common.shiro.ShiroIpAccessControlFilter" />
+							</list>
+						</property>
+					</bean>
+				</entry>
 				<entry key="traceid">
 					<bean class="com.foreveross.common.shiro.ShiroTraceIdFilter" />
+				</entry>
+				<entry key="crossdomain">
+					<bean class="com.foreveross.common.shiro.ShiroCrossDomainFilter" />
 				</entry>
 			</map>
 		</property>
@@ -52,7 +72,9 @@
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!--设置自定义realm -->
-		<property name="realm" ref="monitorRealm" />
+		<!-- <property name="realm" ref="userNamePasswordRealm" /> -->
+		<!-- 配置多个Realm -->
+		<property name="authenticator" ref="authenticator" />
 		<!-- 基于ehCache来缓存用户认证信息和授权信息的实现 -->
 		<property name="cacheManager" ref="shiroCacheManager" />
 		<!-- 配置sessionListener -->
@@ -68,7 +90,18 @@
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
 	<!--自定义Realm 继承自AuthorizingRealm -->
-	<bean id="monitorRealm" class="com.foreveross.common.shiro.MonitorRealm"></bean>
+	<bean id="userNamePasswordRealm" class="com.foreveross.common.shiro.UserNamePasswordRealm" />
+	<bean id="jwtRealm" class="com.foreveross.common.shiro.JWTRealm" />
+
+	<!-- 配置多个Realm -->
+	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<property name="realms">
+			<list>
+				<ref bean="userNamePasswordRealm" />
+				<ref bean="jwtRealm" />
+			</list>
+		</property>
+	</bean>
 
 	<bean
 		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

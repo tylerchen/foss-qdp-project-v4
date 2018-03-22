@@ -18,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.iff.infra.util.FCS;
 import org.iff.infra.util.HttpHelper;
-import org.iff.infra.util.Logger;
 import org.iff.infra.util.StringHelper;
 
 import com.foreveross.common.ConstantBean;
@@ -28,21 +27,36 @@ import com.foreveross.common.ConstantBean;
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
  * @since Aug 11, 2016
  */
-public class ShiroIpAccessControlFilter extends AdviceFilter {
+public class ShiroIpAccessControlFilter extends AdviceFilter implements OnceValidAdvice {
 
-	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+	private static final org.iff.infra.util.Logger.Log Logger = org.iff.infra.util.Logger.get("FOSS-SHIRO");
+
+	private String accessIp = "";
+	private String[] ips = new String[0];
+
+	public boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
+
+		//是否为OnceValidAdvice。
+		//boolean isOnceValidAdvice = Boolean.TRUE.equals(request.getAttribute(OnceValidAdvice.REQUEST_MARK));
+
 		String ip = HttpHelper.getRemoteIpAddr(request);
+
+		{
+			Logger.debug(FCS.get("Shiro ShiroIpAccessControlFilter.preHandle, ip: {0}", ip));
+		}
+
 		{/*check the match list.*/
-			String accessIp = ConstantBean.getProperty("access.ip", "").trim();
-			if (accessIp.length() > 0) {
-				String[] ips = StringUtils.split(accessIp, ',');
-				for (String aip : ips) {
-					boolean match = StringHelper.wildCardMatch(ip, aip.trim());
-					if (match) {
-						Logger.debug(FCS.get("Accept {0} access!", ip));
-						return true;
-					}
+			if (accessIp.length() < 1) {
+				accessIp = ConstantBean.getProperty("access.ip", "").trim();
+			}
+			if (ips.length < 1) {
+				ips = StringUtils.split(accessIp, ',');
+			}
+			for (String aip : ips) {
+				boolean match = StringHelper.wildCardMatch(ip, aip.trim());
+				if (match) {
+					return true;
 				}
 			}
 		}
@@ -51,10 +65,8 @@ public class ShiroIpAccessControlFilter extends AdviceFilter {
 		 */
 		boolean valid = HttpHelper.validateIpMd5(ip, HttpHelper.getAuthorization(request));
 		if (valid) {
-			Logger.debug(FCS.get("Accept {0} access!", ip));
 			return true;
 		} else {
-			Logger.debug(FCS.get("Deny {0} access!", ip));
 			return false;
 		}
 	}

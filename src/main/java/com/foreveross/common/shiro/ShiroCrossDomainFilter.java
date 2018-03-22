@@ -15,65 +15,35 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.iff.infra.util.FCS;
-import org.iff.infra.util.HttpHelper;
-import org.iff.infra.util.StringHelper;
 
 /**
  * 设置跟踪ID，通过这个ID可以跟踪一个请求。
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
  * @since Aug 11, 2016
  */
-public class ShiroTraceIdFilter extends AdviceFilter {
+public class ShiroCrossDomainFilter extends AdviceFilter {
 
 	private static final org.iff.infra.util.Logger.Log Logger = org.iff.infra.util.Logger.get("FOSS-SHIRO");
 
 	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		String url = "";
-		String ip = "";
-		String traceId = "";
-		String sessionId = "";
-		String loginId = "";
-		Subject subject = SecurityUtils.getSubject();
-		Session session = null;
-		{
-			url = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
-		}
-		{
-			ip = HttpHelper.getRemoteIpAddr(request);
-		}
-		{
-			traceId = StringUtils.defaultIfBlank(request.getHeader("TRACE_ID"), org.iff.infra.util.Logger.getTraceId());
-		}
-		{
-			session = subject.getSession(false);
-		}
-		{
-			if (session != null) {
-				sessionId = String.valueOf(session.getId());
-			}
-		}
-		{
-			if (session != null) {
-				ShiroUser loginUser = (ShiroUser) session.getAttribute("USER");
-				loginId = StringUtils.defaultIfBlank(loginUser == null ? "" : loginUser.getLoginId(), "ANON");
-			}
-		}
-		{/*set the trace id*/
 
-			String[] split = StringUtils.split(traceId, '/');
-			traceId = StringHelper.concat(split.length > 0 ? split[0] : StringHelper.uuid(), "/", ip, "/", sessionId,
-					"/", loginId);
-			org.iff.infra.util.Logger.updateTraceId(traceId);
-			response.addHeader("TRACE_ID", traceId);
-			Logger.debug(FCS.get("ShiroTraceIdFilter.preHandle, uri: {0}", url));
+		String origin = request.getHeader("Origin");
+		String requestHeader = request.getHeader("Access-Control-Request-Headers");
+
+		Logger.debug(FCS.get("Shiro ShiroCrossDomainFilter.preHandle, Origin: {0}, Request-Headers: {1}", origin,
+				requestHeader));
+
+		response.setHeader("Access-control-Allow-Origin", origin);
+		response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
+		response.setHeader("Access-Control-Allow-Headers", requestHeader);
+		// 跨域时会首先发送一个option请求，这里我们给option请求直接返回正常状态
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			response.setStatus(200);
+			return false;
 		}
 		return true;
 	}

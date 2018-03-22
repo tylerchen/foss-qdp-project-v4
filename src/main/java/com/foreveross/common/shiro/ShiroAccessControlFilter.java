@@ -27,9 +27,12 @@ import org.apache.shiro.web.servlet.AdviceFilter;
 import org.iff.infra.util.FCS;
 import org.iff.infra.util.GsonHelper;
 import org.iff.infra.util.I18nHelper;
-import org.iff.infra.util.Logger;
+import org.iff.infra.util.StringHelper;
 import org.iff.infra.util.ThreadLocalHelper;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 
+import com.foreveross.common.ConstantBean;
 import com.foreveross.common.ResultBean;
 import com.foreveross.extension.log.LogHelper;
 
@@ -38,19 +41,23 @@ import com.foreveross.extension.log.LogHelper;
  * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
  * @since Aug 11, 2016
  */
-public class ShiroAccessControlFilter extends AdviceFilter {
+public class ShiroAccessControlFilter extends AdviceFilter implements OnceValidAdvice {
+
+	private static final org.iff.infra.util.Logger.Log Logger = org.iff.infra.util.Logger.get("FOSS-SHIRO");
 
 	private static List<String> skipUrls = Arrays.asList("", "/", "/index.html", "/system/login.do",
 			"/system/logout.do", "/system/valid.png");
 
-	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+	public boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		String url = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
 		Subject subject = SecurityUtils.getSubject();
 		ShiroUser loginUser = null;
+		//是否为OnceValidAdvice。
+		boolean isOnceValidAdvice = Boolean.TRUE.equals(request.getAttribute(OnceValidAdvice.REQUEST_MARK));
 		{
-			Logger.debug(FCS.get("ShiroAccessControlFilter.preHandle, uri: {0}", url));
+			Logger.debug(FCS.get("Shiro ShiroAccessControlFilter.preHandle, uri: {0}", url));
 			LogHelper.accessLog(loginUser != null ? loginUser.getLoginId() : null, request.getRemoteAddr(), url, "URL",
 					new Date());
 		}
@@ -91,18 +98,14 @@ public class ShiroAccessControlFilter extends AdviceFilter {
 		}
 		{
 			if (subject.getPrincipal() == null || !subject.isAuthenticated()) {
-				response.reset();
-				response.setStatus(401);
-				response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
+				sendRedirectOrUnauthorizedJson(response, url, isOnceValidAdvice);
 				return false;
 			}
 		}
 
 		ShiroUser user = (ShiroUser) subject.getSession().getAttribute("USER");
 		if (user == null) {
-			response.reset();
-			response.setStatus(401);
-			response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
+			sendRedirectOrUnauthorizedJson(response, url, isOnceValidAdvice);
 			return false;
 		}
 		{//设置当前用户到线程领域
@@ -112,19 +115,73 @@ public class ShiroAccessControlFilter extends AdviceFilter {
 		}
 		// 如果是超级用户
 		if (subject.hasRole("ADMIN")) {
-			Logger.debug("==ADMIN is Logging==");
+			Logger.debug("Shiro ==ADMIN is Logging==");
 			return true;
 		}
 
 		{//开启shiro鉴权
 			if (!subject.isPermitted(url)) {
-				response.reset();
-				response.setStatus(401);
-				response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
+				sendRedirectOrUnauthorizedJson(response, url, isOnceValidAdvice);
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private void sendRedirectOrUnauthorizedJson(HttpServletResponse response, String url, boolean isOnceValidAdvice)
+			throws IOException {
+		if (!isOnceValidAdvice) {
+			if (!sendRedirect(response, url)) {
+				response.reset();
+				response.setStatus(401);
+				response.getWriter().write(GsonHelper.toJsonString(ResultBean.error().setBody("Unauthorized")));
+			}
+		}
+	}
+
+	private String unauthorizedUrl = "";
+	private String toUrl = "";
+	private String[] unauthorizedUrls = new String[0];
+
+	private boolean sendRedirect(HttpServletResponse response, String url) {
+		if (unauthorizedUrl.length() < 1) {
+			unauthorizedUrl = ConstantBean.getProperty("shiro.redirect.unauthorized.url", "");
+			if (StringUtils.isEmpty(unauthorizedUrl)) {
+				return false;
+			}
+		}
+		if (toUrl.length() < 1) {
+			toUrl = ConstantBean.getProperty("shiro.redirect.to.url", "");
+			if (StringUtils.isEmpty(toUrl)) {
+				return false;
+			}
+		}
+		if (unauthorizedUrls.length < 1) {
+			unauthorizedUrls = StringUtils.split(unauthorizedUrl, ',');
+		}
+		boolean match = false;
+		for (String redirectUrl : unauthorizedUrls) {
+			if (redirectUrl.indexOf('*') < 0 && redirectUrl.equals(url)) {
+				match = true;
+				break;
+			} else {
+				match = StringHelper.wildCardMatch(url, redirectUrl);
+				if (match == true) {
+					break;
+				}
+			}
+		}
+		if (match) {
+			Logger.debug(FCS.get("Shiro unauthorized url configured and redirect: {0} to {1}.", url, toUrl));
+			response.reset();
+			response.setHeader(HttpHeaders.LOCATION, toUrl);
+			response.setStatus(HttpStatus.FOUND.value());
+			return true;
+		} else {
+			Logger.debug(FCS.get("Shiro unauthorized url configured and not match to redirect: {0} not match {1}.", url,
+					unauthorizedUrl));
+		}
+		return false;
 	}
 
 	protected void cleanup(ServletRequest request, ServletResponse response, Exception existing)
