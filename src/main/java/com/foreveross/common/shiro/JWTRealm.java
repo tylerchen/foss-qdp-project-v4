@@ -8,6 +8,7 @@
 package com.foreveross.common.shiro;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -41,7 +42,11 @@ public class JWTRealm extends AuthorizingRealm {
 	AuthorizationApplication authorizationApplication;
 
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		Object principal = principals.fromRealm(getName()).iterator().next();
+		Iterator<?> iterator = principals.fromRealm(getName()).iterator();
+		if (!iterator.hasNext()) {
+			return null;
+		}
+		Object principal = iterator.next();
 		String loginId = JWTTokenHelper.decodeToken(principal.toString());
 		Set<String> roleNames = authorizationApplication.findAuthRoleByLoginId(loginId);
 		Set<String> permissions = authorizationApplication.findAuthResourceByLoginId(loginId);

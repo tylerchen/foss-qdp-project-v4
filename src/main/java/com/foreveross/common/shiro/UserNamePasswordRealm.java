@@ -8,6 +8,7 @@
 package com.foreveross.common.shiro;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -52,7 +53,11 @@ public class UserNamePasswordRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		Object object = principals.fromRealm(getName()).iterator().next();
+		Iterator<?> iterator = principals.fromRealm(getName()).iterator();
+		if (!iterator.hasNext()) {
+			return null;
+		}
+		Object object = iterator.next();
 		Set<String> roleNames = authorizationApplication.findAuthRoleByLoginId(object.toString());
 		Set<String> permissions = authorizationApplication.findAuthResourceByLoginId(object.toString());
 		Set<Permission> objectPermissions = new HashSet<Permission>();
