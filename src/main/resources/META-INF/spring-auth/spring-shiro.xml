@@ -73,6 +73,12 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!--设置自定义realm -->
 		<!-- <property name="realm" ref="userNamePasswordRealm" /> -->
+		<property name="realms">
+			<list>
+				<ref bean="userNamePasswordRealm" />
+				<ref bean="jwtRealm" />
+			</list>
+		</property>
 		<!-- 配置多个Realm -->
 		<property name="authenticator" ref="authenticator" />
 		<!-- 基于ehCache来缓存用户认证信息和授权信息的实现 -->

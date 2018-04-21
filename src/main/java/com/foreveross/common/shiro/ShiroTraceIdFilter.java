@@ -73,7 +73,7 @@ public class ShiroTraceIdFilter extends AdviceFilter {
 					"/", loginId);
 			org.iff.infra.util.Logger.updateTraceId(traceId);
 			response.addHeader("TRACE_ID", traceId);
-			Logger.debug(FCS.get("ShiroTraceIdFilter.preHandle, uri: {0}", url));
+			Logger.debug(FCS.get("Shiro ShiroTraceIdFilter.preHandle, uri: {0}", url));
 		}
 		return true;
 	}

@@ -61,6 +61,7 @@ public class ShiroOnceValidAccessControlFilter extends AdviceFilter implements O
 				ShiroHelper.retrun401(request, response, ResultBean.error().setBody("Unauthorized"));
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			//异常直接终止，需要在各个OnceValidAdvice中处理response。
 		}
 		return false;
