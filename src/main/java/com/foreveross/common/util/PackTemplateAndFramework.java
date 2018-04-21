@@ -82,7 +82,7 @@ public class PackTemplateAndFramework {
 				System.out.println(FCS.get("Set version {0} to file : {1}", version, filePath));
 			}
 			{
-				String filePath = "src/main/webapp/resource/modules/elementui/version.js";
+				String filePath = "src/main/webapp/resource/modules/elementui-2.3.5/version.js";
 				String content = ";var app_version='" + version + "';";
 				FileWriter fileWriter = new FileWriter(
 						new File(StringHelper.pathConcat(new File("").getAbsolutePath(), filePath)));
@@ -286,6 +286,7 @@ public class PackTemplateAndFramework {
 				paths.add(
 						"src/main/java/com/foreveross/common/application/impl/DefaultAuthorizationApplicationImpl.java");
 				paths.add("src/main/java/com/foreveross/common/application/impl/DefaultSystemApplicationImpl.java");
+				paths.add("src/main/java/com/foreveross/qdp/application/system/restapi/AuthUserRestApiApplication.java");
 				//
 				paths.add("src/main/resources/diagrams");
 				paths.add("src/main/resources/models");
@@ -293,6 +294,8 @@ public class PackTemplateAndFramework {
 				paths.add("src/main/resources/META-INF/spring-rpc-consumer/rpc-consumer-systemcore.xml");
 				//
 				paths.add("src/main/resources/META-INF/restful");
+				//
+				paths.add("src/main/resources/META-INF/restclient");
 				//
 				paths.add("src/main/webapp/resource/pages/system");
 				for (String path : paths) {

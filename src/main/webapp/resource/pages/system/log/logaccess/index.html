@@ -45,7 +45,7 @@
 				@sort-change="onPost('grid-table', 'sort-change', arguments[0])">
 				<el-table-column type="selection" width="35"></el-table-column>
 				<el-table-column :fixed="true" prop="type" label="类型">
-					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="user" label="访问者" :sortable="false"></el-table-column>
 				<el-table-column :fixed="true" prop="source" label="来源" :sortable="false"></el-table-column>

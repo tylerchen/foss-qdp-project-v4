@@ -30,15 +30,15 @@
 				<el-table-column type="selection" width="35" v-if="multi!=false"></el-table-column>
 							<el-table-column :fixed="true" prop="name" label="用户名称" :sortable="true"></el-table-column>
 							<el-table-column :fixed="true" prop="status" label="状态">
-								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 							<el-table-column :fixed="true" prop="type" label="类型">
-								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 							<el-table-column :fixed="true" prop="tel" label="联系电话" :sortable="false"></el-table-column>
 							<el-table-column :fixed="true" prop="email" label="联系 Email" :sortable="false"></el-table-column>
 							<el-table-column :fixed="true" prop="sex" label="性别">
-								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 			</el-table>
 		</el-row>

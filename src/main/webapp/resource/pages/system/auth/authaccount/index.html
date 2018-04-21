@@ -40,13 +40,13 @@
 				<el-table-column type="selection" width="35"></el-table-column>
 				<el-table-column :fixed="true" prop="loginEmail" label="登录 Email" :sortable="true"></el-table-column>
 				<el-table-column :fixed="true" prop="status" label="状态">
-					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="type" label="类型">
-					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="userId" label="用户">
-					<template scope="scope"><el-tag>{{scope.row[scope.column.property+'Name']||""}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{scope.row[scope.column.property+'Name']||""}}</el-tag></template>
 				</el-table-column>
 			</el-table>
 		</el-row>

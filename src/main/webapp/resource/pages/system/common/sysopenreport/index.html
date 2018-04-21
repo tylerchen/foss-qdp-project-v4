@@ -34,10 +34,10 @@
 				<el-table-column :fixed="true" prop="name" label="名称" :sortable="true"></el-table-column>
 				<el-table-column :fixed="true" prop="confType" label="配置类别" :sortable="false"></el-table-column>
 				<el-table-column :fixed="true" prop="type1" label="分类 1">
-					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="type2" label="分类 2">
-					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+					<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 			</el-table>
 		</el-row>

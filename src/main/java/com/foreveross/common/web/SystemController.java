@@ -56,6 +56,27 @@ public class SystemController extends BaseController {
 	@Named("systemApplication")
 	SystemApplication systemApplication;
 
+	Boolean validCode = null;
+
+	/**
+	 * 认证码验证
+	 * @param request
+	 * @return
+	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+	 * @since Apr 11, 2018
+	 */
+	private boolean validateCode(HttpServletRequest request) {
+		if (validCode == null) {
+			String temp = ConstantBean.getProperty("auth.login.validcode.enable", "true").trim();
+			validCode = !"false".equalsIgnoreCase(temp);
+		}
+		if (!validCode) {
+			return true;
+		}
+		String code = (String) request.getParameter("validCode");
+		return imageCaptchaApplication.validateForID(request.getSession().getId(), code);
+	}
+
 	@ResponseBody
 	@RequestMapping(path = "/login.do", method = RequestMethod.POST)
 	public ResultBean login(ShiroUser user, HttpServletRequest request, HttpServletResponse response,
@@ -78,8 +99,7 @@ public class SystemController extends BaseController {
 
 		try {
 			{/*认证码验证*/
-				String validCode = (String) request.getParameter("validCode");
-				boolean valid = imageCaptchaApplication.validateForID(request.getSession().getId(), validCode);
+				boolean valid = validateCode(request);
 				if (!valid) {
 					return error("请输入正确的验证码！");
 				}
