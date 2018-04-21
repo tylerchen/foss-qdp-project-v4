@@ -55,8 +55,8 @@ public class OkHttpRestClient implements RestClient {
 					if (input.charset() != null) {
 						mediaType.charset(input.charset());
 					}
-				} 
-					requestBuilder.addHeader(field, value);
+				}
+				requestBuilder.addHeader(field, value);
 			}
 		}
 		// Some servers choke on the default accept string.
