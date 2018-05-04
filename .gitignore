@@ -2,8 +2,9 @@
 *.class
 *.log
 /*.log
-/src/main/webapp/upload
-/src/main/webapp/data
+/src/main/webapp/upload/*
+/src/main/webapp/data/*
+/src/main/webapp/resource/baseproject/*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
