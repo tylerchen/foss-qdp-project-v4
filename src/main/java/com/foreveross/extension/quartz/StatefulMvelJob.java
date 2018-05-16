@@ -11,7 +11,7 @@ import org.quartz.DisallowConcurrentExecution;
 import org.quartz.PersistJobDataAfterExecution;
 
 /**
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @since Oct 10, 2017
  */
 @PersistJobDataAfterExecution

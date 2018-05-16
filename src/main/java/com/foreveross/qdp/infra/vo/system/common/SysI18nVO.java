@@ -8,54 +8,60 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.common;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * 国际化管理 - SysI18nVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "SysI18n")
 @SuppressWarnings("serial")
 public class SysI18nVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 国际化Key **/
-	private String messageKey;
-	/** 国际化内容 **/
-	private String messageContent;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 国际化Key
+     **/
+    private String messageKey;
+    /**
+     * 国际化内容
+     **/
+    private String messageContent;
 
-	public SysI18nVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public SysI18nVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getMessageKey() {
-		return messageKey;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setMessageKey(String messageKey) {
-		this.messageKey = messageKey;
-	}
+    public String getMessageKey() {
+        return messageKey;
+    }
 
-	public String getMessageContent() {
-		return messageContent;
-	}
+    public void setMessageKey(String messageKey) {
+        this.messageKey = messageKey;
+    }
 
-	public void setMessageContent(String messageContent) {
-		this.messageContent = messageContent;
-	}
+    public String getMessageContent() {
+        return messageContent;
+    }
+
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
+    }
 
 
 }

@@ -8,191 +8,228 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.auth;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 菜单管理 - AuthMenuVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "AuthMenu")
 @SuppressWarnings("serial")
 public class AuthMenuVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 菜单名称 **/
-	private String name;
-	/** 资源 **/
-	private String resourceId;
-	/** 一级分类 **/
-	private String type1;
-	/** 二级分类 **/
-	private String type2;
-	/** 父菜单 **/
-	private String parentId;
-	/** 根菜单 **/
-	private String rootId;
-	/** 菜单排序 **/
-	private Integer menuIndex;
-	/** 菜单层次 **/
-	private Integer maxLevel;
-	/** 图标 **/
-	private String ico;
-	/** 描述 **/
-	private String description;
-	/** 修改时间 **/
-	private Date updateTime;
-	/** 创建时间 **/
-	private Date createTime;
-	/** 名称 **/
-	private String resourceIdName;
-	/** resourceIdCode，用于权限中比较特殊的 **/
-	private String resourceIdCode;
-	/** 菜单名称 **/
-	private String parentIdName;
-	/** 菜单名称 **/
-	private String rootIdName;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 菜单名称
+     **/
+    private String name;
+    /**
+     * 资源
+     **/
+    private String resourceId;
+    /**
+     * 一级分类
+     **/
+    private String type1;
+    /**
+     * 二级分类
+     **/
+    private String type2;
+    /**
+     * 父菜单
+     **/
+    private String parentId;
+    /**
+     * 根菜单
+     **/
+    private String rootId;
+    /**
+     * 菜单排序
+     **/
+    private Integer menuIndex;
+    /**
+     * 菜单层次
+     **/
+    private Integer maxLevel;
+    /**
+     * 图标
+     **/
+    private String ico;
+    /**
+     * 描述
+     **/
+    private String description;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
+    /**
+     * 名称
+     **/
+    private String resourceIdName;
+    /**
+     * resourceIdCode，用于权限中比较特殊的
+     **/
+    private String resourceIdCode;
+    /**
+     * 菜单名称
+     **/
+    private String parentIdName;
+    /**
+     * 菜单名称
+     **/
+    private String rootIdName;
 
-	public AuthMenuVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public AuthMenuVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getResourceId() {
-		return resourceId;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setResourceId(String resourceId) {
-		this.resourceId = resourceId;
-	}
+    public String getResourceId() {
+        return resourceId;
+    }
 
-	public String getType1() {
-		return type1;
-	}
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
 
-	public void setType1(String type1) {
-		this.type1 = type1;
-	}
+    public String getType1() {
+        return type1;
+    }
 
-	public String getType2() {
-		return type2;
-	}
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
 
-	public void setType2(String type2) {
-		this.type2 = type2;
-	}
+    public String getType2() {
+        return type2;
+    }
 
-	public String getParentId() {
-		return parentId;
-	}
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
+    public String getParentId() {
+        return parentId;
+    }
 
-	public String getRootId() {
-		return rootId;
-	}
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
 
-	public void setRootId(String rootId) {
-		this.rootId = rootId;
-	}
+    public String getRootId() {
+        return rootId;
+    }
 
-	public Integer getMenuIndex() {
-		return menuIndex;
-	}
+    public void setRootId(String rootId) {
+        this.rootId = rootId;
+    }
 
-	public void setMenuIndex(Integer menuIndex) {
-		this.menuIndex = menuIndex;
-	}
+    public Integer getMenuIndex() {
+        return menuIndex;
+    }
 
-	public Integer getMaxLevel() {
-		return maxLevel;
-	}
+    public void setMenuIndex(Integer menuIndex) {
+        this.menuIndex = menuIndex;
+    }
 
-	public void setMaxLevel(Integer maxLevel) {
-		this.maxLevel = maxLevel;
-	}
+    public Integer getMaxLevel() {
+        return maxLevel;
+    }
 
-	public String getIco() {
-		return ico;
-	}
+    public void setMaxLevel(Integer maxLevel) {
+        this.maxLevel = maxLevel;
+    }
 
-	public void setIco(String ico) {
-		this.ico = ico;
-	}
+    public String getIco() {
+        return ico;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setIco(String ico) {
+        this.ico = ico;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public String getResourceIdName() {
-		return resourceIdName;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setResourceIdName(String resourceIdName) {
-		this.resourceIdName = resourceIdName;
-	}
-	
-	public String getResourceIdCode() {
-		return resourceIdCode;
-	}
+    public String getResourceIdName() {
+        return resourceIdName;
+    }
 
-	public void setResourceIdCode(String code) {
-		this.resourceIdCode = code;
-	}
-	public String getParentIdName() {
-		return parentIdName;
-	}
+    public void setResourceIdName(String resourceIdName) {
+        this.resourceIdName = resourceIdName;
+    }
 
-	public void setParentIdName(String parentIdName) {
-		this.parentIdName = parentIdName;
-	}
-	public String getRootIdName() {
-		return rootIdName;
-	}
+    public String getResourceIdCode() {
+        return resourceIdCode;
+    }
 
-	public void setRootIdName(String rootIdName) {
-		this.rootIdName = rootIdName;
-	}
+    public void setResourceIdCode(String code) {
+        this.resourceIdCode = code;
+    }
+
+    public String getParentIdName() {
+        return parentIdName;
+    }
+
+    public void setParentIdName(String parentIdName) {
+        this.parentIdName = parentIdName;
+    }
+
+    public String getRootIdName() {
+        return rootIdName;
+    }
+
+    public void setRootIdName(String rootIdName) {
+        this.rootIdName = rootIdName;
+    }
 
 }

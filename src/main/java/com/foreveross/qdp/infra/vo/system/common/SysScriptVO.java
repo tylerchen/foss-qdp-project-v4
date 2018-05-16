@@ -8,124 +8,145 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.common;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 脚本管理 - SysScriptVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "SysScript")
 @SuppressWarnings("serial")
 public class SysScriptVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 名称 **/
-	private String name;
-	/** 代码 **/
-	private String code;
-	/** 内容 **/
-	private String content;
-	/** 参数 **/
-	private String parameter;
-	/** 分类1 **/
-	private String type1;
-	/** 分类2 **/
-	private String type2;
-	/** 描述 **/
-	private String description;
-	/** 创建时间 **/
-	private Date createTime;
-	/** 更新时间 **/
-	private Date updateTime;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 名称
+     **/
+    private String name;
+    /**
+     * 代码
+     **/
+    private String code;
+    /**
+     * 内容
+     **/
+    private String content;
+    /**
+     * 参数
+     **/
+    private String parameter;
+    /**
+     * 分类1
+     **/
+    private String type1;
+    /**
+     * 分类2
+     **/
+    private String type2;
+    /**
+     * 描述
+     **/
+    private String description;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
+    /**
+     * 更新时间
+     **/
+    private Date updateTime;
 
-	public SysScriptVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public SysScriptVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public String getParameter() {
-		return parameter;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setParameter(String parameter) {
-		this.parameter = parameter;
-	}
+    public String getParameter() {
+        return parameter;
+    }
 
-	public String getType1() {
-		return type1;
-	}
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
+    }
 
-	public void setType1(String type1) {
-		this.type1 = type1;
-	}
+    public String getType1() {
+        return type1;
+    }
 
-	public String getType2() {
-		return type2;
-	}
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
 
-	public void setType2(String type2) {
-		this.type2 = type2;
-	}
+    public String getType2() {
+        return type2;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
 
 }

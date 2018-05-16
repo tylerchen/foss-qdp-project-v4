@@ -8,144 +8,155 @@
  ******************************************************************************/
 package com.foreveross.qdp.application.system.common;
 
-import org.iff.infra.util.mybatis.plugin.Page;
 import com.foreveross.qdp.infra.vo.system.common.SysScriptVO;
+import org.iff.infra.util.mybatis.plugin.Page;
 
 /**
  * SysScript Application.
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 public interface SysScriptApplication {
 
-	/**
-	 * <pre>
-	 * get SysScriptVO by id.
-	 * </pre>
-	 * @param vo
-	 * @return SysScriptVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysScriptVO getSysScript(SysScriptVO vo);
+    /**
+     * <pre>
+     * get SysScriptVO by id.
+     * </pre>
+     *
+     * @param vo
+     * @return SysScriptVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysScriptVO getSysScript(SysScriptVO vo);
 
-	/**
-	 * <pre>
-	 * get SysScriptVO by id.
-	 * </pre>
-	 * @param vo
-	 * @return SysScriptVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysScriptVO getSysScriptById(String id);
-	
-	/**
-	 * <pre>
-	 * page find SysScriptVO.
-	 * </pre>
-	 * @param vo conditions
-	 * @param page page setting
-	 * @return Page
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	Page pageFindSysScript(SysScriptVO vo, Page page);
-	
-	/**
-	 * <pre>
-	 * page find SysScript Map.
-	 * </pre>
-	 * @param vo conditions
-	 * @param page page setting
-	 * @return Page
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	Page pageFindSysScriptMap(SysScriptVO vo, Page page);
+    /**
+     * <pre>
+     * get SysScriptVO by id.
+     * </pre>
+     *
+     * @param vo
+     * @return SysScriptVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysScriptVO getSysScriptById(String id);
 
-	/**
-	 * <pre>
-	 * add SysScript.
-	 * </pre>
-	 * @param vo
-	 * @return SysScriptVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysScriptVO addSysScript(SysScriptVO vo);
-	
-	/**
-	 * <pre>
-	 * update SysScript.
-	 * </pre>
-	 * @param vo
-	 * @return SysScriptVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysScriptVO updateSysScript(SysScriptVO vo);
+    /**
+     * <pre>
+     * page find SysScriptVO.
+     * </pre>
+     *
+     * @param vo   conditions
+     * @param page page setting
+     * @return Page
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    Page pageFindSysScript(SysScriptVO vo, Page page);
 
-	/**
-	 * <pre>
-	 * remove SysScript.
-	 * </pre>
-	 * @param vo conditions.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysScript(SysScriptVO vo);
-	
-	/**
-	 * <pre>
-	 * remove SysScript.
-	 * </pre>
-	 * @param id.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysScriptById(String id);
-	
-	/**
-	 * <pre>
-	 * remove SysScript.
-	 * </pre>
-	 * @param ids.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysScriptByIds(String[] ids);
-	
-	
-	/**
-	 * <pre>
-	 * get SysScript by unique name
-	 * </pre>
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 */
-	SysScriptVO getByName(String name);
-	
-	/**
-	 * <pre>
-	 * get SysScript by unique code
-	 * </pre>
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 */
-	SysScriptVO getByCode(String code);
-	
-	
-	
+    /**
+     * <pre>
+     * page find SysScript Map.
+     * </pre>
+     *
+     * @param vo   conditions
+     * @param page page setting
+     * @return Page
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    Page pageFindSysScriptMap(SysScriptVO vo, Page page);
+
+    /**
+     * <pre>
+     * add SysScript.
+     * </pre>
+     *
+     * @param vo
+     * @return SysScriptVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysScriptVO addSysScript(SysScriptVO vo);
+
+    /**
+     * <pre>
+     * update SysScript.
+     * </pre>
+     *
+     * @param vo
+     * @return SysScriptVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysScriptVO updateSysScript(SysScriptVO vo);
+
+    /**
+     * <pre>
+     * remove SysScript.
+     * </pre>
+     *
+     * @param vo conditions.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysScript(SysScriptVO vo);
+
+    /**
+     * <pre>
+     * remove SysScript.
+     * </pre>
+     *
+     * @param id.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysScriptById(String id);
+
+    /**
+     * <pre>
+     * remove SysScript.
+     * </pre>
+     *
+     * @param ids.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysScriptByIds(String[] ids);
+
+
+    /**
+     * <pre>
+     * get SysScript by unique name
+     * </pre>
+     *
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     */
+    SysScriptVO getByName(String name);
+
+    /**
+     * <pre>
+     * get SysScript by unique code
+     * </pre>
+     *
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     */
+    SysScriptVO getByCode(String code);
+
+
 }

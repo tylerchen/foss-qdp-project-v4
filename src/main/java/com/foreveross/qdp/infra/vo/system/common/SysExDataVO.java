@@ -8,104 +8,121 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.common;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 扩展数据管理 - SysExDataVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "SysExData")
 @SuppressWarnings("serial")
 public class SysExDataVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 表名 **/
-	private String refTable;
-	/** 关联主键 **/
-	private String refId;
-	/** 字段名称 **/
-	private String colName;
-	/** 字段值 **/
-	private String colValue;
-	/** 描述 **/
-	private String description;
-	/** 修改时间 **/
-	private Date updateTime;
-	/** 创建时间 **/
-	private Date createTime;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 表名
+     **/
+    private String refTable;
+    /**
+     * 关联主键
+     **/
+    private String refId;
+    /**
+     * 字段名称
+     **/
+    private String colName;
+    /**
+     * 字段值
+     **/
+    private String colValue;
+    /**
+     * 描述
+     **/
+    private String description;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
 
-	public SysExDataVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public SysExDataVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getRefTable() {
-		return refTable;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setRefTable(String refTable) {
-		this.refTable = refTable;
-	}
+    public String getRefTable() {
+        return refTable;
+    }
 
-	public String getRefId() {
-		return refId;
-	}
+    public void setRefTable(String refTable) {
+        this.refTable = refTable;
+    }
 
-	public void setRefId(String refId) {
-		this.refId = refId;
-	}
+    public String getRefId() {
+        return refId;
+    }
 
-	public String getColName() {
-		return colName;
-	}
+    public void setRefId(String refId) {
+        this.refId = refId;
+    }
 
-	public void setColName(String colName) {
-		this.colName = colName;
-	}
+    public String getColName() {
+        return colName;
+    }
 
-	public String getColValue() {
-		return colValue;
-	}
+    public void setColName(String colName) {
+        this.colName = colName;
+    }
 
-	public void setColValue(String colValue) {
-		this.colValue = colValue;
-	}
+    public String getColValue() {
+        return colValue;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setColValue(String colValue) {
+        this.colValue = colValue;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
 
 }

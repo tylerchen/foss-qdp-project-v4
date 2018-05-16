@@ -8,94 +8,109 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.log;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 访问日志 - LogAccessVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "LogAccess")
 @SuppressWarnings("serial")
 public class LogAccessVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 类型 **/
-	private String type;
-	/** 访问者 **/
-	private String user;
-	/** 来源 **/
-	private String source;
-	/** 目标 **/
-	private String target;
-	/** 创建时间 **/
-	private Date createTime;
-	/** 修改时间 **/
-	private Date updateTime;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 类型
+     **/
+    private String type;
+    /**
+     * 访问者
+     **/
+    private String user;
+    /**
+     * 来源
+     **/
+    private String source;
+    /**
+     * 目标
+     **/
+    private String target;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
 
-	public LogAccessVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public LogAccessVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getUser() {
-		return user;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+    public String getUser() {
+        return user;
+    }
 
-	public String getSource() {
-		return source;
-	}
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+    public String getSource() {
+        return source;
+    }
 
-	public String getTarget() {
-		return target;
-	}
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    public String getTarget() {
+        return target;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setTarget(String target) {
+        this.target = target;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
 
 }

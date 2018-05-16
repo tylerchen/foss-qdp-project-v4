@@ -8,92 +8,108 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.auth;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 组织用户 - AuthOrganizationUserVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "AuthOrganizationUser")
 @SuppressWarnings("serial")
 public class AuthOrganizationUserVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 用户 **/
-	private String userId;
-	/** 组织机构 **/
-	private String organizationId;
-	/** 修改时间 **/
-	private Date updateTime;
-	/** 创建时间 **/
-	private Date createTime;
-	/** 用户名称 **/
-	private String userIdName;
-	/** 组织机构名称 **/
-	private String organizationIdName;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 用户
+     **/
+    private String userId;
+    /**
+     * 组织机构
+     **/
+    private String organizationId;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
+    /**
+     * 用户名称
+     **/
+    private String userIdName;
+    /**
+     * 组织机构名称
+     **/
+    private String organizationIdName;
 
-	public AuthOrganizationUserVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public AuthOrganizationUserVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public String getOrganizationId() {
-		return organizationId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
-	}
+    public String getOrganizationId() {
+        return organizationId;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public String getUserIdName() {
-		return userIdName;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setUserIdName(String userIdName) {
-		this.userIdName = userIdName;
-	}
-	public String getOrganizationIdName() {
-		return organizationIdName;
-	}
+    public String getUserIdName() {
+        return userIdName;
+    }
 
-	public void setOrganizationIdName(String organizationIdName) {
-		this.organizationIdName = organizationIdName;
-	}
+    public void setUserIdName(String userIdName) {
+        this.userIdName = userIdName;
+    }
+
+    public String getOrganizationIdName() {
+        return organizationIdName;
+    }
+
+    public void setOrganizationIdName(String organizationIdName) {
+        this.organizationIdName = organizationIdName;
+    }
 
 }

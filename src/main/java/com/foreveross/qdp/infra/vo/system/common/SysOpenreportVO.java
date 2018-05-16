@@ -8,114 +8,133 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.common;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 报表管理 - SysOpenreportVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "SysOpenreport")
 @SuppressWarnings("serial")
 public class SysOpenreportVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 名称 **/
-	private String name;
-	/** 配置类别 **/
-	private String confType;
-	/** XML内容 **/
-	private String xmlContent;
-	/** 分类1 **/
-	private String type1;
-	/** 分类2 **/
-	private String type2;
-	/** 描述 **/
-	private String description;
-	/** 修改时间 **/
-	private Date updateTime;
-	/** 创建时间 **/
-	private Date createTime;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 名称
+     **/
+    private String name;
+    /**
+     * 配置类别
+     **/
+    private String confType;
+    /**
+     * XML内容
+     **/
+    private String xmlContent;
+    /**
+     * 分类1
+     **/
+    private String type1;
+    /**
+     * 分类2
+     **/
+    private String type2;
+    /**
+     * 描述
+     **/
+    private String description;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
 
-	public SysOpenreportVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public SysOpenreportVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getConfType() {
-		return confType;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setConfType(String confType) {
-		this.confType = confType;
-	}
+    public String getConfType() {
+        return confType;
+    }
 
-	public String getXmlContent() {
-		return xmlContent;
-	}
+    public void setConfType(String confType) {
+        this.confType = confType;
+    }
 
-	public void setXmlContent(String xmlContent) {
-		this.xmlContent = xmlContent;
-	}
+    public String getXmlContent() {
+        return xmlContent;
+    }
 
-	public String getType1() {
-		return type1;
-	}
+    public void setXmlContent(String xmlContent) {
+        this.xmlContent = xmlContent;
+    }
 
-	public void setType1(String type1) {
-		this.type1 = type1;
-	}
+    public String getType1() {
+        return type1;
+    }
 
-	public String getType2() {
-		return type2;
-	}
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
 
-	public void setType2(String type2) {
-		this.type2 = type2;
-	}
+    public String getType2() {
+        return type2;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
 
 }

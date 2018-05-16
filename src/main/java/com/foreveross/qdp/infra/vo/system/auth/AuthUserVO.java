@@ -8,164 +8,193 @@
  ******************************************************************************/
 package com.foreveross.qdp.infra.vo.system.auth;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * 用户管理 - AuthUserVO
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 @XmlRootElement(name = "AuthUser")
 @SuppressWarnings("serial")
 public class AuthUserVO implements Serializable {
 
-	/** 主键 **/
-	private String id;
-	/** 用户名称 **/
-	private String name;
-	/** 状态 **/
-	private String status;
-	/** 类型 **/
-	private String type;
-	/** 联系电话 **/
-	private String tel;
-	/** 联系EMAIL **/
-	private String email;
-	/** 性别 **/
-	private String sex;
-	/** 生日 **/
-	private Date birthday;
-	/** 家庭地址 **/
-	private String familyAddr;
-	/** 工作地址 **/
-	private String workAddr;
-	/** 工作电话 **/
-	private String workTel;
-	/** 描述 **/
-	private String description;
-	/** 修改时间 **/
-	private Date updateTime;
-	/** 创建时间 **/
-	private Date createTime;
+    /**
+     * 主键
+     **/
+    private String id;
+    /**
+     * 用户名称
+     **/
+    private String name;
+    /**
+     * 状态
+     **/
+    private String status;
+    /**
+     * 类型
+     **/
+    private String type;
+    /**
+     * 联系电话
+     **/
+    private String tel;
+    /**
+     * 联系EMAIL
+     **/
+    private String email;
+    /**
+     * 性别
+     **/
+    private String sex;
+    /**
+     * 生日
+     **/
+    private Date birthday;
+    /**
+     * 家庭地址
+     **/
+    private String familyAddr;
+    /**
+     * 工作地址
+     **/
+    private String workAddr;
+    /**
+     * 工作电话
+     **/
+    private String workTel;
+    /**
+     * 描述
+     **/
+    private String description;
+    /**
+     * 修改时间
+     **/
+    private Date updateTime;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
 
-	public AuthUserVO() {
-	}
-	public String getId() {
-		return id;
-	}
+    public AuthUserVO() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getTel() {
-		return tel;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getSex() {
-		return sex;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    public String getSex() {
+        return sex;
+    }
 
-	public Date getBirthday() {
-		return birthday;
-	}
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+    public Date getBirthday() {
+        return birthday;
+    }
 
-	public String getFamilyAddr() {
-		return familyAddr;
-	}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	public void setFamilyAddr(String familyAddr) {
-		this.familyAddr = familyAddr;
-	}
+    public String getFamilyAddr() {
+        return familyAddr;
+    }
 
-	public String getWorkAddr() {
-		return workAddr;
-	}
+    public void setFamilyAddr(String familyAddr) {
+        this.familyAddr = familyAddr;
+    }
 
-	public void setWorkAddr(String workAddr) {
-		this.workAddr = workAddr;
-	}
+    public String getWorkAddr() {
+        return workAddr;
+    }
 
-	public String getWorkTel() {
-		return workTel;
-	}
+    public void setWorkAddr(String workAddr) {
+        this.workAddr = workAddr;
+    }
 
-	public void setWorkTel(String workTel) {
-		this.workTel = workTel;
-	}
+    public String getWorkTel() {
+        return workTel;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setWorkTel(String workTel) {
+        this.workTel = workTel;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
 
 }

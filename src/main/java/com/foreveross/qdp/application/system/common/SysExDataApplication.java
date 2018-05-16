@@ -8,126 +8,134 @@
  ******************************************************************************/
 package com.foreveross.qdp.application.system.common;
 
-import org.iff.infra.util.mybatis.plugin.Page;
 import com.foreveross.qdp.infra.vo.system.common.SysExDataVO;
+import org.iff.infra.util.mybatis.plugin.Page;
 
 /**
  * SysExData Application.
- * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
- * @since 2017-11-09
+ *
+ * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
  * @version 1.0.0
  * auto generate by qdp v3.0.
+ * @since 2017-11-09
  */
 public interface SysExDataApplication {
 
-	/**
-	 * <pre>
-	 * get SysExDataVO by id.
-	 * </pre>
-	 * @param vo
-	 * @return SysExDataVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysExDataVO getSysExData(SysExDataVO vo);
+    /**
+     * <pre>
+     * get SysExDataVO by id.
+     * </pre>
+     *
+     * @param vo
+     * @return SysExDataVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysExDataVO getSysExData(SysExDataVO vo);
 
-	/**
-	 * <pre>
-	 * get SysExDataVO by id.
-	 * </pre>
-	 * @param vo
-	 * @return SysExDataVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysExDataVO getSysExDataById(String id);
-	
-	/**
-	 * <pre>
-	 * page find SysExDataVO.
-	 * </pre>
-	 * @param vo conditions
-	 * @param page page setting
-	 * @return Page
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	Page pageFindSysExData(SysExDataVO vo, Page page);
-	
-	/**
-	 * <pre>
-	 * page find SysExData Map.
-	 * </pre>
-	 * @param vo conditions
-	 * @param page page setting
-	 * @return Page
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	Page pageFindSysExDataMap(SysExDataVO vo, Page page);
+    /**
+     * <pre>
+     * get SysExDataVO by id.
+     * </pre>
+     *
+     * @param vo
+     * @return SysExDataVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysExDataVO getSysExDataById(String id);
 
-	/**
-	 * <pre>
-	 * add SysExData.
-	 * </pre>
-	 * @param vo
-	 * @return SysExDataVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysExDataVO addSysExData(SysExDataVO vo);
-	
-	/**
-	 * <pre>
-	 * update SysExData.
-	 * </pre>
-	 * @param vo
-	 * @return SysExDataVO
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	SysExDataVO updateSysExData(SysExDataVO vo);
+    /**
+     * <pre>
+     * page find SysExDataVO.
+     * </pre>
+     *
+     * @param vo   conditions
+     * @param page page setting
+     * @return Page
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    Page pageFindSysExData(SysExDataVO vo, Page page);
 
-	/**
-	 * <pre>
-	 * remove SysExData.
-	 * </pre>
-	 * @param vo conditions.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysExData(SysExDataVO vo);
-	
-	/**
-	 * <pre>
-	 * remove SysExData.
-	 * </pre>
-	 * @param id.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysExDataById(String id);
-	
-	/**
-	 * <pre>
-	 * remove SysExData.
-	 * </pre>
-	 * @param ids.
-	 * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a> 
-	 * @since 2017-11-09
-	 * auto generate by qdp v3.0.
-	 */
-	void removeSysExDataByIds(String[] ids);
-	
-	
-	
-	
+    /**
+     * <pre>
+     * page find SysExData Map.
+     * </pre>
+     *
+     * @param vo   conditions
+     * @param page page setting
+     * @return Page
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    Page pageFindSysExDataMap(SysExDataVO vo, Page page);
+
+    /**
+     * <pre>
+     * add SysExData.
+     * </pre>
+     *
+     * @param vo
+     * @return SysExDataVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysExDataVO addSysExData(SysExDataVO vo);
+
+    /**
+     * <pre>
+     * update SysExData.
+     * </pre>
+     *
+     * @param vo
+     * @return SysExDataVO
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    SysExDataVO updateSysExData(SysExDataVO vo);
+
+    /**
+     * <pre>
+     * remove SysExData.
+     * </pre>
+     *
+     * @param vo conditions.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysExData(SysExDataVO vo);
+
+    /**
+     * <pre>
+     * remove SysExData.
+     * </pre>
+     *
+     * @param id.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysExDataById(String id);
+
+    /**
+     * <pre>
+     * remove SysExData.
+     * </pre>
+     *
+     * @param ids.
+     * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
+     * @since 2017-11-09
+     * auto generate by qdp v3.0.
+     */
+    void removeSysExDataByIds(String[] ids);
+
+
 }
