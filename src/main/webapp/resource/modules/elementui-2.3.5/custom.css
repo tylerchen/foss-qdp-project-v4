@@ -6,9 +6,13 @@
 	text-align: right;
 }
 
-body {
+html, body, #app {
+	height: 100%;
 	padding: 0;
-	margin: 1px;
+	margin: 0;
+}
+body{
+	font-size: 12px;
 }
 /*=========elementui==========*/
 .el-table--custom .cell {
@@ -21,15 +25,15 @@ body {
 }
 
 .el-form-item--table {
-	
+
 }
 
 .el-form-item--title {
-	
+
 }
 
 .el-form-item--content {
-	
+
 }
 
 .el-form-item--table td {
@@ -60,7 +64,7 @@ body {
 }
 
 .el-tree.height0 {
-	
+
 }
 
 .el-tree.height1 {
@@ -134,13 +138,13 @@ body {
 }
 
 .el-menu, .el-submenu .el-menu {
-	
+
 }
 
 .el-submenu__title, .el-submenu .el-menu-item, .qdp-el-hmenu .el-menu-item {
 	margin-right: 5px;
-	height: 35px;
-	line-height: 35px;
+	height: 45px;
+	line-height: 45px;
 }
 
 .el-table td, .el-table th {
@@ -202,18 +206,20 @@ body {
 	font-size: 12px;
 }
 
-.qdp-list-layout .qdp-list-content {
-	margin: 5px 0px 2.5px 0px;
-	padding-left: 3px;
-	padding-right: 3px;
+.qdp-list-layout .qdp-list-content{
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #dce0e5;
 }
 
 .qdp-list-layout .qdp-el-action{
-	margin-left: 3px;
-	margin-right: 3px;
-	padding: 3px;
-	border: 1px solid #dfe6ec;
-	background: #eef1f6;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.qdp-list-layout .qdp-grid{
+  margin-bottom: 0;
+  border-bottom: 0;
 }
 .qdp-el-action i{
 	color: #8391a5;
@@ -247,7 +253,7 @@ body {
 }
 
 .qdp-fold i{
-	color: #bfcbd9;	
+	color: #bfcbd9;
 }
 
 .qdp-add-form .el-input, .qdp-add-form .el-input-number, .qdp-edit-form .el-input, .qdp-edit-form .el-input-number, .qdp-add-form .qdp-form-item--content, .qdp-edit-form .qdp-form-item--content{
@@ -579,3 +585,30 @@ ul.CodeMirror-hints {
 	overflow: auto;
 }
 /*---------------------------LOGIN FORM END----------------------------*/
+
+/*清除浮动*/
+.f-con {
+	zoom: 1;
+}
+
+.f-con::after {
+	display: block;
+	visibility: hidden;
+	clear: both;
+	height: 0;
+	content: '.';
+}
+.f-left{
+	float: left;
+}
+.f-right{
+	float: right;
+}
+.v-center {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
