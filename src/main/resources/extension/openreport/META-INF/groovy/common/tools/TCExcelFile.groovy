@@ -5,16 +5,16 @@
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+ notice, this list of conditions and the following disclaimer.
  2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
  3. All advertising materials mentioning features or use of this software
-    must display the following acknowledgement:
-    This product includes software developed by the ASF.
+ must display the following acknowledgement:
+ This product includes software developed by the ASF.
  4. Neither the name of the ASF nor the
-    names of its contributors may be used to endorse or promote products
-    derived from this software without specific prior written permission.
+ names of its contributors may be used to endorse or promote products
+ derived from this software without specific prior written permission.
 
  THIS SOFTWARE IS PROVIDED BY Andre Steingress ''AS IS'' AND ANY
  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -37,35 +37,23 @@ package org.iff.groovy.util
  *
  * <pre>
  *
- * Workbook workbook = new ExcelBuilder().workbook {
- *
+ * Workbook workbook = new ExcelBuilder().workbook {*
  * // define cell styles and fonts
- * styles {
- *   font("bold")  { Font font ->
+ * styles {*   font("bold")  { Font font ->
  *       font.setBoldweight(Font.BOLDWEIGHT_BOLD)
- *   }
- *
+ *}*
  *   cellStyle ("header")  { CellStyle cellStyle ->
  *       cellStyle.setAlignment(CellStyle.ALIGN_CENTER)
- *   }
- * }
- *
+ *}*}*
  * // declare the data to use
- * data {
- *   sheet ("Export")  {
- *       header(["Column1", "Column2", "Column3"])
+ * data {*   sheet ("Export")  {*       header(["Column1", "Column2", "Column3"])
  *
  *       row(["a", "b", "c"])
- *   }
- * }
- *
+ *}*}*
  * // apply link styles with data through 'commands'
- * commands {
- *     applyCellStyle(cellStyle: "header", font: "bold", rows: 1, columns: 1..3)
+ * commands {*     applyCellStyle(cellStyle: "header", font: "bold", rows: 1, columns: 1..3)
  *     mergeCells(rows: 1, columns: 1..3)
- * }
- * }
- *
+ *}*}*
  * </pre>
  *
  * @author me@andresteingress.com
@@ -91,24 +79,24 @@ class ExcelBuilder {
         closure.call()
         workbook
     }
-	
-	def styles(closure) {
-		assert closure
-		closure.delegate = this
-		closure.call()
-	}
-	
-	def data(closure) {
-		assert closure
-		closure.delegate = this
-		closure.call()
-	}
-	
-	def commands(closure) {
-		assert closure
-		closure.delegate = this
-		closure.call()
-	}
+
+    def styles(closure) {
+        assert closure
+        closure.delegate = this
+        closure.call()
+    }
+
+    def data(closure) {
+        assert closure
+        closure.delegate = this
+        closure.call()
+    }
+
+    def commands(closure) {
+        assert closure
+        closure.delegate = this
+        closure.call()
+    }
 
     def sheet(name, closure) {
         assert workbook
@@ -121,7 +109,7 @@ class ExcelBuilder {
         closure.call()
     }
 
-    def cellStyle(cellStyleId, closure)  {
+    def cellStyle(cellStyleId, closure) {
         assert workbook
         assert cellStyleId
         assert !cellStyles.containsKey(cellStyleId)
@@ -132,7 +120,7 @@ class ExcelBuilder {
         closure.call(cellStyle)
     }
 
-    def font(fontId, closure)  {
+    def font(fontId, closure) {
         assert workbook
         assert fontId
         assert !fonts.containsKey(fontId)
@@ -143,7 +131,7 @@ class ExcelBuilder {
         closure.call(font)
     }
 
-    def applyCellStyle(map)  {
+    def applyCellStyle(map) {
         assert workbook
 
         def cellStyleId = map.cellStyle
@@ -157,43 +145,43 @@ class ExcelBuilder {
         assert cellStyleId || fontId || dataFormat
         assert rows && (rows in Number || rows instanceof Range<Number>)
         assert cells && (cells in Number || cells instanceof Range<Number>)
-		
-		cellStyleId = (cellStyleId && !cellStyles.containsKey(cellStyleId)) ? null : cellStyleId
-		fontId = (fontId && !fonts.containsKey(fontId)) ? null : fontId
-		dataFormat = (dataFormat && !(dataFormat instanceof String)) ? null : dataFormat
-		sheetName = (sheetName && !(sheetName instanceof String)) ? null : sheetName
-		colName = (colName && !(colName instanceof String)) ? null : colName
+
+        cellStyleId = (cellStyleId && !cellStyles.containsKey(cellStyleId)) ? null : cellStyleId
+        fontId = (fontId && !fonts.containsKey(fontId)) ? null : fontId
+        dataFormat = (dataFormat && !(dataFormat instanceof String)) ? null : dataFormat
+        sheetName = (sheetName && !(sheetName instanceof String)) ? null : sheetName
+        colName = (colName && !(colName instanceof String)) ? null : colName
 
         def sheet = sheetName ? workbook.getSheet(sheetName as String) : workbook.getSheetAt(0)
         assert sheet
 
-		rows = rows == -1 ? [1..rowsCounter] : rows
-		rows = rows in  Number ? [rows] : rows
+        rows = rows == -1 ? [1..rowsCounter] : rows
+        rows = rows in Number ? [rows] : rows
 
         rows.each { Number rowIndex ->
             assert rowIndex
 
             def row = sheet.getRow(rowIndex.intValue() - 1)
-            if (!row){
-				return
-			}
+            if (!row) {
+                return
+            }
 
-            cells  = (cells == -1)  ? [row.firstCellNum..row.lastCellNum] : cells
-            rows = (rows in  Number) ? [rows] : rows
+            cells = (cells == -1) ? [row.firstCellNum..row.lastCellNum] : cells
+            rows = (rows in Number) ? [rows] : rows
 
             def applyStyleFunc = { cellIndex ->
                 assert cellIndex
 
                 def cell = row.getCell(cellIndex.intValue() - 1)
-                if (!cell){
-					return
-				}
+                if (!cell) {
+                    return
+                }
 
                 if (cellStyleId) {
-					cell.setCellStyle(cellStyles.get(cellStyleId))
+                    cell.setCellStyle(cellStyles.get(cellStyleId))
                 }
                 if (fontId) {
-					cell.getCellStyle().setFont(fonts.get(fontId))
+                    cell.getCellStyle().setFont(fonts.get(fontId))
                 }
                 if (dataFormat) {
                     def df = workbook.createDataFormat()
@@ -205,7 +193,7 @@ class ExcelBuilder {
         }
     }
 
-    def mergeCells(map)  {
+    def mergeCells(map) {
         assert workbook
 
         def rows = map.rows
@@ -220,11 +208,11 @@ class ExcelBuilder {
         sheetName = (sheetName && !(sheetName in String)) ? null : sheetName
 
         def sheet = sheetName ? workbook.getSheet(sheetName as String) : workbook.getSheetAt(0)
-		def cellRangeAddress=org.iff.infra.util.ReflectHelper.getConstructor('org.apache.poi.ss.util.CellRangeAddress','int','int','int','int')
+        def cellRangeAddress = org.iff.infra.util.ReflectHelper.getConstructor('org.apache.poi.ss.util.CellRangeAddress', 'int', 'int', 'int', 'int')
         sheet.addMergedRegion(cellRangeAddress.newInstance((rows.first() - 1) as int, (rows.last() - 1) as int, (cols.first() - 1) as int, (cols.last() - 1) as int))
     }
 
-    def applyColumnWidth(map)  {
+    def applyColumnWidth(map) {
         assert workbook
 
         def cols = map.columns
@@ -244,7 +232,7 @@ class ExcelBuilder {
         }
     }
 
-    def header(names)  {
+    def header(names) {
         assert sheet
         assert names
 
@@ -255,7 +243,7 @@ class ExcelBuilder {
         }
     }
 
-    def emptyRow()  {
+    def emptyRow() {
         assert sheet
         sheet.createRow(rowsCounter++ as int)
     }
@@ -265,7 +253,7 @@ class ExcelBuilder {
         assert values
 
         def row = sheet.createRow(rowsCounter++ as int)
-        values.eachWithIndex {value, col ->
+        values.eachWithIndex { value, col ->
             def cell = row.createCell(col)
             switch (value) {
                 case Date: cell.setCellValue((Date) value); break
@@ -278,7 +266,7 @@ class ExcelBuilder {
                         cell.setCellType(cell.CELL_TYPE_FORMULA)
                         cell.setCellFormula(stringValue.substring(1))
                     } else {
-						def hssfRichTextString=org.iff.infra.util.ReflectHelper.getConstructor('org.apache.poi.hssf.usermodel.HSSFRichTextString', 'java.lang.String')
+                        def hssfRichTextString = org.iff.infra.util.ReflectHelper.getConstructor('org.apache.poi.hssf.usermodel.HSSFRichTextString', 'java.lang.String')
                         cell.setCellValue(hssfRichTextString.newInstance(stringValue.toString()))
                     }
                     break
@@ -286,7 +274,7 @@ class ExcelBuilder {
         }
     }
 
-    def getRowCount()  {
+    def getRowCount() {
         assert sheet
         rowsCounter
     }
