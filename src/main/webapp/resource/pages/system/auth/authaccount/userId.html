@@ -2,7 +2,7 @@
 	<div class="qdp-list-layout">
 		<!-- 搜索 -->
 		<el-row class="qdp-list-content" type="flex" justify="start" align="top">
-			<el-form class="qdp-search-form" :model="searchForm" label-width="80px" inline ref="searchForm" @keydown.13.native.stop="onPost('search-form', 'search')">
+			<el-form class="qdp-search-form" :model="searchForm" label-width="100px" inline ref="searchForm" @keydown.13.native.stop="onPost('search-form', 'search')">
 				<el-form-item label="用户名称" prop="name" :show-message="false">
 					<el-input v-model="searchForm.name" placeholder="" size="small"></el-input>
 				</el-form-item>
@@ -30,15 +30,15 @@
 				<el-table-column type="selection" width="35" v-if="multi!=false"></el-table-column>
 							<el-table-column :fixed="true" prop="name" label="用户名称" :sortable="true"></el-table-column>
 							<el-table-column :fixed="true" prop="status" label="状态">
-								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 							<el-table-column :fixed="true" prop="type" label="类型">
-								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 							<el-table-column :fixed="true" prop="tel" label="联系电话" :sortable="false"></el-table-column>
 							<el-table-column :fixed="true" prop="email" label="联系 Email" :sortable="false"></el-table-column>
 							<el-table-column :fixed="true" prop="sex" label="性别">
-								<template slot-scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
+								<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 							</el-table-column>
 			</el-table>
 		</el-row>
