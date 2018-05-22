@@ -721,3 +721,12 @@ iframe{
 .el-table .cell{
   font-size: 12px;
 }
+
+.qdp-list-layout{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.qdp-list-layout .qdp-grid{
+  flex: auto;
+}
