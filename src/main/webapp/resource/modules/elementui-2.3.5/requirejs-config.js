@@ -107,16 +107,20 @@ require([ 'vue', "ELEMENT", 'vuerouter', "vueresource", "vuex", "qdp", "globalst
 		}
 		var route = {
 			//name : (name.charAt(0) == '/' ? name.substring(1) : name).replace(/\//g, "-"),/* convert a/b/c to a-b-c */
-			path : name, component : function(resolve) {
+			path : name,
+			component : function(resolve) {
 				//require([ "pages/" + name ], resolve);
 				require([ "vuel!pages" + (name.charAt(0) == '/' ? '' : '/') + name + ".html" ], resolve);
 			}
 		};
+		if (name == '/dashboard') {
+      route.alias = '/home'
+		}
 		children.length > 0 && (route.children = children);
 		return route;
 	};
 	// 配置路由
-	var routes = [ RouterHelper("/login"), RouterHelper("/home", "account/list") ];
+	var routes = [ RouterHelper("/login"), RouterHelper("/home", "/dashboard", "account/list") ];
 	var hasRoute = {};
 	var router = new VueRouter({
 		mode : 'hash', routes : routes
