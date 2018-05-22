@@ -276,8 +276,7 @@ body{
 .qdp-list-layout .qdp-list-content, .qdp-list-layout .qdp-page{
   padding: 10px;
   background-color: white;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #dce0e5;
+  border-bottom: 1px solid #dce0e5;
 }
 
 .qdp-list-layout .qdp-el-action, .qdp-list-layout .qdp-grid{
@@ -715,4 +714,10 @@ ul.CodeMirror-hints {
 
 iframe{
   border: 0;
+}
+.el-form-item__label{
+  font-size: 12px;
+}
+.el-table th>.cell{
+  font-size: 12px;
 }
