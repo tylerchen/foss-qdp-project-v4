@@ -65,7 +65,7 @@
     </div>
     <div class="home_center">
       <div class="home_left">
-        <el-button type="text" @click="onPost('menu-action','fold')">
+        <el-button type="text" @click="onPost('menu-action','fold')" class="home_left_btn">
           <i class="el-icon-d-arrow-left" :class="{'icon--close': menuFold}"></i>
         </el-button>
         <el-menu class="home_menu"
@@ -282,6 +282,9 @@ define(['vue'], function(Vue) {
   }
   .home_left .el-button{
     width: 100%;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255, 0.2);
+    border-radius: 0;
   }
   .home_left .el-button--text{
     color: white;
@@ -294,6 +297,9 @@ define(['vue'], function(Vue) {
   }
   .home_menu.el-menu{
     border: 0;
+  }
+  .home_menu .el-submenu__title, .home_menu .el-menu-item{
+    /*font-size: 12px;*/
   }
   .home_menu:not(.el-menu--collapse) {
     width: 200px;
