@@ -718,6 +718,6 @@ iframe{
 .el-form-item__label{
   font-size: 12px;
 }
-.el-table th>.cell{
+.el-table .cell{
   font-size: 12px;
 }
