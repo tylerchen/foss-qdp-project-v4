@@ -187,8 +187,10 @@ public class PackTemplateAndFramework {
                     zipPaths.add(f.getAbsolutePath());
                 }
             }
+            String targetDir = StringHelper.pathConcat(projectRoot, "src/main/webapp/resource/baseproject");
+            new File(targetDir).mkdirs();
             ZipHelper.zip(zipPaths.toArray(new String[zipPaths.size()]),
-                    StringHelper.pathConcat(projectRoot, "src/main/webapp/resource/baseproject", "qdp-4.0.0.zip"),
+                    StringHelper.pathConcat(targetDir, "qdp-4.0.0.zip"),
                     null);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -310,8 +312,9 @@ public class PackTemplateAndFramework {
                     zipPaths.add(f.getAbsolutePath());
                 }
             }
-            ZipHelper.zip(zipPaths.toArray(new String[zipPaths.size()]), StringHelper.pathConcat(projectRoot,
-                    "src/main/webapp/resource/baseproject", "qdp-simpleauth-4.0.0.zip"), null);
+            String targetDir = StringHelper.pathConcat(projectRoot, "src/main/webapp/resource/baseproject");
+            new File(targetDir).mkdirs();
+            ZipHelper.zip(zipPaths.toArray(new String[zipPaths.size()]), StringHelper.pathConcat(targetDir, "qdp-simpleauth-4.0.0.zip"), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
