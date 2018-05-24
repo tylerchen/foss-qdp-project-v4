@@ -1,102 +1,111 @@
 <template>
-  <div class="login-form">
-    <div class="login-form_title">
-      <img src="../modules/elementui-2.3.5/img/logo.png" alt="">
+    <div class="login-form">
+        <div class="login-form_title">
+            <img src="../modules/elementui-2.3.5/img/logo1.png" alt="" height="38px">
+        </div>
+        <div class="login-form_form f-con">
+            <div class="login-form_form-left f-left v-center">
+                <el-row type="flex" justify="start" align="middle" class="dashboard_content">
+                    <el-col :span="24" class="dashboard_text">
+                        <h1>恒拓Tigon平台系统V4.0</h1>
+                        <h3>企业级微服务平台</h3>
+                        <h5><el-button size="mini" type="success" round>正式上线</el-button></h5>
+                        <img src="../modules/elementui-2.3.5/img/s_r.png" alt="">
+                    </el-col>
+                </el-row>
+            </div>
+            <div class="login-form_form-right f-right v-center">
+                <div class="login-form_form-title">用户登录</div>
+                <el-form ref="loginForm" :model="loginForm"
+                         :rules="ruleLoginForm" @keydown.enter.stop.native="onEnter"
+                         @keyup.enter.stop.native="doNothing">
+                    <el-form-item prop="loginId">
+                        <el-input type="text" v-model="loginForm.loginId" placeholder="loginId">
+                            <i class="el-icon-ion-ios-person-outline login-icon" slot="prepend"></i>
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item prop="loginPasswd">
+                        <el-input type="password" v-model="loginForm.loginPasswd" placeholder="Password">
+                            <i class="el-icon-ion-ios-locked-outline login-icon" slot="prepend"></i>
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item prop="validCode">
+                        <el-input type="text" v-model="loginForm.validCode" placeholder="ValidateCode"
+                                  @keyup.enter="handleSubmit">
+                            <i class="el-icon-ion-ios-locked-outline login-icon" slot="prepend"></i>
+                            <img slot="append" height="22px"
+                                 width="40px"
+                                 style="vertical-align: middle;"
+                                 :src.sync="validCodeUrl"
+                                 @click="changeValidCode"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click.native="handleSubmit">登录</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
+        <div class="login-form_footer">2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>
+        <!--<div class="layout">
+            <div class="layout-ceiling">
+                <el-row type="flex" justify="center" align="middle">
+                       <div class="qdp-logo">QDP登录</div>
+                   </el-row>
+            </div>
+            <div class="form-height">
+                <el-row type="flex" justify="center" align="middle">
+                    <el-col :span="9">
+                        <p class="form-height"></p>
+                    </el-col>
+                    <el-col :span="6" class="v-middle">
+                        <el-form ref="loginForm" :model="loginForm" :rules="ruleLoginForm" @keydown.enter.stop.native="onEnter" @keyup.enter.stop.native="doNothing">
+                            <el-row>
+                                <el-form-item prop="loginId">
+                                    <el-input type="text" v-model="loginForm.loginId" placeholder="loginId">
+                                        <i class="el-icon-ion-ios-person-outline icon&#45;&#45;primary" slot="prepend"></i>
+                                    </el-input>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item prop="loginPasswd">
+                                    <el-input type="password" v-model="loginForm.loginPasswd" placeholder="Password">
+                                        <i class="el-icon-ion-ios-locked-outline" slot="prepend"></i>
+                                    </el-input>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item prop="validCode">
+                                    <el-input type="text" v-model="loginForm.validCode" placeholder="ValidateCode" @keyup.enter="handleSubmit">
+                                    <i class="el-icon-ion-ios-locked-outline" slot="prepend"></i> <img slot="append" height="22px" width="40px" style="vertical-align: middle;" :src.sync="validCodeUrl" @click="changeValidCode"> </el-input>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item>
+                                    <el-row type="flex" justify="center" align="middle">
+                                        <el-button type="primary" @click.native="handleSubmit">登录</el-button>
+                                    </el-row>
+                                </el-form-item>
+                            </el-row>
+                        </el-form>
+                    </el-col>
+                    <el-col :span="9"></el-col>
+                </el-row>
+            </div>
+            <div>
+                <el-row type="flex" justify="center" align="middle">
+                       <el-row type="flex" justify="center" align="middle">
+                        <div class="el-card box-card" style="background-color: #58B7FF; padding: 15px 40px;">
+                            <a target="_blank" href="../baseproject/qdp-4.0.0.zip" style="text-decoration-line: unset;color: white;">下载工程模板（完整）</a>
+                        </div>
+                        <div class="el-card box-card" style="background-color: #67C23A; padding: 15px 40px;">
+                            <a target="_blank" href="../baseproject/qdp-simpleauth-4.0.0.zip" style="text-decoration-line: unset;color: white;">下载工程模板（无组织权限）</a>
+                        </div>
+                       </el-row>
+                </el-row>
+            </div>
+            <div class="layout-copy">2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>
+        </div>-->
     </div>
-    <div class="login-form_form f-con">
-      <div class="login-form_form-left f-left v-center">
-        <img src="../modules/elementui-2.3.5/img/text.png" alt="">
-      </div>
-      <div class="login-form_form-right f-right v-center">
-        <div class="login-form_form-title">用户登录</div>
-        <el-form ref="loginForm" :model="loginForm"
-                 :rules="ruleLoginForm" @keydown.enter.stop.native="onEnter" @keyup.enter.stop.native="doNothing">
-          <el-form-item prop="loginId">
-            <el-input type="text" v-model="loginForm.loginId" placeholder="loginId">
-              <i class="el-icon-ion-ios-person-outline icon&#45;&#45;primary" slot="prepend"></i>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="loginPasswd">
-            <el-input type="password" v-model="loginForm.loginPasswd" placeholder="Password">
-              <i class="el-icon-ion-ios-locked-outline" slot="prepend"></i>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="validCode">
-            <el-input type="text" v-model="loginForm.validCode" placeholder="ValidateCode" @keyup.enter="handleSubmit">
-              <i class="el-icon-ion-ios-locked-outline" slot="prepend"></i>
-              <img slot="append" height="22px"
-                   width="40px"
-                   style="vertical-align: middle;"
-                   :src.sync="validCodeUrl"
-                   @click="changeValidCode"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click.native="handleSubmit">登录</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-    </div>
-    <div class="login-form_footer">2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>
-    <!--<div class="layout">
-        <div class="layout-ceiling">
-            <el-row type="flex" justify="center" align="middle">
-           		<div class="qdp-logo">QDP登录</div>
-           	</el-row>
-        </div>
-        <div class="form-height">
-            <el-row type="flex" justify="center" align="middle">
-                <el-col :span="9">
-                    <p class="form-height"></p>
-                </el-col>
-                <el-col :span="6" class="v-middle">
-                    <el-form ref="loginForm" :model="loginForm" :rules="ruleLoginForm" @keydown.enter.stop.native="onEnter" @keyup.enter.stop.native="doNothing">
-                        <el-row>
-                            <el-form-item prop="loginId">
-                                <el-input type="text" v-model="loginForm.loginId" placeholder="loginId">
-                                	<i class="el-icon-ion-ios-person-outline icon&#45;&#45;primary" slot="prepend"></i>
-                                </el-input>
-                            </el-form-item>
-                        </el-row>
-                        <el-row>
-                            <el-form-item prop="loginPasswd">
-                                <el-input type="password" v-model="loginForm.loginPasswd" placeholder="Password">
-                                	<i class="el-icon-ion-ios-locked-outline" slot="prepend"></i>
-                                </el-input>
-                            </el-form-item>
-                        </el-row>
-                        <el-row>
-                            <el-form-item prop="validCode">
-                                <el-input type="text" v-model="loginForm.validCode" placeholder="ValidateCode" @keyup.enter="handleSubmit">
-                                <i class="el-icon-ion-ios-locked-outline" slot="prepend"></i> <img slot="append" height="22px" width="40px" style="vertical-align: middle;" :src.sync="validCodeUrl" @click="changeValidCode"> </el-input>
-                            </el-form-item>
-                        </el-row>
-                        <el-row>
-                            <el-form-item>
-                                <el-row type="flex" justify="center" align="middle">
-                                	<el-button type="primary" @click.native="handleSubmit">登录</el-button>
-                                </el-row>
-                            </el-form-item>
-                        </el-row>
-                    </el-form>
-                </el-col>
-                <el-col :span="9"></el-col>
-            </el-row>
-        </div>
-        <div>
-        	<el-row type="flex" justify="center" align="middle">
-       			<el-row type="flex" justify="center" align="middle">
-        			<div class="el-card box-card" style="background-color: #58B7FF; padding: 15px 40px;">
-        				<a target="_blank" href="../baseproject/qdp-4.0.0.zip" style="text-decoration-line: unset;color: white;">下载工程模板（完整）</a>
-        			</div>
-        			<div class="el-card box-card" style="background-color: #67C23A; padding: 15px 40px;">
-        				<a target="_blank" href="../baseproject/qdp-simpleauth-4.0.0.zip" style="text-decoration-line: unset;color: white;">下载工程模板（无组织权限）</a>
-        			</div>
-       			</el-row>
-        	</el-row>
-        </div>
-        <div class="layout-copy">2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>
-    </div>-->
-  </div>
 </template>
 <script type="text/javascript">
   define(['vue', "encrypt", "qdp"], function (Vue) {
@@ -221,6 +230,7 @@
     }
   })
 
+
 </script>
 <style>
   /*登录页面*/
@@ -240,8 +250,8 @@
     width: 900px;
   }
   .login-form_form-left img{
-    height: 300px;
-    width: 464px;
+    height: 200px;
+    width: auto;
   }
   .login-form_form-right{
     background-color: white;
@@ -252,9 +262,10 @@
     width: 100%;
   }
   .login-form_form-title{
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 16px;
-    color: #999999;
+    color: #777;
+    text-align: center;
   }
   .login-form_footer{
     color: white;
@@ -262,5 +273,18 @@
     text-align: center;
     height: 50px;
     line-height: 24px;
+  }
+  .dashboard_text{
+    text-align: center;
+    color: #FFF;
+  }
+  .dashboard_image{
+    height: 100%;
+    background: #f3f4f6 url("../modules/elementui-2.3.5/img/s_r.png") no-repeat center;
+    background-size: contain;
+  }
+  .login-icon{
+    font-size: 20px;
+    font-weight: bolder;
   }
 </style>
