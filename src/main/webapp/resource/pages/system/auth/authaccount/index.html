@@ -1,4 +1,5 @@
 <template>
+    <!-- template-2.0.0 -->
 	<div class="qdp-list-layout">
 		<!-- 搜索 -->
 		<el-row class="qdp-list-content" type="flex" justify="start" align="top">
@@ -39,10 +40,10 @@
 				@sort-change="onPost('grid-table', 'sort-change', arguments[0])">
 				<el-table-column type="selection" width="35"></el-table-column>
 				<el-table-column :fixed="true" prop="loginEmail" label="登录 Email" :sortable="true"></el-table-column>
-				<el-table-column :fixed="true" prop="status" label="状态">
+				<el-table-column :fixed="true" prop="status" label="状态" width="100">
 					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
-				<el-table-column :fixed="true" prop="type" label="类型">
+				<el-table-column :fixed="true" prop="type" label="类型" width="100">
 					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="userId" label="用户">

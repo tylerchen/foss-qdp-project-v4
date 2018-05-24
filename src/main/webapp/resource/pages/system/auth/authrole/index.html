@@ -1,4 +1,5 @@
 <template>
+    <!-- template-2.0.0 -->
 	<div class="qdp-list-layout">
 		<!-- 搜索 -->
 		<el-row class="qdp-list-content" type="flex" justify="start" align="top">
@@ -42,13 +43,13 @@
 				<el-table-column type="selection" width="35"></el-table-column>
 				<el-table-column :fixed="true" prop="name" label="名称" :sortable="true"></el-table-column>
 				<el-table-column :fixed="true" prop="code" label="编码" :sortable="true"></el-table-column>
-				<el-table-column :fixed="true" prop="type1" label="一级分类">
+				<el-table-column :fixed="true" prop="type1" label="一级分类" width="100">
 					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
-				<el-table-column :fixed="true" prop="type2" label="二级分类">
+				<el-table-column :fixed="true" prop="type2" label="二级分类" width="100">
 					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
-				<el-table-column :fixed="true" prop="status" label="状态">
+				<el-table-column :fixed="true" prop="status" label="状态" width="100">
 					<template scope="scope"><el-tag>{{getOption(scope.row, scope.column)}}</el-tag></template>
 				</el-table-column>
 				<el-table-column :fixed="true" prop="menuId" label="菜单">

@@ -1,4 +1,5 @@
 <template>
+    <!-- template-2.0.0 -->
 	<div class="qdp-list-layout">
 		<!-- 搜索 -->
 		<!-- 搜索-END -->
@@ -56,7 +57,7 @@
 		<!-- 添加 -->
 		<el-dialog title="添加" :visible.sync="addFormVisible" :close-on-press-escape="false" :close-on-click-modal="false">
 			<el-row type="flex" justify="center" align="top">
-				<el-form class="qdp-add-form" :model="addForm" :rules="addFormRules" label-width="80px" inline ref="addForm" @keydown.13.native.stop="onPost('addForm', 'submit')">
+				<el-form class="qdp-add-form" :model="addForm" :rules="addFormRules" label-width="100px" inline ref="addForm" @keydown.13.native.stop="onPost('addForm', 'submit')">
 					<el-form-item label="组织机构名称" prop="name">
 						<el-input v-model="addForm.name" placeholder="" size="small"></el-input>
 					</el-form-item>
@@ -153,7 +154,7 @@
 		<!-- 添加子节点 -->
 		<el-dialog title="添加子节点" :visible.sync="addChildFormVisible" :close-on-press-escape="false" :close-on-click-modal="false">
 			<el-row type="flex" justify="center" align="top">
-				<el-form class="qdp-add-form" :model="addChildForm" :rules="addChildFormRules" label-width="80px" inline ref="addChildForm" @keydown.13.native.stop="onPost('addChildForm', 'submit')">
+				<el-form class="qdp-add-form" :model="addChildForm" :rules="addChildFormRules" label-width="100px" inline ref="addChildForm" @keydown.13.native.stop="onPost('addChildForm', 'submit')">
 					<el-form-item label="组织机构名称" prop="name">
 						<el-input v-model="addChildForm.name" placeholder="" size="small"></el-input>
 					</el-form-item>
@@ -240,7 +241,7 @@
 		<!-- 修改 -->
 		<el-dialog title="修改" :visible.sync="editFormVisible" :close-on-press-escape="false" :close-on-click-modal="false">
 			<el-row type="flex" justify="center" align="top">
-				<el-form class="qdp-edit-form" :model="editForm" :rules="editFormRules" label-width="80px" inline ref="editForm" @keydown.13.native.stop="onPost('editForm', 'submit')">
+				<el-form class="qdp-edit-form" :model="editForm" :rules="editFormRules" label-width="100px" inline ref="editForm" @keydown.13.native.stop="onPost('editForm', 'submit')">
 					<el-form-item label="组织机构名称" prop="name">
 						<el-input v-model="editForm.name" placeholder="" size="small"></el-input>
 					</el-form-item>

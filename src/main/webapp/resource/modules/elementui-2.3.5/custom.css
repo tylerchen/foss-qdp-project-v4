@@ -31,7 +31,7 @@ body{
 }
 .qdp-input-model .qdp-modal-list-body, .qdp-input-icon .qdp-modal-list-body{
   border-radius: 4px;
-  max-height: 32px;
+  /*max-height: 32px;*/
   overflow: hidden;
 }
 .qdp-input-model .qdp-modal-list-body tr, .qdp-input-icon .qdp-modal-list-body tr{
@@ -343,9 +343,10 @@ body{
 }
 .qdp-info-form .qdp-infoform-title{
 	text-align: right;
-	background: #f4f5f7;
-  padding-right: 10px;
-  font-weight: bold;
+    background: #f4f5f7;
+    padding-right: 10px;
+    font-weight: bold;
+    width: 80px;
 }
 .qdp-info-form .qdp-infoform-content{
 	padding-left: 10px;
