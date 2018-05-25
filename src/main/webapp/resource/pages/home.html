@@ -1,60 +1,8 @@
 <template>
-    <!--<div class="qdp-head-bmenu-footer-layout">-->
-        <!--<el-row class="qdp-header" type="flex" justify="start" align="middle">-->
-            <!--<el-col class="qdp-header-start" :span="4"><div class="qdp-logo">QDP</div></el-col>-->
-            <!--<el-col class="qdp-header-center" :span="14"></el-col>-->
-            <!--<el-col class="qdp-header-end" :span="6">-->
-            	<!--<el-row type="flex" justify="end" align="middle" style="padding-right: 10px">-->
-           			<!--<el-button type="text">{{(account()||{}).loginId}}</el-button>-->
-           			<!--<el-button type="text">个人设置</el-button>-->
-           			<!--<el-button type="text" @click="loginOut">登出</el-button>-->
-            	<!--</el-row>-->
-            <!--</el-col>-->
-        <!--</el-row>-->
-        <!--<el-row class="qdp-content" type="flex" justify="start" align="top">-->
-            <!--<el-col class="qdp-content-start" :span="menuFold?1:4">-->
-            	<!--<el-button type="text" class="qdp-fold" title="折叠" @click="onPost('menu-action','fold')" style="top:0;position: relative;float: right;z-index: 1;width:10px;"><i class="el-icon-ion-android-more-vertical"></i></el-button>-->
-                <!--<el-menu v-if="!menuFold" class="qdp-el-vmenu" theme="dark" :router="true" @select="onPost.call(this, 'menu-select', arguments[0], arguments[1])" :default-openeds="menus.opens" :default-active="menus.active">-->
-                    <!--<template v-for="(item, key) in menus.items">-->
-                        <!--<el-submenu v-if="item.items" :index="item.id" :key="item.id"> <span slot="title"><i :class="qdpIcon(menus, item)"></i>{{qdpTitle(menus,item)}}</span>-->
-                            <!--<template v-for="(sitem, skey) in item.items">-->
-		                        <!--<el-submenu v-if="sitem.items" :index="sitem.id" :key="sitem.id"> <span slot="title"><i :class="qdpIcon(menus, sitem)"></i>{{qdpTitle(menus,sitem)}}</span>-->
-		                            <!--<el-menu-item v-for="(ssitem, sskey) in sitem.items" :key="ssitem.id" :index="qdpUrl(menus, ssitem)"> <i :class="qdpIcon(menus, ssitem)"></i>{{qdpTitle(menus, ssitem)}}</el-menu-item>-->
-		                        <!--</el-submenu>-->
-		                        <!--<el-menu-item v-if="!sitem.items" :index="sitem.id">-->
-		                            <!--<i :class="qdpIcon(menus, sitem)"></i>{{qdpTitle(menus, sitem)}}</el-menu-item>-->
-		                    <!--</template>-->
-                        <!--</el-submenu>-->
-                        <!--<el-menu-item v-if="!item.items" :index="item.id">-->
-                            <!--<i :class="qdpIcon(menus, item)"></i>{{qdpTitle(menus, item)}}</el-menu-item>-->
-                    <!--</template>-->
-                <!--</el-menu>-->
-                <!--<div v-if="menuFold" class="qdp-menu-fold">-->
-                	<!--<el-collapse v-for="(item, key) in menus.items" :key="item">-->
-                		<!--<el-collapse-item>-->
-                			<!--<template slot="title"><i :class="qdpIcon(menus, item)" :title="qdpTitle(menus, item)"></i></template>&lt;!&ndash; level 1 &ndash;&gt;-->
-	                		<!--<el-collapse v-if="item.items" v-for="(sitem, skey) in item.items" :key="sitem">-->
-	                			<!--<el-collapse-item>-->
-	                				<!--<template slot="title"><i :class="qdpIcon(menus, sitem)" :title="qdpTitle(menus, sitem)"></i></template>&lt;!&ndash; level 2 &ndash;&gt;-->
-	                				<!--<div v-for="(ssitem, sskey) in sitem.items" :key="ssitem" class="qdp-menu-fold&#45;&#45;leaf">-->
-	                					<!--<el-button size="mini" type="text" @click="goToUrl(qdpUrl(menus, ssitem))" :title="qdpTitle(menus, ssitem)"><i :class="qdpIcon(menus, ssitem)"></i></el-button>&lt;!&ndash; level 3 &ndash;&gt;-->
-	                				<!--</div>-->
-	                			<!--</el-collapse-item>-->
-	                		<!--</el-collapse>-->
-                		<!--</el-collapse-item>-->
-                	<!--</el-collapse>-->
-                <!--</div>-->
-            <!--</el-col>-->
-            <!--<el-col class="qdp-content-end" :span="menuFold?23:20"><router-view></router-view></el-col>-->
-        <!--</el-row>-->
-        <!--<el-row class="qdp-footer" type="flex" justify="center" align="top">-->
-            <!--<div>2017-2019 &copy; Forever Open Source & Forever Flying {{app_version}}</div>-->
-        <!--</el-row>-->
-    <!--</div>-->
   <div class="home">
     <div class="home_header f-con">
       <div class="home_header_img f-left">
-        <img src="../modules/elementui-2.3.5/img/logo1.png" alt="" height="38px">
+        <img src="../modules/elementui-2.3.5/img/logo1.png" alt="" height="38px" @click="onPost('action-bar','imgclk')">
       </div>
       <div class="home_welcome f-left">欢迎您使用恒拓微服务平台系统</div>
       <div class="f-right">
@@ -233,6 +181,14 @@ define(['vue'], function(Vue) {
                 		root.menuFold = !root.menuFold;
                 	}
                 }
+                if ("action-bar" == eventType) {
+					LOG("action-bar:" + arg0);
+                    var action = arg0;
+                    if ('imgclk' == action) {
+                        Router.push("/home");
+                        return;
+                    }
+				}
             },
           selectMenu: function(index) {
         	  this.menus.active = index
