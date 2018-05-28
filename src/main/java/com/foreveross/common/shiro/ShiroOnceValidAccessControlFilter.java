@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class ShiroOnceValidAccessControlFilter extends AdviceFilter implements OnceValidAdvice {
 
-    private static final org.iff.infra.util.Logger.Log Logger = org.iff.infra.util.Logger.get("FOSS-SHIRO");
+    private static final org.iff.infra.util.Logger.Log Logger = org.iff.infra.util.Logger.get("FOSS.SHIRO");
 
     private List<OnceValidAdvice> onceFilterChains = new ArrayList<OnceValidAdvice>();
 

@@ -27,7 +27,7 @@ import java.util.*;
  */
 public class QuartzSchedulerHelper {
 
-    private static final Log logger = Logger.get("QUARTZ");
+    private static final Log logger = Logger.get("FOSS.QUARTZ");
 
     /* quartz Scheduler */
     private static Scheduler scheduler;

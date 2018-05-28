@@ -23,7 +23,7 @@ import java.util.Map.Entry;
  */
 public class MvelJob implements Job {
 
-    private static final Logger.Log log = Logger.get("QUARTZ");
+    private static final Logger.Log log = Logger.get("FOSS.QUARTZ");
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
         JobDetail detail = null;
