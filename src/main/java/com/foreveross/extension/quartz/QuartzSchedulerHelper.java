@@ -43,7 +43,7 @@ public class QuartzSchedulerHelper {
         return scheduler;
     }
 
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         Assert.notNull(getScheduler(), "quartz scheduler is null");
         logger.info(FCS.get("init quartz scheduler success.[{0}]", getScheduler()));
     }

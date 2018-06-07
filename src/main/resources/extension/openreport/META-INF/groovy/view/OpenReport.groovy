@@ -2,12 +2,12 @@ package org.iff.groovy.view.openreport
 
 class TCBeanUtil {
     @groovy.transform.CompileStatic
-    public static Object get(String beanName) {
+    static Object get(String beanName) {
         return org.iff.infra.util.groovy2.TCGroovyLoader.getDefaultGroovyLoader().getBean(beanName)
     }
 
     @groovy.transform.CompileStatic
-    public static Object getSpringBean(String beanName) {
+    static Object getSpringBean(String beanName) {
         return org.iff.infra.util.spring.SpringContextHelper.getBean(beanName)
     }
 }
@@ -16,7 +16,7 @@ class TCBeanUtil {
 class ORFreemarker {
     private config
 
-    def String process(templateSource, paramMap) {
+    String process(templateSource, paramMap) {
         def writer = new java.io.StringWriter()
         getConfig().getTemplate(templateSource, 'UTF-8').process(paramMap, writer)
         return writer.toString()
@@ -50,35 +50,35 @@ class ORFreemarker {
 
 @TCBean(name = 'TC_OR_page')
 class ORpage {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_conditions')
 class ORconditions {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_actions')
 class ORactions {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_data')
 class ORdata {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_pagination')
 class ORpagination {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }

@@ -83,8 +83,7 @@ public class SpringFreeMarkerView extends FreeMarkerView {
         super.render(model, request, response);
     }
 
-    protected void processTemplate(Template template, SimpleHash model, HttpServletResponse response)
-            throws IOException, TemplateException {
+    protected void processTemplate(Template template, SimpleHash model, HttpServletResponse response) {
         try {
             super.processTemplate(template, model, response);
         } catch (Exception e) {

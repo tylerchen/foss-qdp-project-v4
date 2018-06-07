@@ -62,7 +62,7 @@ class ExcelBuilder {
 
     def workbook = org.iff.infra.util.ReflectHelper.getConstructor('org.apache.poi.hssf.usermodel.HSSFWorkbook').newInstance()
     def sheet
-    def int rowsCounter
+    int rowsCounter
 
     def cellStyles = [:]
     def fonts = [:]

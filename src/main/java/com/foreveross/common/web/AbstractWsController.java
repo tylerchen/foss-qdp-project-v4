@@ -64,14 +64,12 @@ public abstract class AbstractWsController extends BaseController {
      * @param request
      * @param response
      * @return
-     * @throws IOException
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
      * @since Jul 19, 2016
      */
     @RequestMapping(value = "/json/{beanName}/{methodName}/**", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String toJson(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public String toJson(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         try {
             String requestURI = request.getRequestURI();
             String reportPath = StringUtils.substringAfter(requestURI, "/json/");
@@ -126,14 +124,12 @@ public abstract class AbstractWsController extends BaseController {
      * @param request
      * @param response
      * @return
-     * @throws IOException
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
      * @since Jul 19, 2016
      */
     @RequestMapping(value = "/xml/{beanName}/{methodName}/**", produces = "application/xml;charset=UTF-8")
     @ResponseBody
-    public String toXml(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public String toXml(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         try {
             String requestURI = request.getRequestURI();
             String reportPath = StringUtils.substringAfter(requestURI, "/xml/");

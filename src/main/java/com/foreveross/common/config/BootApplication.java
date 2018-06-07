@@ -43,7 +43,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
         @Filter(type = FilterType.REGEX, pattern = {"com.foreveross.extension.activiti.*"})})
 public class BootApplication extends WebMvcConfigurerAdapter {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(BootApplication.class, args);
     }
 

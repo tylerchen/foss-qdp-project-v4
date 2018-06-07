@@ -31,19 +31,11 @@
     </logger>
 
     <logger name="FOSS">
-        <level value="debug"/>
-    </logger>
-
-    <logger name="TRACE">
-        <level value="debug"/>
-    </logger>
-
-    <logger name="FOSS-SHIRO">
-        <level value="debug"/>
+        <level value="DEBUG"/>
     </logger>
 
     <root>
-        <level value="info"/>
+        <level value="INFO"/>
         <appender-ref ref="RootConsoleAppender"/>
         <!-- <appender-ref ref="SocketAppender" /> -->
     </root>

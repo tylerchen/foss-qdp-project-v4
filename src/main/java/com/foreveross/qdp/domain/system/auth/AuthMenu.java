@@ -447,10 +447,7 @@ public class AuthMenu implements Serializable {
             }
             domain = get(domain.getParentId());
         }
-        if (domain != null && (domain.getMaxLevel() - 1) >= count) {
-            return true;
-        }
-        return false;
+        return domain != null && (domain.getMaxLevel() - 1) >= count;
     }
 
     /**

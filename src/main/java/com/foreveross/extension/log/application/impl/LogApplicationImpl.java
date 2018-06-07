@@ -99,7 +99,7 @@ public class LogApplicationImpl implements LogApplication, InitializingBean {
         Logger.info("Timer-LOG_CLEAN started.");
     }
 
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         EventBusHelper.me().regist("LOG_SAVE_LogAccess", new EventBusHelper.EventProcess() {
             public void listen(String eventPath, Object data) {
                 if (data == null || !(data instanceof List)) {

@@ -2,12 +2,12 @@ package org.iff.groovy.view.openreport
 
 class TCBeanUtil {
     @groovy.transform.CompileStatic
-    public static Object get(String beanName) {
+    static Object get(String beanName) {
         return org.iff.infra.util.groovy2.TCGroovyLoader.getDefaultGroovyLoader().getBean(beanName)
     }
 
     @groovy.transform.CompileStatic
-    public static Object getSpringBean(String beanName) {
+    static Object getSpringBean(String beanName) {
         return org.iff.infra.util.spring.SpringContextHelper.getBean(beanName)
     }
 }
@@ -42,21 +42,21 @@ class RTSplit {
 
 @TCBean(name = 'TC_COM_HW_html')
 class HWHtml {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         $ { paramMap.html }
     }
 }
 
 @TCBean(name = 'TC_COM_HW_blank')
 class HWBlank {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         '&nbsp;'
     }
 }
 
 @TCBean(name = 'TC_COM_HW_hidden')
 class HWHidden {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         """
 		<input type="hidden" name="${paramMap.name}" id="${paramMap.name}" value="${paramMap.value}" /> 
 		"""
@@ -65,7 +65,7 @@ class HWHidden {
 
 @TCBean(name = 'TC_COM_HW_script')
 class HWScript {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         """
 		<script type="text/javascript">
 			${paramMap.value}
@@ -85,7 +85,7 @@ class HWText {
 
 @TCBean(name = 'TC_COM_HW_cn2select')
 class HWCN2Select {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         def content = []
         /* the first select is the province select */
         content << """
@@ -114,7 +114,7 @@ class HWCN2Select {
 
 @TCBean(name = 'TC_COM_HW_select')
 class HWSelect {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         """
 		<!--<input type="hidden" name="${paramMap.name}_i" id="${paramMap.name}_i" value="${paramMap.value}" />-->
 		<select name="${paramMap.name}" id="${paramMap.name}" class="or-hw-select">
@@ -126,7 +126,7 @@ class HWSelect {
 
 @TCBean(name = 'TC_COM_HW_mselect')
 class HWMSelect {
-    def String htmlWidget(paramMap) {/* {name, value, html} */
+    String htmlWidget(paramMap) {/* {name, value, html} */
         """
 		<select name="${paramMap.name}" id="${paramMap.name}" class="or-hw-mselect" multiple="multiple">
 			${paramMap.html}
@@ -221,7 +221,7 @@ class ORSMcount {
 class ORFreemarker {
     private config
 
-    def String process(templateSource, paramMap) {
+    String process(templateSource, paramMap) {
         def writer = new java.io.StringWriter()
         getConfig().getTemplate(templateSource, 'UTF-8').process(paramMap, writer)
         return writer.toString()
@@ -255,35 +255,35 @@ class ORFreemarker {
 
 @TCBean(name = 'TC_OR_page')
 class ORpage {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_conditions')
 class ORconditions {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_actions')
 class ORactions {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_data')
 class ORdata {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
 
 @TCBean(name = 'TC_OR_pagination')
 class ORpagination {
-    def String gen(actionTemplateSource, paramMap) {
+    String gen(actionTemplateSource, paramMap) {
         return TCBeanUtil.get('TC_OR_freemarker').process(actionTemplateSource, paramMap)
     }
 }
@@ -345,7 +345,7 @@ class ORcrosstable {
      * rowmap['gender&&&&@@@@&&&&male']=colmap={'goods&&&&@@@@&&&&papers':11}* rowmap['gender&&&&@@@@&&&&male']=colmap={'goods&&&&@@@@&&&&printer':12}* rowmap['gender&&&&@@@@&&&&fmale']=colmap={'goods&&&&@@@@&&&&papers':21}* rowmap['gender&&&&@@@@&&&&fmale']=colmap={'goods&&&&@@@@&&&&printer'22}* rowsummary=loop colmap keys, summary rowmap[rowkey][columnkey]=colmap.key
      * columnsummary=loop rowmap keys, summary colmap values
      **/
-    def String gen(openreportConfig, reportConfig, conditionParams, queryResult) {
+    String gen(openreportConfig, reportConfig, conditionParams, queryResult) {
         // need to specify 'row' names, 'col' names, 'val' names, 'valmethod' value name map with summary
         def row = []/*dimension x*/, col = []/*dimension y*/, summary = [:]/*value for calculate*/, summaryKeys = []
 /* summary key names */
