@@ -101,7 +101,7 @@ public class UserNamePasswordRealm extends AuthorizingRealm {
      * (non-Javadoc)
      *
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
-     * @see org.apache.shiro.realm.AuthenticatingRealm#supports(org.apache.shiro.authc.AuthenticationToken)
+     * @see org.apache.shiro.realm.AuthenticatingRealm#supports(AuthenticationToken)
      * @since Mar 21, 2018
      */
     public boolean supports(AuthenticationToken token) {
