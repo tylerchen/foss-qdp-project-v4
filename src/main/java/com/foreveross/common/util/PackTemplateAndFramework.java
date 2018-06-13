@@ -151,6 +151,20 @@ public class PackTemplateAndFramework {
                     }
                 }
             }
+            {// delete files
+                paths.clear();
+                paths.add("src/main/java/com/foreveross/common/util/CodeGenerator.java");
+                paths.add("src/main/java/com/foreveross/common/util/PackClient.java");
+                paths.add("src/main/java/com/foreveross/common/util/PackTemplateAndFramework.java");
+                paths.add("src/main/resources/diagrams");
+                paths.add("src/main/resources/models");
+                paths.add("src/test/resources/replace");
+                for (String path : paths) {
+                    String dirDes = StringHelper.pathConcat(tmpRoot, path);
+                    File file = new File(dirDes);
+                    FileUtils.deleteQuietly(file);
+                }
+            }
             {// replace files
                 paths.clear();
                 String replaceBase = "src/test/resources/replace/";
@@ -165,20 +179,6 @@ public class PackTemplateAndFramework {
                     } else if (file.isFile()) {
                         FileUtils.copyFile(new File(dirSrc), new File(dirDes));
                     }
-                }
-            }
-            {// delete files
-                paths.clear();
-                paths.add("src/main/java/com/foreveross/common/util/CodeGenerator.java");
-                paths.add("src/main/java/com/foreveross/common/util/PackClient.java");
-                paths.add("src/main/java/com/foreveross/common/util/PackTemplateAndFramework.java");
-                paths.add("src/main/resources/diagrams");
-                paths.add("src/main/resources/models");
-                paths.add("src/test/resources/replace");
-                for (String path : paths) {
-                    String dirDes = StringHelper.pathConcat(tmpRoot, path);
-                    File file = new File(dirDes);
-                    FileUtils.deleteQuietly(file);
                 }
             }
             List<String> zipPaths = new ArrayList<String>();
@@ -247,22 +247,6 @@ public class PackTemplateAndFramework {
                     }
                 }
             }
-            {// replace files
-                paths.clear();
-                String replaceBase = "src/test/resources/replace-noauth/";
-                paths.add("src");
-                paths.add("pom.xml");
-                for (String path : paths) {
-                    String dirSrc = StringHelper.pathConcat(projectRoot, replaceBase, path);
-                    String dirDes = StringHelper.pathConcat(tmpRoot, path);
-                    File file = new File(dirSrc);
-                    if (file.isDirectory()) {
-                        FileUtils.copyDirectory(new File(dirSrc), new File(dirDes));
-                    } else if (file.isFile()) {
-                        FileUtils.copyFile(new File(dirSrc), new File(dirDes));
-                    }
-                }
-            }
             {// delete files
                 paths.clear();
                 paths.add("src/test/java/com");
@@ -273,20 +257,22 @@ public class PackTemplateAndFramework {
                 paths.add("src/main/java/com/foreveross/common/util/PackClient.java");
                 paths.add("src/main/java/com/foreveross/common/util/PackTemplateAndFramework.java");
                 //
+                paths.add("src/main/java/com/foreveross/admin");
                 paths.add("src/main/java/com/foreveross/qdp/application/system/auth");
                 paths.add("src/main/java/com/foreveross/qdp/application/system/common");
                 paths.add("src/main/java/com/foreveross/qdp/domain/system/auth");
                 paths.add("src/main/java/com/foreveross/qdp/domain/system/common");
                 paths.add("src/main/java/com/foreveross/qdp/infra/vo/system/auth");
                 paths.add("src/main/java/com/foreveross/qdp/infra/vo/system/common");
-                paths.add("src/main/resources/META-INF/mappings/com/foreveross/qdp/domain/system/auth");
-                paths.add("src/main/resources/META-INF/mappings/com/foreveross/qdp/domain/system/common");
+                //
+                paths.add("src/main/resources/database");
+                //
+                paths.add("src/main/resources/META-INF/mappings/com/foreveross/qdp");
                 //
                 paths.add("src/main/java/com/foreveross/extension/query");
                 paths.add("src/main/java/com/foreveross/extension/mvel");
                 //
-                paths.add(
-                        "src/main/java/com/foreveross/common/application/impl/DefaultAuthorizationApplicationImpl.java");
+                paths.add("src/main/java/com/foreveross/common/application/impl/DefaultAuthorizationApplicationImpl.java");
                 paths.add("src/main/java/com/foreveross/common/application/impl/DefaultSystemApplicationImpl.java");
                 paths.add("src/main/java/com/foreveross/qdp/application/system/restapi/AuthUserRestApiApplication.java");
                 //
@@ -304,6 +290,22 @@ public class PackTemplateAndFramework {
                     String dirDes = StringHelper.pathConcat(tmpRoot, path);
                     File file = new File(dirDes);
                     FileUtils.deleteQuietly(file);
+                }
+            }
+            {// replace files
+                paths.clear();
+                String replaceBase = "src/test/resources/replace-noauth/";
+                paths.add("src");
+                paths.add("pom.xml");
+                for (String path : paths) {
+                    String dirSrc = StringHelper.pathConcat(projectRoot, replaceBase, path);
+                    String dirDes = StringHelper.pathConcat(tmpRoot, path);
+                    File file = new File(dirSrc);
+                    if (file.isDirectory()) {
+                        FileUtils.copyDirectory(new File(dirSrc), new File(dirDes));
+                    } else if (file.isFile()) {
+                        FileUtils.copyFile(new File(dirSrc), new File(dirDes));
+                    }
                 }
             }
             List<String> zipPaths = new ArrayList<String>();
