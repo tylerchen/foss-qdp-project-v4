@@ -38,10 +38,9 @@
 	
 	<import resource="classpath:META-INF/spring-tcutil/tc-util.xml" />
 	<import resource="classpath:META-INF/spring-cache/root.xml" />
-	<import resource="classpath:META-INF/spring-app/spring-common.xml" />
 	<import resource="spring-data-access.xml" />
 	<import resource="classpath:META-INF/spring-auth/root.xml" />
-	<import resource="classpath:META-INF/spring-cxf/root.xml" />
+	<!--<import resource="classpath:META-INF/spring-cxf/root.xml" />-->
 	<!-- <import resource="classpath:META-INF/spring-openreport/root.xml" /> -->
 	<!-- <context:exclude-filter type="regex" expression="com.foreveross.extension.activiti.*"/> -->
 	<!-- <import resource="classpath:META-INF/spring-workflow/root.xml" /> -->
