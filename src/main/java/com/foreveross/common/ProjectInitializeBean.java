@@ -11,11 +11,11 @@ package com.foreveross.common;
 import com.foreveross.common.application.SystemApplication;
 import com.foreveross.common.restfull.RestClientUtil;
 import com.foreveross.common.restfull.UriManager;
-import org.iff.infra.util.log.LogKafkaHelper;
 import com.foreveross.extension.monitor.application.MonitorApplication;
 import net.sf.ehcache.CacheManager;
 import org.apache.commons.lang3.StringUtils;
 import org.iff.infra.util.*;
+import org.iff.infra.util.log.LogKafkaHelper;
 import org.iff.infra.util.spring.SpringContextHelper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -48,7 +48,7 @@ public class ProjectInitializeBean
      * (non-Javadoc)
      *
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
-     * @see org.springframework.beans.factory.config.BeanFactoryPostProcessor#postProcessBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
+     * @see BeanFactoryPostProcessor#postProcessBeanFactory(ConfigurableListableBeanFactory)
      * @since Mar 20, 2018
      */
     public synchronized void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -87,7 +87,7 @@ public class ProjectInitializeBean
      * (non-Javadoc)
      *
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     * @see InitializingBean#afterPropertiesSet()
      * @since Mar 20, 2018
      */
     public void afterPropertiesSet() {
@@ -99,7 +99,7 @@ public class ProjectInitializeBean
      * (non-Javadoc)
      *
      * @author <a href="mailto:iffiff1@gmail.com">Tyler Chen</a>
-     * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+     * @see ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
      * @since Mar 20, 2018
      */
     @SuppressWarnings("resource")
@@ -166,14 +166,12 @@ public class ProjectInitializeBean
                             initSpringService.addAll(Arrays.asList(interfaces));
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
                     }
                 }
                 if (initSpringService.size() > 0) {
                     monitorApplication.initSpringServiceMap(initSpringService.toArray(new Class<?>[0]));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
