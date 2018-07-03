@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.foreveross</groupId>
     <artifactId>foss-qdp-project-v4</artifactId>
-    <version>4.0.0</version>
+    <version>5.0.0</version>
     <packaging>war</packaging>
     <name>${project.groupId}-${project.artifactId}-${project.version}</name>
     <description>
@@ -265,7 +265,7 @@
         <dependency>
             <groupId>org.iff</groupId>
             <artifactId>tc-util-project</artifactId>
-            <version>1.0.26</version>
+            <version>1.0.27</version>
         </dependency>
         <!-- iff infra end -->
         <!-- javax.servlet -->
