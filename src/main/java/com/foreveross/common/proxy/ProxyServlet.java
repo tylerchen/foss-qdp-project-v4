@@ -16,6 +16,7 @@
 
 package com.foreveross.common.proxy;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.CookieSpecs;
@@ -126,7 +127,9 @@ public class ProxyServlet implements Closeable {
     /**
      * 改造
      */
-    private static final Pattern linkPattern = Pattern.compile("\\b(href=|src=|action=|url\\()([\"\'])(([^/]+://)([^/<>]+))?([^\"\'>]*)[\"\']", Pattern.CASE_INSENSITIVE | Pattern.CANON_EQ);
+    //<meta http-equiv="refresh" content="0;url=resource/pages/index.html">
+    //private static final Pattern linkPattern = Pattern.compile("\\b(href=|src=|action=|url\\()([\"\'])?(([^/]+://)([^/<>]+))?([^\"\'>]*)[\"\'\\)]", Pattern.CASE_INSENSITIVE | Pattern.CANON_EQ);
+    private static final Pattern linkPattern = Pattern.compile("\\b(href=|src=|action=|url\\()|url=", Pattern.CASE_INSENSITIVE);
     /**
      * 改造
      */
@@ -712,59 +715,69 @@ public class ProxyServlet implements Closeable {
      * @throws IOException
      */
     private void rewriteUrl(HttpServletResponse servletResponse, HttpServletRequest servletRequest, HttpEntity entity, ServletOutputStream servletOutputStream) throws IOException {
-        /*
-         * Using regex can be quite harsh sometimes so here is how
-         * the regex trying to find links works
-         *
-         * \\b(href=|src=|action=|url\\()([\"\'])
-         * This part is the identification of links, matching
-         * something like href=", href=' and href=
-         *
-         * (([^/]+://)([^/<>]+))?
-         * This is to identify absolute paths. A link doesn't have
-         * to be absolute therefor there is a ?.
-         *
-         * ([^\"\'>]*)
-         * This is the link
-         *
-         * [\"\']
-         * Ending " or '
-         *
-         * $1 - link type, e.g. href=
-         * $2 - ", ' or whitespace
-         * $3 - The entire http://www.server.com if present
-         * $4 - The protocol, e.g http:// or ftp://
-         * $5 - The host name, e.g. www.server.com
-         * $6 - The link
-         */
         String content = StreamHelper.getContent(entity.getContent(), false);
-        StringBuffer page = new StringBuffer();
-
+        StringBuffer page = new StringBuffer(content);
         Matcher matcher = linkPattern.matcher(content);
         while (matcher.find()) {
-            String link = matcher.group(6).replaceAll("\\$", "\\\\\\$");
-            if (link.length() == 0) {
-                link = "/";
-            }
-            String rewritten = null;
-            if (matcher.group(4) != null) {
-                rewritten = matcher.group(6);
-            } else {
-                if (link.startsWith("/")) {
-                    rewritten = matcher.group(1) + matcher.group(2) + servletRequest.getContextPath() + link + matcher.group(2);
-                } else if (!link.startsWith(".")) {
-                    rewritten = matcher.group(1) + matcher.group(2) + "./" + link + matcher.group(2);
-                } else {
-                    rewritten = matcher.group(6);
+            String g1 = matcher.group();//href=|src=|action=|url(|url=
+            int end = matcher.end(), pos = 0;
+            {
+                //data:image/png;Base64图片，不做转换 || https://外部网站的地址，不做转换
+                String validLink = content.length() > end + 15 ? content.substring(end, end + 15) : "";
+                if (StringUtils.contains(validLink, "data:") || StringUtils.contains(validLink, "://")) {
+                    continue;
                 }
             }
+            char urlStart = ' ';
+            if (content.charAt(end) == '\"') {
+                urlStart = content.charAt((pos = end + 1));
+            } else if (content.charAt(end) == '\'') {
+                urlStart = content.charAt((pos = end + 1));
+            } else if (content.charAt(end - 1) == '(') {
+                urlStart = content.charAt((pos = end));
+            } else if ("url=".equals(g1.toLowerCase())) {
+                urlStart = content.charAt((pos = end));
+            }
+            if (urlStart == ' ') {
+                urlStart = '/';
+            }
+            String rewritten = null;
+            if (urlStart == '/') {
+                rewritten = servletRequest.getContextPath();
+            } else if (urlStart != '.') {
+                rewritten = "./";
+            }
             if (rewritten != null) {
-                matcher.appendReplacement(page, rewritten);
+                page.insert(pos + (page.length() - content.length()), rewritten);
             }
         }
-        matcher.appendTail(page);
-        String pageContent = page.toString();
-        byte[] pageBytes = pageContent.getBytes("UTF-8");
+        if (StringUtils.contains(servletResponse.getContentType(), "html")) {
+            String script = "\n<script type=\"text/javascript\">" +
+                    "var ____proxy_context___=\"" + StringUtils.removeEnd(servletRequest.getContextPath(), "/") + "\";" +
+                    "document.createElement = function(create) {\n" +
+                    "    return function() {\n" +
+                    "        var ret = create.apply(this, arguments);\n" +
+                    "        var lowerCase = ret.tagName.toLowerCase();\n" +
+                    "        if (lowerCase === \"script\" || lowerCase === \"link\" || lowerCase === \"a\" || lowerCase === \"img\" || lowerCase === \"iframe\") {\n" +
+                    "            ret.setAttribute = function(setAttribute) {\n" +
+                    "                return function() {\n" +
+                    "                    var attr=(arguments[0]||\"\").toLowerCase();\n" +
+                    "                    var link=arguments[1]||\"\";\n" +
+                    "                    if((attr === \"src\" || attr === \"href\") && link.indexOf(\"data:\")<0 && link.indexOf(____proxy_context___)<0){\n" +
+                    "                        link=____proxy_context___+(link.indexOf(\"/\")==0?\"\":\"/\")+link;\n" +
+                    "                        arguments[1]=link;\n" +
+                    "                    }\n" +
+                    "                    var ret = setAttribute.apply(this, arguments);\n" +
+                    "                };\n" +
+                    "            }(ret.setAttribute);\n" +
+                    "        }\n" +
+                    "        return ret;\n" +
+                    "    };\n" +
+                    "}(document.createElement);</script>";
+
+            page.append(script);
+        }
+        byte[] pageBytes = page.toString().getBytes(StringUtils.defaultString(servletResponse.getCharacterEncoding(), "UTF-8"));
         servletResponse.setIntHeader(HttpHeaders.CONTENT_LENGTH, pageBytes.length);
         servletOutputStream.write(pageBytes);
     }
@@ -814,41 +827,59 @@ public class ProxyServlet implements Closeable {
     }
 
     /**
+     * 改造
      * For a redirect response from the target server, this translates {@code theUrl} to redirect to
      * and translates it to one the original client can use.
      */
     protected String rewriteUrlFromResponse(HttpServletRequest servletRequest, String theUrl) {
         //TODO document example paths
         final String targetUri = getTargetUri(servletRequest);
+//        if (theUrl.startsWith(targetUri)) {
+//            /*-
+//             * The URL points back to the back-end server.
+//             * Instead of returning it verbatim we replace the target path with our
+//             * source path in a way that should instruct the original client to
+//             * request the URL pointed through this Proxy.
+//             * We do this by taking the current request and rewriting the path part
+//             * using this servlet's absolute path and the path from the returned URL
+//             * after the base target URL.
+//             */
+//            StringBuffer curUrl = servletRequest.getRequestURL();//no query
+//            int pos;
+//            // Skip the protocol part
+//            if ((pos = curUrl.indexOf("://")) >= 0) {
+//                // Skip the authority part
+//                // + 3 to skip the separator between protocol and authority
+//                if ((pos = curUrl.indexOf("/", pos + 3)) >= 0) {
+//                    // Trim everything after the authority part.
+//                    curUrl.setLength(pos);
+//                }
+//            }
+//            // Context path starts with a / if it is not blank
+//            curUrl.append(servletRequest.getContextPath());
+//            // Servlet path starts with a / if it is not blank
+//            curUrl.append(servletRequest.getServletPath());
+//            curUrl.append(theUrl, targetUri.length(), theUrl.length());
+//            return curUrl.toString();
+//        }
+//        return theUrl;
         if (theUrl.startsWith(targetUri)) {
-            /*-
-             * The URL points back to the back-end server.
-             * Instead of returning it verbatim we replace the target path with our
-             * source path in a way that should instruct the original client to
-             * request the URL pointed through this Proxy.
-             * We do this by taking the current request and rewriting the path part
-             * using this servlet's absolute path and the path from the returned URL
-             * after the base target URL.
-             */
-            StringBuffer curUrl = servletRequest.getRequestURL();//no query
-            int pos;
-            // Skip the protocol part
-            if ((pos = curUrl.indexOf("://")) >= 0) {
-                // Skip the authority part
-                // + 3 to skip the separator between protocol and authority
-                if ((pos = curUrl.indexOf("/", pos + 3)) >= 0) {
-                    // Trim everything after the authority part.
-                    curUrl.setLength(pos);
-                }
-            }
-            // Context path starts with a / if it is not blank
-            curUrl.append(servletRequest.getContextPath());
-            // Servlet path starts with a / if it is not blank
-            curUrl.append(servletRequest.getServletPath());
-            curUrl.append(theUrl, targetUri.length(), theUrl.length());
-            return curUrl.toString();
+            theUrl = theUrl.substring(targetUri.length());
         }
-        return theUrl;
+        if (theUrl.startsWith("/")) {
+            return servletRequest.getContextPath() + theUrl;
+        } else {
+            String requestURL = servletRequest.getRequestURL().toString();
+            requestURL = requestURL.substring(requestURL.indexOf(servletRequest.getContextPath()));
+            if (theUrl.startsWith("./")) {
+                theUrl = theUrl.substring(2);
+            }
+            if (requestURL.endsWith("/")) {
+                return requestURL + theUrl;
+            } else {
+                return requestURL + "/" + theUrl;
+            }
+        }
     }
 
     /**
