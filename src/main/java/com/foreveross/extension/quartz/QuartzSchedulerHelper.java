@@ -65,7 +65,7 @@ public class QuartzSchedulerHelper {
                 for (Trigger trigger : triggers) {
                     QuartzJobInfoVO job = QuartzJobInfoVO.create(jobName, jobGroup);
                     if (trigger != null) {//如果没有触发器，也可以只显示Job信息
-                        Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
+                        TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
                         if (triggerState != null) {
                             job.setJobStatus(triggerState.name());
                         }

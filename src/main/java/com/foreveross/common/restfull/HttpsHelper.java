@@ -21,7 +21,6 @@ import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
@@ -39,51 +38,6 @@ public class HttpsHelper {
     public static final String DEFAULT_TRUST_ALL = "DEFAULT_TRUST_ALL";
     public static final String DEFAULT_TRUST_CER = "DEFAULT_TRUST_CER";
     private static Cacheable cacheable;
-
-    /**
-     * 实现X509TrustManager接口，信任所有的证书
-     *
-     * @author zhaochen
-     */
-    public static class TrustAllManager implements X509TrustManager {
-        @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) {
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) {
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-    }
-
-    /**
-     * 实现HostnameVerifier接口
-     *
-     * @author zhaochen
-     */
-    public static class TrustAllHostnameVerifier implements HostnameVerifier {
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
-        }
-    }
-
-    public static class HttpsFactory {
-        private X509TrustManager trustManager;
-        private SSLSocketFactory sslSocketFactory;
-
-        public X509TrustManager getTrustManager() {
-            return trustManager;
-        }
-
-        public SSLSocketFactory getSslSocketFactory() {
-            return sslSocketFactory;
-        }
-    }
 
     /**
      * 创建信任所有证书的HTTPS。
@@ -216,6 +170,51 @@ public class HttpsHelper {
             HttpsHelper.cacheable = cacheable;
         } else {
             Logger.warn("Cache has been set.");
+        }
+    }
+
+    /**
+     * 实现X509TrustManager接口，信任所有的证书
+     *
+     * @author zhaochen
+     */
+    public static class TrustAllManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType) {
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+    }
+
+    /**
+     * 实现HostnameVerifier接口
+     *
+     * @author zhaochen
+     */
+    public static class TrustAllHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
+    }
+
+    public static class HttpsFactory {
+        private X509TrustManager trustManager;
+        private SSLSocketFactory sslSocketFactory;
+
+        public X509TrustManager getTrustManager() {
+            return trustManager;
+        }
+
+        public SSLSocketFactory getSslSocketFactory() {
+            return sslSocketFactory;
         }
     }
 

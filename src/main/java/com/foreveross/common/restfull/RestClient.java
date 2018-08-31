@@ -329,13 +329,13 @@ public interface RestClient {
         /**
          * Defaults to 10 seconds. {@code 0} implies no timeout.
          *
-         * @see java.net.HttpURLConnection#getConnectTimeout()
+         * @see HttpURLConnection#getConnectTimeout()
          */
         private int connectTimeoutMillis;
         /**
          * Defaults to 60 seconds. {@code 0} implies no timeout.
          *
-         * @see java.net.HttpURLConnection#getReadTimeout()
+         * @see HttpURLConnection#getReadTimeout()
          */
         private int readTimeoutMillis;
 

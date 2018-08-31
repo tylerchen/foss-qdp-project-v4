@@ -31,7 +31,15 @@
     </logger>
 
     <logger name="FOSS">
-        <level value="DEBUG"/>
+        <level value="debug"/>
+    </logger>
+
+    <logger name="TRACE">
+        <level value="debug"/>
+    </logger>
+
+    <logger name="FOSS-SHIRO">
+        <level value="debug"/>
     </logger>
 
     <root>
